@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using InventoryMagement.Data.Accounts;
-using InventoryMagement.Data.Inventory;
-using InventoryManagement.Service.Dtos.Accounts;
-using InventoryManagement.Service.Dtos.Inventory;
-using InventoryManagement.Service.Interfaces.Inventory;
-using InventoryManagement.Service.Services.Security;
+using PointOfSaleSystem.Data.Inventory;
+using PointOfSaleSystem.Service.Dtos.Inventory;
+using PointOfSaleSystem.Service.Interfaces.Inventory;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Inventory
 {

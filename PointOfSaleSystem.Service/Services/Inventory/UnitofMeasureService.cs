@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using InventoryMagement.Data.Inventory;
-using InventoryManagement.Service.Dtos.Inventory;
-using InventoryManagement.Service.Interfaces.Inventory;
-using InventoryManagement.Service.Services.Security;
-using Microsoft.AspNetCore.Mvc;
+using PointOfSaleSystem.Data.Inventory;
+using PointOfSaleSystem.Service.Dtos.Inventory;
+using PointOfSaleSystem.Service.Interfaces.Inventory;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Inventory
 {
@@ -48,7 +47,6 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             return _mapper.Map<UnitOfMeasureDto>(unitOfMeasure);
         }
 
-        [HttpPost("GetUnitOfMeasureDetails")]
         public async Task<UnitOfMeasureDto> GetUnitOfMeasureDetailsAsync(int unitOfMeasureID)
         {
             await ValidateUnitOfMeasureId(unitOfMeasureID);
@@ -60,7 +58,6 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             return _mapper.Map<UnitOfMeasureDto>(unitOfMeasure);
         }
 
-        [HttpPost("DeleteUnitOfMeasure")]
         public async Task DeleteUnitOfMeasureAsync(int unitOfMeasureID)
         {
             await ValidateUnitOfMeasureId(unitOfMeasureID);
