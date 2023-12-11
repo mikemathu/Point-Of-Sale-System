@@ -1,4 +1,4 @@
-﻿using Point_Of_Slae.Models.Sales;
+﻿using PointOfSaleSystem.Data.Sales;
 
 namespace PointOfSaleSystem.Service.Dtos.Sales
 {

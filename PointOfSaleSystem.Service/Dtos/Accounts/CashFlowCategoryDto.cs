@@ -1,4 +1,4 @@
-﻿using InventoryMagement.Data.Accounts;
+﻿using PointOfSaleSystem.Data.Accounts;
 
 namespace PointOfSaleSystem.Service.Dtos.Accounts
 {
