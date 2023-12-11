@@ -1,0 +1,81 @@
+﻿<div class="modal fade item-class-modal" aria-labelledby=myModalLabel data-keyboard=false data-backdrop=static>
+<div class=modal-dialog role=document>
+    <div class=modal-content>
+        <div class=modal-header>
+            <button type=button class=close data-dismiss=modal aria-label=Close>
+                <span aria-hidden=true>&times;</span>
+            </button>
+            <button class="close modalMinimize">
+                <i class="fa fa-minus"></i>
+            </button>
+            <h4 class=modal-title id=myModalLabel>Item Class</h4>
+        </div>
+        <div class=modal-body>
+            <div class="panel panel-default">
+                <div class=panel-body>
+                    <form method=post id=ItemClassForm>
+                        <input hidden type=number data-val=true data-val-required="The ItemClassID field is required." id=ItemClass_ItemClassID name=ItemClass.ItemClassID>
+                        <div class=row>
+                            <div class=col-md-6>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Name</small>
+                                    </label>
+                                    <input class="form-control input-sm" required data-val=true data-val-required="The Name field is required." id=ItemClass_Name name=ItemClass.Name>
+                                </div>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Description</small>
+                                    </label>
+                                    <input class="form-control input-sm" id=ItemClass_Description name=ItemClass.Description>
+                                </div>
+                            </div>
+                            <div class=col-md-6>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Class Type</small>
+                                    </label>
+                                    <select class="form-control input-sm" required data-val=true data-val-required="The ItemClassType field is required." id=ItemClass_ItemClassType name=ItemClass.ItemClassType>
+                                        <option></option>
+                                        <option value=1>Drug Class</option>
+                                        <option value=2>Examination Class</option>
+                                        <option value=3>Test Class</option>
+                                        <option value=4>Procedure Class</option>
+                                        <option value=5>Consumable Class</option>
+                                    </select>
+                                </div>
+                                <div id=updateitemclass hidden>
+                                    <div class="btn-group btn-group-xs pull-right">
+                                        <button id=btnupdateitemclass class="btn btn-primary ladda-button" data-style=expand-right data-size=s>Update</button>
+                                        <a id=btnCreateNewItemClass class="btn btn-primary">New</a>
+                                    </div>
+                                </div>
+                                <div id=additemclass>
+                                    <button id=btnadditemclass class="btn btn-primary btn-xs pull-right ladda-button" data-style=expand-right data-size=s>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <input name=__RequestVerificationToken type=hidden value=CfDJ8K8elgsLS7hMlHQKPXte6tWKO7792FM3IkoDRBMpDtenlbhW_pzlEU1UZryrofNUWmLhnvo9IL9B3QDCQSUME0Ano3n5oAfp0ctvMibtGsro9XI-TsupDHII3VTONnhUkl2E6M8sZuZKZc9JlRGYkjF8B46uleLP_NJGJINxn_rjZXAO0YCOmtWvFtlzFNNBJw>
+                    </form>
+                </div>
+                <div class=panel-heading>
+                    <h6 class=panel-title>View: Item Classes</h6>
+                </div>
+                <div class=table-responsive id=no-more-tables>
+                    <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=itemclassestable>
+                        <thead class=cf>
+                            <tr>
+                                <th>
+                                    <strong>Item Class ID</strong>
+                                <th>
+                                    <strong>Name</strong>
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
