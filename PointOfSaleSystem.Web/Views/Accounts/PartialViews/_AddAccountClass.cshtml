@@ -1,0 +1,51 @@
+﻿<div class="modal fade add-accountclass-modal" tabindex=-1 role=dialog aria-labelledby=myModalLabel data-keyboard=false data-backdrop=static>
+    <div class="modal-dialog modal-sm" role=document>
+        <div class=modal-content>
+            <div class=modal-header>
+                <button type=button class=close data-dismiss=modal aria-label=Close>
+                    <span aria-hidden=true>&times;</span>
+                </button>
+                <h4 class=modal-title id=myModalLabel>
+                    <strong>
+                        <small>Add an Account Class</small>
+                    </strong>
+                </h4>
+            </div>
+            <div class=modal-body>
+                <div class=row>
+                    <div class=col-md-12>
+                        <form method=post id=AddAccountClassForm>
+                            <div class=form-group>
+                                <label>
+                                    <strong>
+                                        <small>Name: </small>
+                                    </strong>
+                                </label>
+                                <input class="form-control input-sm" id=AccountClassName required placeholder="Account Class Name...">
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <strong>
+                                        <small>Account Type: </small>
+                                    </strong>
+                                </label>
+                                <select class="form-control input-sm" id=AccountType required>
+                                    <option></option>
+                                    <option value=1>Asset</option>
+                                    <option value=2>Liability</option>
+                                    <option value=3>Owner's Equity</option>
+                                    <option value=4>Revenue</option>
+                                    <option value=5>Expenses</option>
+                                </select>
+                            </div>
+                            <button disabled id=addAccountClass class="btn btn-primary btn-sm pull-right ladda-button" data-style=expand-right data-size=s>
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <input name=__RequestVerificationToken type=hidden value=CfDJ8It5D1qqI4lBjCCzFnB6CervuVv3FAA0M32NNuyvO49JELws8UkIMETwfPUrVedHxz1EqjJ67D7JsNVTYVZNSxYsVBngXxip7GNZlEo2hwTKM268T6qVsTV55A0tgt7o9PxyyX7Fewq8HN6OWELaqOIzmN35XPfb7zh9rzG3BfpIPuXYb0YF_S8TfGI_Gft3Iw>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

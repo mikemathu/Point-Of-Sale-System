@@ -1,0 +1,47 @@
+﻿<div class="modal fade transfer-balance-modal" tabindex=-1 role=dialog aria-labelledby=myModalLabel data-keyboard=false data-backdrop=static>
+<div class="modal-dialog modal-sm" role=document>
+    <div class=modal-content>
+        <div class=modal-header>
+            <button type=button class=close data-dismiss=modal aria-label=Close>
+                <span aria-hidden=true>&times;</span>
+            </button>
+            <h4 class=modal-title id=myModalLabel>
+                <strong>
+                    <small>Transfer Sub Account Balance</small>
+                </strong>
+            </h4>
+        </div>
+        <div class=modal-body>
+            <div class=row>
+                <form method=post id=TransferSubAccountForm>
+                    <div class=col-md-12>
+                        <p>
+                            <strong>Src: </strong>
+                            <span class=text-info id=txtSrcSubAcc></span>
+                        </p>
+                        <br>
+                        <div class=form-group>
+                            <label>
+                                <strong>
+                                    <small>Destination Account </small>
+                                </strong>
+                            </label>
+                            <select class="form-control input-sm" id=TransferDestAccountID style=width:100%></select>
+                        </div>
+                        <div class=form-group>
+                            <label>
+                                <strong>
+                                    <small>Destination Sub Account </small>
+                                </strong>
+                            </label>
+                            <select class="form-control input-sm" id=TransferDestSubAccountID style=width:100% required></select>
+                        </div>
+                        <button id=btnTransferSubAccountBalance class="btn btn-primary btn-sm pull-right ladda-button" data-style=expand-right data-size=s>Transfer</button>
+                    </div>
+                    <input name=__RequestVerificationToken type=hidden value=CfDJ8OroAFUfyNtFqbAGR1OOaEbbz0jsUcTN_l3eIDPP2i74dVm57rhUGhUaG8mjfDuhY28P_mkotfxr72-HgYfJC54LTdwhLZReZodGX4ukCvFteRvFJDtxeWDRXXf4-zQvIDFjv10rEr0O0bjU07OPlW-_JVoX4mPTw5nCvXMLqX9xs28bQV-ZmSOb8ReVnoFDsQ>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

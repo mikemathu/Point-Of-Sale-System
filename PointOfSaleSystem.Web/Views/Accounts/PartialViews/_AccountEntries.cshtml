@@ -1,0 +1,114 @@
+﻿<div class="modal fade jv-posting-modal" tabindex=-1 role=dialog aria-labelledby=myModalLabel data-keyboard=false data-backdrop=static>
+<div class="modal-dialog modal-lg" role=document>
+    <div class=modal-content>
+        <div class=modal-header>
+            <button type=button class=close data-dismiss=modal aria-label=Close>
+                <span aria-hidden=true>&times;</span>
+            </button>
+            <h4 class=modal-title id=myModalLabel>
+                Account Entries - Journal Voucher No: <span class=txtJvId></span>
+            </h4>
+        </div>
+        <div class=modal-body>
+            <div class=row>
+              @*  <form method=post id=AccountEntryForm>*@
+                    <form method=post id=JournalVoucherEntryForm>
+                    <input id=AccountEntryID hidden>
+                    <div class=col-sm-4>
+                        <div class=form-group>
+                            <label>
+                                <small>Debit Account</small>
+                            </label>
+                            <select style=width:100% id=DebitAccountID class="form-control input-sm"></select>
+                        </div>
+                        <div class=form-group>
+                            <label>
+                                <small>Debit Sub-Account</small>
+                            </label>
+                            <select style=width:100% id=DebitSubAccountID class="form-control input-sm" required></select>
+                        </div>
+                    </div>
+                    <div class=col-sm-4>
+                        <div class=form-group>
+                            <label>
+                                <small>Credit Account</small>
+                            </label>
+                            <select style=width:100% id=CreditAccountID class="form-control input-sm"></select>
+                        </div>
+                        <div class=form-group>
+                            <label>
+                                <small>Credit Sub-Account</small>
+                            </label>
+                            <select style=width:100% id=CreditSubAccountID class="form-control input-sm" required></select>
+                        </div>
+                    </div>
+                    <div class=col-sm-4>
+                        <div class=form-group>
+                            <label>
+                                <small>Amount</small>
+                            </label>
+                            <input type=number step=any class="form-control input-sm" id=EntryAmount required>
+                        </div>
+                        <div id=updateentry hidden>
+                            <div class="btn-group btn-group-xs pull-right">
+                                <button id=btnupdateentry class="btn btn-primary ladda-button" data-style=expand-right data-size=s>Update</button>
+                                <a id=btnCreateNewEntry class="btn btn-primary">New</a>
+                            </div>
+                        </div>
+                        <div id=addentry>
+                            <button id=btnaddentry class="btn btn-primary btn-xs pull-right ladda-button" data-style=expand-right data-size=s>
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <input name=__RequestVerificationToken type=hidden value=CfDJ8OroAFUfyNtFqbAGR1OOaEa2QudgMdyTGzmiBEiSH8h2EJ5cfrwLbHsJOwFvVSrEoN_mcz1sUiIZnI4sE1a9eOk_DFsjGPxwf4Mo7I0UcZ7MPX6y6FlrrS0A-MNIcnvKspS2UvadYLFoz-hqHO-Pex5WEb9SfWxITbDM48MdV_YV99Tn1iE4p7x2FXNPCLyCsQ>
+                </form>
+            </div>
+            <h5>
+                <strong>View: Account Entries</strong>
+            </h5>
+            <div class=table-responsive id=no-more-tables>
+                <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=postingstable>
+                    <thead class=cf>
+                        <tr>
+                            <th>
+                                <strong>Entry No</strong>
+                                </th>
+                            <th>
+                                <strong>Sub Account</strong>
+                                </th>
+                            <th>
+                                <strong>Debit</strong>
+                                </th>
+                            <th>
+                                <strong>Credit</strong>
+                                </th>
+                           <th>
+                               </th>
+                    <tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan=2>
+                                <strong>Totals: </strong>
+                            <td class=currency>
+                                <strong>
+                                    <span id=txtTotDebits></span>
+                                </strong>
+                            <td class=currency>
+                                <strong>
+                                    <span id=txtTotCredits></span>
+                                </strong>
+                            <td>
+                </table>
+            </div>
+        </div>
+        <div class=modal-footer>
+            <div class=row>
+                <div class=col-md-12>
+                    <button type=button class="btn btn-success btn-xs ladda-button pull-right" data-style=expand-right data-size=s id=btnPostJournal>Post Journal Voucher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
