@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using InventoryMagement.Data.Accounts;
-using InventoryManagement.Service.Dtos.Accounts;
-using InventoryManagement.Service.Interfaces.Accounts;
-using InventoryManagement.Service.Services.Security;
 using Microsoft.AspNetCore.Http;
+using PointOfSaleSystem.Data.Accounts;
+using PointOfSaleSystem.Service.Dtos.Accounts;
+using PointOfSaleSystem.Service.Interfaces.Accounts;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Accounts
 {
@@ -88,7 +88,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             return _mapper.Map<JournalVoucherDto>(journalVoucher);
         }
 
-        private async Task<(int, int)> SetIsAutomaticAndIsPostedValuesBasedOnFlagAsync(FilterJournalVoucherDto filterJournalVoucherDto)
+        private  (int, int) SetIsAutomaticAndIsPostedValuesBasedOnFlag(FilterJournalVoucherDto filterJournalVoucherDto)
         {
             int isAutomatic = 2;
             int isPosted = 2;
@@ -120,7 +120,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
         }
         public async Task<IEnumerable<JournalVoucherDto>> FilterJournalVouchersAsync(FilterJournalVoucherDto filterJournalVoucherDto)
         {
-            (int isAutomatic, int isPosted) = await SetIsAutomaticAndIsPostedValuesBasedOnFlagAsync(filterJournalVoucherDto);
+            (int isAutomatic, int isPosted) = SetIsAutomaticAndIsPostedValuesBasedOnFlag(filterJournalVoucherDto);
             IEnumerable<JournalVoucher> journalVouchers = await _journalVoucherRepository.FilterJournalVouchersAsync(
                 _mapper.Map<FilterJournalVoucher>(filterJournalVoucherDto), isAutomatic, isPosted);
             if (!journalVouchers.Any())

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using InventoryMagement.Data.Accounts;
-using InventoryManagement.Service.Dtos.Accounts;
-using InventoryManagement.Service.Interfaces.Accounts;
-using InventoryManagement.Service.Services.Security;
+using PointOfSaleSystem.Data.Accounts;
+using PointOfSaleSystem.Service.Dtos.Accounts;
+using PointOfSaleSystem.Service.Interfaces.Accounts;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Accounts
 {
@@ -46,7 +46,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
         }
         public async Task<FiscalPeriodDto> CreateUpdateFiscalPeriodAsync(FiscalPeriodDto fiscalPeriodDto)
         {
-            await IsOpenDateGreaterThanCloseDate(fiscalPeriodDto);
+            IsOpenDateGreaterThanCloseDate(fiscalPeriodDto);
             FiscalPeriod? fiscalPeriod = null;
             if (fiscalPeriodDto.FiscalPeriodNo == 0)//Create
             {
@@ -129,7 +129,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
                 throw new FalseException("Could not delete Fiscal Period");
             }
         }
-        private async Task IsOpenDateGreaterThanCloseDate(FiscalPeriodDto fiscalPeriodDto)
+        private void IsOpenDateGreaterThanCloseDate(FiscalPeriodDto fiscalPeriodDto)
         {
             if (fiscalPeriodDto.OpenDate > fiscalPeriodDto.CloseDate)
             {

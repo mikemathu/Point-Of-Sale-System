@@ -1,6 +1,8 @@
-﻿using PointOfSaleSystem.Data.Accounts;
+﻿using AutoMapper;
+using PointOfSaleSystem.Data.Accounts;
 using PointOfSaleSystem.Service.Dtos.Accounts;
 using PointOfSaleSystem.Service.Interfaces.Accounts;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Accounts
 {

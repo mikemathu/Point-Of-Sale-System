@@ -1,4 +1,5 @@
-﻿using PointOfSaleSystem.Data.Inventory;
+﻿using PointOfSaleSystem.Data.Accounts;
+using PointOfSaleSystem.Data.Inventory;
 
 namespace PointOfSaleSystem.Service.Interfaces.Accounts
 {

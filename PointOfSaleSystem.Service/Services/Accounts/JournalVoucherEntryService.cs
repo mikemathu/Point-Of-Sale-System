@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using InventoryMagement.Data.Accounts;
-using InventoryManagement.Service.Dtos.Accounts;
-using InventoryManagement.Service.Interfaces.Accounts;
-using InventoryManagement.Service.Services.Security;
+using PointOfSaleSystem.Data.Accounts;
+using PointOfSaleSystem.Service.Dtos.Accounts;
+using PointOfSaleSystem.Service.Interfaces.Accounts;
+using PointOfSaleSystem.Service.Services.Exceptions;
 
 namespace PointOfSaleSystem.Service.Services.Accounts
 {
@@ -56,7 +56,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
         public async Task CreateUpdateEntryAsync(JournalVoucherEntryDto2 journalVoucherEntryDto)
         {
             await IsJournalVoucherIdValid(journalVoucherEntryDto.JournalVoucherID);
-            await AreSubAccountSame(journalVoucherEntryDto);
+            AreSubAccountSame(journalVoucherEntryDto);
             await IsJournalVoucherPostedAsync(journalVoucherEntryDto);
             bool isEntryCreateUpdateSuccess = false;
             if (journalVoucherEntryDto.JournalVoucherEntryID == 0)//Create
@@ -121,7 +121,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
                 throw new FalseException("Could not delete the account entry. Try again later.");
             }
         }
-        private async Task AreSubAccountSame(JournalVoucherEntryDto2 journalVoucherEntryDto)
+        private void AreSubAccountSame(JournalVoucherEntryDto2 journalVoucherEntryDto)
         {
             if (journalVoucherEntryDto.DebitSubAccountID == journalVoucherEntryDto.CreditSubAccountID)
             {
