@@ -1,4 +1,4 @@
-﻿using InventoryMagement.Data.Accounts;
+﻿using PointOfSaleSystem.Data.Accounts;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

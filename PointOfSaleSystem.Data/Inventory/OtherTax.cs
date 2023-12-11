@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PointOfSaleSystem.Data.Accounts;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using InventoryMagement.Data.Accounts;
 
 namespace PointOfSaleSystem.Data.Inventory
 {
