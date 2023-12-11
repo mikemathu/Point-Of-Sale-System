@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Roles";
+}
+<div class=row>
+<div class=col-md-7>
+    <div class="panel panel-default">
+        <div class=panel-heading>
+            <h6 class=panel-title>User Roles</h6>
+        </div>
+        <div class=panel-body>
+            <div class=row>
+                <form method=post id=UserRoleForm>
+                    <div class=col-sm-6>
+                        <input hidden type=number data-val=true data-val-required="The RoleID field is required." id=RoleID name=RoleID>
+                        <div class=form-group>
+                            <label>
+                                <small>Name</small>
+                            </label>
+                            <input class="form-control input-sm" required data-val=true data-val-required="The Name field is required." id=Name name=Name>
+                        </div>
+                   
+                        <input hidden type=number data-val=true data-val-required="The RequiresCashierShift field is required." id=RequiresCashierShift name=RequiresCashierShift>
+                    </div>
+                    <div class=col-sm-6>
+                        <div class=form-group>
+                            <label>
+                                <small>Description</small>
+                            </label>
+                            <input class="form-control input-sm" id=Description name=Description>
+                        </div>
+                        <button id=btnaddrole class="btn btn-primary ladda-button pull-right" data-style=expand-right data-size=s>
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                            <div id=updaterole class=" pull-right" hidden>
+                                 <a id=createnewrole class="btn btn-primary btn-sm"  >Create New</a>
+                                <button id=btnupdaterole class="btn btn-primary btn-sm ladda-button" data-style=expand-right data-size=s>Update</button>
+                            </div>
+                    </div>
+                    <input name=__RequestVerificationToken type=hidden value=CfDJ8BQ9zUhkDydLvDbtVN6pNu8HSWFul-SuXVtRP-GXv_lA_ruAIkqrZllr3g-lhTVMHkwz7A-EEEcGyA4eOXcv99Dz0PEsIi4Bjo4YOdmL1obcCbbqeBvJsrwvQe8HAO4w9zk9DZzRDEwmW6WJEnvKeVagZMJsFpCUbjUpVbCNVjat9LTfRuXgS_n7vtMsQeJ5yQ>
+                </form>
+            </div>
+        </div>
+        <div class=panel-heading>
+            <h6 class=panel-title>View: Rooms</h6>
+        </div>
+        <div class=table-responsive id=no-more-tables>
+            <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=rolestable>
+                <thead class=cf>
+                    <tr>
+                        <th>
+                            <strong>RoleID</strong>
+                        <th>
+                            <strong>Name</strong>
+                        <th>
+                            <strong>Description</strong>
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class=col-md-5></div>
+</div>
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Security/Roles.js"></script>

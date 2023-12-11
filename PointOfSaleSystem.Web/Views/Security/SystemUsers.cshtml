@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+<div class=row>
+    <div class=col-md-12>
+        <div class="panel panel-default">
+            <div class=panel-heading>
+                <h6 class=panel-title>System User Details</h6>
+            </div>
+            <div class=panel-body>
+                <form id=SystemUserForm method=post autocomplete=off>
+                    <div class=col-sm-4>
+                        <input type=number id=SystemUserID hidden>
+                        <div class=form-group>
+                            <label>
+                                <small>Username *</small>
+                            </label>
+                            <input id=Username class="form-control input-sm" autocomplete=off required>
+                        </div>
+
+                        <div class=form-group>
+                            <label>
+                                <small>Othernames</small>
+                            </label>
+                            <input id=Othernames class="form-control input-sm">
+                        </div>
+                                                
+                        <div class=form-group>
+                            <label>
+                                <small>Surname</small>
+                            </label>
+                            <input id=Surname class="form-control input-sm">
+                        </div>
+
+                    </div>
+                    <div class=col-sm-4>
+                        <div class=row>
+                            <div class=col-md-6>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Password  *</small>
+                                    </label>
+                                    <input type=password id=Password class="form-control input-sm" autocomplete=new-password required>
+                                </div>
+                            </div>
+                            <div class=col-md-6>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Confirm Password *</small>
+                                    </label>
+                                    <input type=password id=ConfirmUserPassword class="form-control input-sm" autocomplete=new-password required>
+                                </div>
+                            </div>
+                        </div>
+                            <div class=form-group>
+                            <label>
+                                <small>DateTimeCreated</small>
+                            </label>
+                            <input id=DateTimeCreated class="form-control input-sm" autocomplete=off disabled>
+                        </div>
+                                <div class=form-group>
+                            <label>
+                                <small>Roles</small>
+                            </label>
+                            <select class="form-control input-sm select-roles" id=UserRolesIds style=width:100% multiple>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=col-sm-4>
+                                                 
+                        <div id=update hidden>
+                            <div class="btn-group btn-group.xs pull-right">
+                                <button id=btnupdateuser class="btn btn-primary ladda-button" data-style=expand-right data-size=s>Update</button>
+                                <a id=btnCreateNew class="btn btn-primary">New</a>
+                            </div>
+                        </div> 
+                        <div id=adduser>
+                            <button id=btnadduser class="btn btn-primary btn-xs pull-right ladda-button" data-style=expand-right data-size=s>
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>                        
+                    </div>
+                    <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G0JkxYF0BhkqtoEqZv4dv3rn_pwM8PxgqWTxm-zET1Y66Si-Q0ki6cT1Hq8tH8D50NSfE6Yfx9wj9nwPoonJ38biEjh8nTuZd7dxDlzbz2iH9j0XZJSneo2Ns6kCVZzMXuRbhzJjarudImrvlvrqSxZ_esIp-wJ9iwDt6xJtx7UHQ>
+                </form>
+            </div>
+            <div class=panel-heading>
+                <h6 class=panel-title>View: System Users</h6>
+            </div>
+            <div class=table-responsive id=no-more-tables>
+                <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width="100%" id="userstable">
+                    <thead class="cf">
+                        <tr>
+                            <th>
+                                <strong>No</strong>
+                            </th>
+                            <th>
+                                <strong>Username</strong>
+                            </th>
+                            <th>
+                                <strong>Surname</strong>
+                            </th>
+                            <th>
+                                <strong>Othernames</strong>
+                            </th>                                              
+                            <th>
+                                <strong>Created On</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Security/SystemUsers.js"></script>

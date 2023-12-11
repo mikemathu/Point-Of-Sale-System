@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "_LayoutRegisterLogin";
+    ViewBag.Title = "Register";
+}
+<div class=form-login>
+    <h6>
+        <span class=text-info>
+            <i>Please enter your credentials to Register</i>
+        </span>
+    </h6>
+    <h5 id=h5Header hidden>
+        <strong>
+            <span class=text-info id=txtClient></span>
+        </strong>
+        <span>
+            <a href=# id=btnChange>
+                <span class="glyphicon glyphicon-edit" title="Change facility code"></span>
+            </a>
+        </span>
+    </h5>
+    <input type=number step=7 hidden data-val=true data-val-number="The field UserLatitude must be a number." data-val-required="The UserLatitude field is required." id=UserLatitude name=UserLatitude>
+    <input type=number step=7 hidden data-val=true data-val-number="The field UserLongitude must be a number." data-val-required="The UserLongitude field is required." id=UserLongitude name=UserLongitude>
+    <form method=post id=RegisterForm>
+        <input value="/" hidden id=RedirectPath name=RedirectPath>
+        <input value=0 hidden type=number data-val=true data-val-required="The CompanyID field is required." id=CompanyID name=CompanyID>
+        <input hidden data-val=true data-val-required="The HospitalSchema field is required." id=HospitalSchema name=HospitalSchema>
+        <input hidden data-val=true data-val-required="The HospitalCode field is required." id=HospitalCode name=HospitalCode>
+        <input hidden data-val=true data-val-required="The HospitalName field is required." id=HospitalName name=HospitalName>
+        <input value=0 hidden type=number data-val=true data-val-required="The Locked field is required." id=Locked name=Locked>
+        <br>
+        <span class="text-danger field-validation-valid" data-valmsg-for=CompanyBranchID data-valmsg-replace=true></span>
+        <br>
+        <input id=userName class="form-control input-sm chat-input" placeholder=username required data-val=true data-val-required="The Username field is required." name=Username>
+        <span class="text-danger field-validation-valid" data-valmsg-for=Username data-valmsg-replace=true></span>
+        <br>
+        <input id=userPassword autocomplete=off class="form-control input-sm chat-input" placeholder=password required type=password data-val=true data-val-required="The Password field is required." name=Password>
+        <span class="text-danger field-validation-valid" data-valmsg-for=Password data-valmsg-replace=true></span>
+        <div class=form-group>
+            <div class=checkbox>
+                <label class=checkbox>
+                    <input type=checkbox id=showpswd>Show Password
+                </label>
+            </div>
+        </div>
+        <div class=form-group>
+            <label class=checkbox>
+                <a style="text-decoration: none" href="/Security/Login">Login</a>
+            </label>
+        </div>
+        <div class=wrapper>
+            <span class=group-btn>
+                <button class="btn btn-primary btn-md" id=btnLogin>
+                    Submit <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </span>
+        </div>
+        <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G3DsufvlSKl33GdP6-BsrLzPVoQMIrhF8LZdiGu7eEU97v9hh0h2hg_tRfYbuUgMhXRuj774xohJJ3mUxvn6OBAIyLh8Rb78vlC7Hct0Pb3BIAcDmy1SJKZWFRD1CJIEL4>
+    </form>
+     <div class=login-details hidden>
+        <div class=schema-details>
+            <form method=post id=CodeForm>
+                <input autocomplete=off id=hospCode class="form-control input-sm chat-input" placeholder="Hospital Code" required>
+                <div class=form-group>
+                    <div class=checkbox>
+                        <label class=checkbox>
+                            <input type=checkbox id=saveCode>Save Code
+                        </label>
+                    </div>
+                </div>
+                <div class=wrapper>
+                    <span class=group-btn>
+                        <button class="btn btn-primary btn-md" id=btnProceed>
+                            Proceed <i class="fas fa-sign-in-alt"></i>
+                        </button>
+                    </span>
+                </div>
+                <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G3DsufvlSKl33GdP6-BsrLzPVoQMIrhF8LZdiGu7eEU97v9hh0h2hg_tRfYbuUgMhXRuj774xohJJ3mUxvn6OBAIyLh8Rb78vlC7Hct0Pb3BIAcDmy1SJKZWFRD1CJIEL4>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Security/Register.js"></script>

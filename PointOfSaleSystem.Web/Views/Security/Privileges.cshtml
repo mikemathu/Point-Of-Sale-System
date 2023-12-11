@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Privileges";
+}
+<div class=row>
+    <div class=col-md-12>
+        <div class="panel panel-default">
+            <div class=panel-body>
+                <div class=row>
+                    <div class=col-md-5>
+                        <div class=row>
+                            <div class=col-md-10>
+                                <select class="form-control input-sm select-role" style=width:100%>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class=col-md-2>
+                                <div id=loader hidden>
+                                    <img src="/images/loader.gif?v=4UAfGk6IFLPZDtq1Zzj17CHQq2DkZnLYxSwfNVIU2wA" style=margin-top:8px>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class=row>
+                            <div class=col-md-12>
+                                <h5>
+                                    <strong>
+                                        <u>Role Privileges</u>
+                                    </strong>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class=table-responsive id=no-more-tables>
+                            <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=roleprivilegesitems>
+                                <thead class=cf>
+                                    <tr>
+                                        <th>
+                                            <input class=selectAll2 name=select_all value=1 type=checkbox>
+                                            <th>
+                                                <strong>ID</strong>
+                                            <th>
+                                                <strong>Name</strong>
+                                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class=col-md-2>
+                        <div id=select-multiple>
+                            <div id=btn-vertical>
+                                <div class=text-center style="padding-top: 40vh !important;">
+                                    <div class="btn-group-vertical btn-group-xs">
+                                        <button class="btn btn-primary movetorole ladda-button" data-style=expand-right data-size=s>
+                                            <i class="fa fa-chevron-left"></i>
+                                        </button>
+                                        <button class="btn btn-primary movefromrole ladda-button" data-style=expand-right data-size=s>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id=btn-horizontal hidden>
+                                <hr>
+                                <div class=text-center>
+                                    <div class="btn-group btn-group-xs">
+                                        <button class="btn btn-primary movetorole ladda-button" data-style=expand-right data-size=s>
+                                            <i class="glyphicon glyphicon-chevron-up"></i>
+                                        </button>
+                                        <button class="btn btn-primary movefromrole ladda-button" data-style=expand-right data-size=s>
+                                            <i class="glyphicon glyphicon-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-md-5>
+                        <div class=row id=privilegeDiv>
+                            <div class=col-md-12>
+                                <form class=form-inline method=post id=PrivilegeForm>
+                                    <input hidden type=number data-val=true data-val-required="The PrivilegeID field is required." id=PrivilegeID name=PrivilegeID>
+                                    <div class=form-group>
+                                        <label for=Name>Privilege:</label>
+                                        <input class="form-control input-sm" placeholder="Add a privilege here..." required data-val=true data-val-required="The Name field is required." id=Name name=Name>
+                                    </div>
+                                    <button id=editprivilge class="btn btn-primary btn-xs ladda-button" data-style=expand-right data-size=s>Update</button>
+                                    <a id=btnCreateNew class="btn btn-primary btn-xs">New</a>
+                                    <button id=btnaddprivilege class="btn btn-primary btn-xs ladda-button" data-style=expand-right data-size=s>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G3qPmX1o2ngn6oVey7WrqHz2TxLJ7NbuAgzEGYIxSJ3xJAebOLXeb5VY6gymItdTzbL0brwy1e0J6RDXs6GTlz4TK4L69WAWwngJFqKzz_wN-fsjauBpe0eF8n_xCA-6N-UOei3EvnovZcR3MfhEXobzgyqfOdkzjoQ9dPkAbfpEA>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class=row>
+                            <div class=col-md-12>
+                                <h5>
+                                    <strong>
+                                        <u>All Privileges</u>
+                                    </strong>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class=table-responsive id=no-more-tables>
+                            <table class="col-md-12 table-striped table-condensed cf display select compact" width=100% id=allprivilegestable>
+                                <thead class=cf>
+                                    <tr>
+                                        <th>
+                                            <input class=selectAll name=select_all value=1 type=checkbox>
+                                            </th>
+                                            <th>
+                                                <strong>ID</strong>
+                                                </th>
+                                            <th>
+                                                <strong>Name</strong>
+                                            </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>       
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Security/Privileges.js"></script>
