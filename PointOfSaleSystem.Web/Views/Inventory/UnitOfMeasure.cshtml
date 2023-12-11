@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Unit of Measure";
+}
+<div class=row>
+        <div class=col-md-6>
+            <div class="panel panel-default">
+                <div class=panel-heading>
+                    <h6 class=panel-title>Unit Of Measure Details</h6>
+                </div>
+                <div class=panel-body>
+                    <form method=post id=UnitOfMeasureForm>
+                        <div class=row>
+                            <div class=col-sm-6>
+                                <div class=form-group>
+                                    <label>
+                                        <small>Id</small>
+                                    </label>
+                                    <input class="form-control input-sm" disabled type=number data-val=true data-val-required="The UnitOfMeasureID field is required." id=UnitOfMeasure_UnitOfMeasureID name=UnitOfMeasure.UnitOfMeasureID>
+                                </div>
+                                <div class=form-group>
+                                    <label>
+                                       <small>Unit of Measure Name [E.g. mL, Tablet]</small>*
+                                    </label>
+                                    <input class="form-control input-sm" id=UnitOfMeasure_Name name=UnitOfMeasure.Name>
+                                </div>
+                            </div>
+                            <div class=col-sm-6>
+                              
+                                <div class=checkbox>
+                                    <label class=checkbox>
+                                        <input type=checkbox id=IsSmallestUnit>Is smallest unit 
+                                    </label>
+                                </div>
+                           
+                                <div id=updateunitofmeasure hidden>
+                                    <div class="btn-group btn-group-xs pull-right">
+                                        <button id=btnupdateunitofmeasure class="btn btn-primary ladda-button" data-style=expand-right data-size=s>Update</button>
+                                        <a id=btnCreateNewUnitOfMeasure class="btn btn-primary">New</a>
+                                    </div>
+                                </div>
+                                <div id=addunitofmeasure>
+                                    <button type="submit" id=btnaddunitofmeasure class="btn btn-primary btn-xs pull-right ladda-button" data-style=expand-right data-size=s>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <input name=__RequestVerificationToken type=hidden value=CfDJ8K8elgsLS7hMlHQKPXte6tWBqFmIUXTlFkFkLJy0F2ol7NfOI8J4AWR-oe0Rb__3mlfy3TKlGQejXVFZ50Vz9ndbhrCrAZzWl6DnAnGh4FIGULhgcUyk4elsDwDdCkrijAwTLKErjFQNN-0MkRixTt9Q-VvCFwBUnFrFnopE8jxz8pFwtporfCoakn6B1E6xFw>
+                    </form>
+                </div>
+                <div class=panel-heading>
+                    <h6 class=panel-title>View: Unit Of Measures</h6>
+                </div>
+                <div class=table-responsive id=no-more-tables>
+                    <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=unitofmeasurestable>
+                        <thead class=cf>
+                            <tr>
+                                <th>
+                                    <strong>No</strong>
+                                <th>
+                                    <strong>Unit of Measure</strong> 
+                                    
+                                <th>
+                                    <strong>Is Smallest Unit</strong> 
+                                    <tbody>
+                    </table>
+                <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 40vh; height: 50vh;"></div>
+                </div>
+            </div>
+        </div>        
+</div>
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Inventory/UnitOfMeasure.js"></script>

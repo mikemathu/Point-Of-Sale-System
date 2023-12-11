@@ -1,0 +1,300 @@
+﻿@{
+    ViewBag.Title = "Inventory";
+}
+<div class=row
+    <div class=col-md-12>
+        <div class="panel panel-default">
+            <div id=backUp></div>
+            <div class="panel-heading clearfix">
+                <h5 class=panel-title>
+                    <strong>
+                        <span class=stolocchosen hidden></span>
+                    </strong>
+                    Inventory Item Details 
+                    <a href=# id=changeStoloc>
+                    </a>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-info btn-xs dropdown-toggle" type=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+                            Actions <span class=caret></span>
+                        </button>
+                        <ul class=dropdown-menu>
+                            <li>
+                                <a href=# data-toggle=modal data-target=.item-class-modal>Configure Item Classes</a>
+                            <li>
+                                    <a href=# data-toggle=modal data-target=.item-categories-modal>Configure Item Categories</a>
+                        </ul>
+                    </div>
+                </h5>
+            </div>
+            <div class=panel-body>
+                <hr>
+                <div class="row marginRow">
+                    <form method=post id=InventoryItemForm>
+                        <input hidden type=number data-val=true data-val-required="The ItemID field is required." id=Item_ItemID name=Item.ItemID>
+                        <input hidden type=number data-val=true data-val-required="The ItemStorageLocationID field is required." id=ItemStorageLocation_ItemStorageLocationID name=ItemStorageLocation.ItemStorageLocationID>
+                        <input hidden type=number data-val=true data-val-required="The CompanyBranchItemID field is required." id=ItemStorageLocation_CompanyBranchItemID name=ItemStorageLocation.CompanyBranchItemID>
+                        <input hidden type=number data-val=true data-val-required="The CompanyBranchItemID field is required." id=CompanyBranchItem_CompanyBranchItemID name=CompanyBranchItem.CompanyBranchItemID>
+                        <input type=number value=1 hidden data-val=true data-val-required="The Type field is required." id=Item_Type name=Item.Type>
+                        <input type=number step=any hidden data-val=true data-val-number="The field PreviousUnitCost must be a number." data-val-required="The PreviousUnitCost field is required." id=PreviousUnitCost name=PreviousUnitCost>
+                        <input type=number step=any hidden data-val=true data-val-number="The field PreviousQuantity must be a number." data-val-required="The PreviousQuantity field is required." id=PreviousQuantity name=PreviousQuantity>
+                        <input type=number step=any hidden data-val=true data-val-number="The field PreviousUnitPrice must be a number." data-val-required="The PreviousUnitPrice field is required." id=PreviousUnitPrice name=PreviousUnitPrice>
+                        <div class=col-sm-3>
+                            <div class=form-group>
+                                <label>
+                                    <small>Name*</small>
+                                </label>
+                                <input class="form-control input-sm" required data-val=true data-val-required="The Name field is required." id=Item_Name name=Item.Name>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Item Category*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The ItemCategoryID field is required." id=Item_ItemCategoryID name=Item.ItemCategoryID>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Item Class*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The ItemClassID field is required." id=Item_ItemClassID name=Item.ItemClassID>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Inventory Sub-Account*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The AssetSubAccountID field is required." id=CompanyBranchItem_AssetSubAccountID name=CompanyBranchItem.AssetSubAccountID>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Cost Of Sale Sub-Account*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The CostOfSaleSubAccountID field is required." id=CompanyBranchItem_CostOfSaleSubAccountID name=CompanyBranchItem.CostOfSaleSubAccountID>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Income Sub-Account*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The RevenueSubAccountID field is required." id=CompanyBranchItem_RevenueSubAccountID name=CompanyBranchItem.RevenueSubAccountID>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=col-sm-3>
+                            <div class=form-group>
+                                <label>
+                                    <small>VAT Type*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The VATTypeID field is required." id=CompanyBranchItem_VATTypeID name=CompanyBranchItem.VATTypeID>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Unit Cost (BP)*</small>
+                                </label>
+                                <input type=number step=any class="form-control input-sm" required data-val=true data-val-number="The field UnitCost must be a number." data-val-required="The UnitCost field is required." id=ItemStorageLocation_UnitCost name=ItemStorageLocation.UnitCost>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Unit Price*</small>
+                                </label>
+                                <input type=number step=any class="form-control input-sm" required data-val=true data-val-number="The field UnitPrice must be a number." data-val-required="The UnitPrice field is required." id=UnitPrice name=UnitPrice>
+                            </div>
+                            <div class=row>
+                                <div class=col-md-6>
+                                    <div class=form-group>
+                                        <label>
+                                            <small>Available Quantity</small>
+                                        </label>
+                                        <input type=number step=any class="form-control input-sm" required readonly data-val=true data-val-number="The field AvailableQuantity must be a number." data-val-required="The AvailableQuantity field is required." id=ItemStorageLocation_AvailableQuantity name=ItemStorageLocation.AvailableQuantity>
+                                    </div>
+                                </div>
+                                <div class=col-md-6>
+                                    <div class=form-group>
+                                        <label>
+                                            <small>Total Quantity*</small>
+                                        </label>
+                                        <input type=number step=any class="form-control input-sm" required data-val=true data-val-number="The field TotalQuantity must be a number." data-val-required="The TotalQuantity field is required." id=ItemStorageLocation_TotalQuantity name=ItemStorageLocation.TotalQuantity>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Unit Of Measure*</small>
+                                </label>
+                                <select class="form-control input-sm" required data-val=true data-val-required="The UnitOfMeasureID field is required." id=Item_UnitOfMeasureID name=Item.UnitOfMeasureID>
+                                    <option></option>
+                                </select>
+                            </div>                                                      
+
+                            <div class=form-group>
+                                <label>
+                                    <small>Batch Expiry Date*</small>
+                                </label>
+                                <input type=date class="form-control input-sm" required data-val=true data-val-required="The ExpiryDate field is required." id=ItemStorageLocation_ExpiryDate name=ItemStorageLocation.ExpiryDate>
+                            </div>
+                        </div>
+                        <div class=col-sm-3>                                                       
+                            <div class=form-group>
+                                <label>
+                                    <small>Reorder Level*</small>
+                                </label>
+                                <input class="form-control input-sm" data-val=true data-val-number="The field ReorderLevel must be a number." data-val-required="The ReorderLevel field is required." id=ItemStorageLocation_ReorderLevel name=ItemStorageLocation.ReorderLevel>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Item Code</small>
+                                </label>
+                                <input class="form-control input-sm" id=CompanyBranchItem_ItemCode name=CompanyBranchItem.ItemCode>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Barcode</small>
+                                </label>
+                                <input class="form-control input-sm" id=CompanyBranchItem_Barcode name=CompanyBranchItem.Barcode>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Batch No</small>
+                                </label>
+                                <input class="form-control input-sm" required id=ItemStorageLocation_Batch name=ItemStorageLocation.Batch>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Weight</small>
+                                </label>
+                                <input class="form-control input-sm" data-val=true data-val-number="The field Weight must be a number." data-val-required="The Weight field is required." id=CompanyBranchItem_Weight name=CompanyBranchItem.Weight>
+                            </div>
+                            <div class=form-group>
+                                <label>
+                                    <small>Package Dimension</small>
+                                </label>
+                                <div class=row>
+                                    <div class=col-sm-4>
+                                        <small>L</small>
+                                        <input class="form-control input-sm" data-val=true data-val-number="The field Length must be a number." data-val-required="The Length field is required." id=CompanyBranchItem_Length name=CompanyBranchItem.Length>
+                                    </div>
+                                    <div class=col-sm-4>
+                                        <small>W</small>
+                                        <input class="form-control input-sm" data-val=true data-val-number="The field Width must be a number." data-val-required="The Width field is required." id=CompanyBranchItem_Width name=CompanyBranchItem.Width>
+                                    </div>
+                                    <div class=col-sm-4>
+                                        <small>H</small>
+                                        <input class="form-control input-sm" data-val=true data-val-number="The field Height must be a number." data-val-required="The Height field is required." id=CompanyBranchItem_Height name=CompanyBranchItem.Height>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=col-sm-3>
+                            <div class=form-group>
+                                <div class=checkbox>
+                                    <label class=checkbox>
+                                        <input type=checkbox id=ShowInPOS>Show in POS 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class=row>
+                                <div class=col-md-12>
+                                    <div class="setting image_picker">
+                                        <h2>Image</h2>
+                                        <div class=settings_wrap>
+                                            <label class=drop_target>
+                                                <div class=image_preview></div>
+                                                <input id=inputFile type=file disabled>
+                                            </label>
+                                            <div class="settings_actions vertical" >
+                                                @*<a class=disabled data-action=remove_current_image >
+                                                    <i class="fa fa-ban"></i>
+                                                    Remove
+                                                </a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id=updateproduct hidden>
+                                <div class="btn-group pull-right">
+                                    <button id=btnupdateproduct class="btn btn-primary btn-xs ladda-button" data-style=expand-right data-size=s>Update</button>
+                                    <a id=btnCreateNewProduct class="btn btn-primary btn-xs">New</a>
+                                </div>
+                            </div>
+                            <div id=addproduct>
+                                <button id=btnaddproduct class="btn btn-primary btn-xs pull-right ladda-button" data-style=expand-right data-size=s>
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <input name=__RequestVerificationToken type=hidden value=CfDJ8BQ9zUhkDydLvDbtVN6pNu-ZmqRvjQrM1FuKMU4NA9WbKWuLJgLV-kmVn-bp1Gy2TEKDqKTOn54S5rHyJR-wAhWxVw6Mx-GTYaBgQ9ceFCoklId5whJk4MzegKESY8fPjY5bGxz4-3g7jO1ivM4YSRmSzXBWF-qBZr_gH_cuCTR0vJMCdICqDjFcdaDC1jznDw>
+                    </form>
+                </div>
+                <div id=scrolltohere></div>
+                <div class=panel-heading>
+                    <h5 class=panel-title>
+                        <strong>
+                            <span class=stolocchosen hidden></span>
+                        </strong>
+                        View: Inventory Items
+                    </h5>
+                </div>
+            <div class=table-responsive id=no-more-tables>
+                <table class="col-md-12 table-striped table-condensed table-bordered cf compact" width=100% id=inventoryitemstable>
+                    <thead class=cf>
+                    <tr>
+                    <th>
+                    <input class=selectAll name=select_all type=checkbox>
+                    <th>
+                    <strong>Name</strong>                   
+                    <th>
+                    <strong>Unit Cost</strong>
+                    <th>
+                    <strong>Unit Price</strong>
+                    <th>
+                    <strong>Total Quantity</strong>
+                    <th>
+                    <strong>Available Quantity</strong>
+                    <th>
+                    <strong>Expires On</strong>
+                    <tbody>
+                </table>
+            </div>
+        </div>
+        <div class=panel-footer>
+            <div class="row no-gutter">
+                <div class=col-md-12>
+                    <form class=form-inline method=post id=FilterForm>
+                        <div class=form-group>
+                            <label for=flag>
+                                <small>Filter: </small>
+                            </label>
+                            <select class="form-control input-sm" id=flag>
+                                <option value=0>All Active Products</option>
+                                <option value=1>All Inactive Products</option>
+                                <option value=2>Products Out of Stock</option>
+                                <option value=3>Expired Products</option>
+                                <option value=4>Products Below Reorder Level</option>
+                                <option value=5>Non POS Products</option>
+                                <option value=6>POS Products</option>
+                            </select>
+                        </div>
+                        <button id=btnfilterproducts class="btn btn-info btn-xs ladda-button" data-style=expand-right data-size=s>View</button>
+                        <input name=__RequestVerificationToken type=hidden value=CfDJ8BQ9zUhkDydLvDbtVN6pNu-ZmqRvjQrM1FuKMU4NA9WbKWuLJgLV-kmVn-bp1Gy2TEKDqKTOn54S5rHyJR-wAhWxVw6Mx-GTYaBgQ9ceFCoklId5whJk4MzegKESY8fPjY5bGxz4-3g7jO1ivM4YSRmSzXBWF-qBZr_gH_cuCTR0vJMCdICqDjFcdaDC1jznDw>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@await Html.PartialAsync("./PartialViews/_ItemClass")
+@await Html.PartialAsync("./PartialViews/_ItemCategory")
+
+<script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+<script src="~/js/Inventory/Inventory.js"></script>
