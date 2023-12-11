@@ -1,9 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d219cd7f-51ed-444e-b0d5-50269e915df4</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Dashboard\BalanceSheetByBranch\" />
+    <Folder Include="wwwroot\Dashboard\GeneralLedgerByBranch\" />
+    <Folder Include="wwwroot\Dashboard\IncomeStatementByBranch\" />
+    <Folder Include="wwwroot\Dashboard\TrialBalanceByBranch\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PointOfSaleSystem.Repo\PointOfSaleSystem.Repo.csproj" />
+    <ProjectReference Include="..\PointOfSaleSystem.Service\PointOfSaleSystem.Service.csproj" />
+	  <PackageReference Include="FastReport.Data.Postgres" Version="2023.2.0" />
+	  <PackageReference Include="FastReport.Core" Version="2023.2.14-demo" />
+	  <PackageReference Include="FastReport.Web" Version="2023.2.14-demo" />
+	  <PackageReference Include="Npgsql" Version="8.0.1" />
+  </ItemGroup>
 
 </Project>
