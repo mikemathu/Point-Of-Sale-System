@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Accounts Reports";
+}
+<div id=divBody class=animate-bottom>
+<div class=row>
+    <div class=col-md-12>
+        <div class="panel panel-default">
+            <div class=panel-body>
+                <div class=row>
+                    <div class=col-md-12>
+                        <form class=form-inline id=ReportsForm>
+                            <div class=form-group>
+                                <select class="form-control input-sm" id=report required>
+                                    <option value=0>Analytics</option>
+                                    <option value=1>Trial Balance (Detailed)</option>
+                                    <option value=9>Trial Balance (Summary)</option>
+                                    <option value=2>Income Statement (Detailed)</option>
+                                    <option value=11>Income Statement (Summary)</option>
+                                    <option value=13>Comprehensive Income Statement</option>
+                                    <option value=3>Balance Sheet (Detailed)</option>
+                                    <option value=15>Balance Sheet (Summary)</option>
+                                    <option value=12>Comprehensive Balance Sheet (Detailed)</option>
+                                    <option value=10>Cash Flow Statement</option>
+                                    <option value=14>Comprehensive Cash Flow Statement</option>
+                                    <option value=4>General Ledger (Detailed)</option>
+                                    <option value=5>Ledger Sub Account History</option>
+                                    <option value=17>Ledger Account History</option>
+                                    <option value=16>Journal Vouchers By Branch</option>
+                                    <option value=6>All Expenses Detailed</option>
+                                    <option value=7>All Expenses Summary</option>
+                                </select>
+                            </div>
+                            <div class=form-group>
+                                <label for=dateFrom>From:</label>
+                                <input type=date class="form-control input-sm" id=dateFrom>
+                            </div>
+                            <div class=form-group>
+                                <label for=dateTo>To:</label>
+                                <input type=date class="form-control input-sm" id=dateTo>
+                            </div>
+                            <button class="btn btn-primary btn-xs">View</button>
+                          
+                        </form>
+                    </div>
+                </div>
+                <div class=row>
+                    <div class=col-md-12>
+                        <ul class=bread-crumb id=customBreadCrumb></ul>
+                    </div>
+                </div>
+                <div id=secAnalytics>
+                    <div class=row>
+                        <div class="col-md-12 text-center">
+                            <div id=container style="min-width:310px;height:68vh;margin:0 auto"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id=secReports hidden>
+                    <div class=row>
+                        @*<iframe class="col-lg-12 col-md-12 col-sm-12" onload="if(typeof TestConnection==='function'){TestConnection();}" id=DashboardReportIframe src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>*@
+                         @await ViewBag.WebReport.Render()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@await Html.PartialAsync("./PartialViews/_SelectPeriod")
+@await Html.PartialAsync("./PartialViews/_SelectRedgerAccount")
+@await Html.PartialAsync("./PartialViews/_SelectSubAccount")
+
+<script src="~/js/Dashboard/accounts.min.js" defer></script>

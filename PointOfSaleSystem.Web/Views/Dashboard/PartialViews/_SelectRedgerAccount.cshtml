@@ -1,0 +1,31 @@
+﻿<div class="modal fade select-account-modal" role=dialog aria-labelledby=myModalLabel data-keyboard=false data-backdrop=static>
+    <div class="modal-dialog modal-sm">
+        <div class=modal-content>
+            <div class=modal-header>
+                <h4 class=modal-title id=myModalLabel>
+                    <strong>
+                        <small>Ledger Accounts</small>
+                    </strong>
+                </h4>
+            </div>
+            <div class=modal-body>
+                <div class=row>
+                    <div class=col-md-12>
+                        <form id=ChooseAccountForm>
+                            <div class=form-group>
+                                <label>
+                                    <strong>
+                                        <small>Select Ledger Account: </small>
+                                    </strong>
+                                </label>
+                                <select class="form-control input-sm" id=AccountID style=width:100% required></select>
+                            </div>
+                            <button class="btn btn-primary btn-sm pull-right" id=btnChooseAccount>Choose</button>
+                            <button type=button class="btn btn-danger btn-sm pull-right btnClose">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

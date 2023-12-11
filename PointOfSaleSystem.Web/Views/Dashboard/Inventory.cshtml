@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Revenue Reports";
+}
+<div id=divBody class=animate-bottom>
+    <div class=row>
+        <div class=col-md-12>
+            <div class="panel panel-default">
+                <div class=panel-body>
+                    <div class=row>
+                        <div class=col-md-12>
+                            <form class=form-inline id=ReportsForm method=post>
+                                <div class=form-group>
+                                    <select class="form-control input-sm" id=report required>
+                                        <option></option>
+                                        <option value=1>Stock Movement Detailed (All Branches)</option>
+                                        <option value=2>Stock Movement Detailed (By Branch)</option>
+                                        <option value=12>Stock Movement Detailed (By Storage Location)</option>
+                                        <option value=14>Stock Movement Summary (By Branch)</option>
+                                        <option value=15>Stock Movement Summary (By Storage Location)</option>
+                                        <option value=16>Stock Movement Detailed (By Item)</option>
+                                        <option value=3>Below Reorder Level</option>
+                                        <option value=4>Material Consumption (Committed)</option>
+                                        <option value=5>Material Consumption (Not Committed)</option>
+                                        <option value=6>Stock Valuation (All)</option>
+                                        <option value=7>Stock Valuation (By Storage Location)</option>
+                                        <option value=8>Out Of Stock</option>
+                                        <option value=9>Near Expiry</option>
+                                        <option value=17>Stock Expiry</option>
+                                        <option value=10>Internal Order Issuance Detailed</option>
+                                        <option value=11>Internal Order Receipt Detailed</option>
+                                        <option value=18>Interbranch Order Issuance Detailed</option>
+                                        <option value=19>Interbranch Order Receipt Detailed</option>
+                                        <option value=13>Fast Moving Items (First 20)</option>
+                                        <option value=20>Stock Analysis</option>
+                                    </select>
+                                </div>
+                                <div class=form-group>
+                                    <label for=dateFrom>From:</label>
+                                    <input type=date class="form-control input-sm" id=dateFrom>
+                                </div>
+                                <div class=form-group>
+                                    <label for=dateTo>To:</label>
+                                    <input type=date class="form-control input-sm" id=dateTo>
+                                </div>
+                                <button class="btn btn-primary btn-xs">View</button>
+                                <div class="btn-group btn-xs">
+                                    <ul class=dropdown-menu>
+                                        <li>
+                                            <a href=# id=shareWithUsers>With User(s)</a>
+                                        <li>
+                                            <a href=# data-toggle=modal data-target=.share-report-email-modal>Via Email</a>
+                                    </ul>
+                                </div>
+                                <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G3lmxqCjv6Gwt0YLYp9wrL9-x2BtFFneAvH6UX0m-bsJFQPC5t0MGYFBck17mr3EHB9Ok5Z2vHaRhqw9hoLQVEkf69cRRV0oJAAmTqKLXcQVjjxXDfJNG9_rb7PhgFZxG6l8blDIh7qbc3dgYAuUj_hdiI9xaY1DEll2JP-JhyyNg>
+                            </form>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class=col-md-12>
+                            <ul class=bread-crumb id=customBreadCrumb></ul>
+                        </div>
+                    </div>
+                    <div class=row>
+                       @* <iframe class="col-lg-12 col-md-12 col-sm-12" id=DashboardReportIframe onload="if(typeof TestConnection==='function'){TestConnection();}" src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>*@
+                        @await ViewBag.WebReport.Render()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                      
+</div>
+
+<script src="~/js/Dashboard/inventory.min.js" defer></script>
