@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <meta name=robots content="index, follow">
+    <title>Retail ERP | @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">   
+    <link rel=stylesheet href="~/css/Shared/bootstrap.min.css">
+    <link rel=stylesheet href="~/css/Shared/login.min.css">
+    <link rel=stylesheet href="~/css/Shared/noty.css">
+    <link rel=stylesheet href="~/css/Shared/loader.css">
+
+    <script>
+        window.onload = function () {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("divBody").style.display = "block";
+        };
+    </script>
+</head>
+<body id=body>
+        <header>          
+                <div id=loader class=cs-loader>
+                </div>
+                <div id=loaderr class=cs-loader hidden>
+                    <div class=cs-loader-inner>
+                        <label>●</label>
+                        <label>●</label>
+                        <label>●</label>
+                        <label>●</label>
+                        <label>●</label>
+                        <label>●</label>
+                    </div>
+                </div>                
+        </header>
+
+        <div class=container>
+            <div class=row>
+                <div class="col-md-offset-4 col-md-4">
+                            @RenderBody()
+                </div>
+            </div>
+        </div>
+
+    @await Html.PartialAsync("./PartialViews/_ReportsAccess")
+
+    <script src="~/js/Shared/noty.min.js" defer></script>
+    <script src="~/js/Shared/LayoutRegisterLogin.js" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

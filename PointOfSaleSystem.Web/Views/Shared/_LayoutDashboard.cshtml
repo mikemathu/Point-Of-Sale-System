@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang=en-us>
+    <head>
+        <meta charset=utf-8>
+        <meta http-equiv=X-UA-Compatible content="IE=edge">
+        <meta name=viewport content="width=device-width, initial-scale=1.0">
+        <title>Retail ERP | @ViewBag.Title</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel=stylesheet href="~/css/Shared/site.min.css">
+        <link rel=stylesheet href="~/css/Shared/assets.min.css">
+        <link rel=stylesheet href="~/css/Shared/loader.css">
+        <script>
+
+             function IsMobile() {
+              return /\b(iPhone|iP[ao]d)/.test(navigator.userAgent) || /\b(iP[ao]d)/.test(navigator.userAgent) || /Android/i.test(navigator.userAgent) || /Mobile/i.test(navigator.userAgent);
+            }
+
+             Date.prototype.toLocalISOString = function() {
+                var date = new Date();
+                return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+            }
+
+            document.documentElement.style.setProperty('--font-size', '13px');
+
+            window.onload = function () {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("divBody").style.display = "block";
+            };          
+        </script>
+        </head>
+        <body id=body>
+            <div id=wrapper>
+                <nav class="navbar navbar-inverse navbar-fixed-top" role=navigation>
+                    <div class=navbar-header>
+                        <button type=button class=navbar-toggle data-toggle=collapse data-target=.navbar-ex1-collapse>
+                            <span class=sr-only>Toggle navigation</span>
+                            <span class=icon-bar></span>
+                            <span class=icon-bar></span>
+                            <span class=icon-bar></span>
+                        </button>
+                        <a class=navbar-brand href="/">
+                            <div class=navbar-text>Retail ERP</div>
+                        </a>
+                    </div>
+                    <div id=loader class=cs-loader>
+                        <div class=cs-loader-inner>
+                            <label>●</label>
+                            <label>●</label>
+                            <label>●</label>
+                            <label>●</label>
+                            <label>●</label>
+                            <label>●</label>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-right top-nav">
+                        <li class=dropdown>
+                            <a href=# class=dropdown-toggle data-toggle=dropdown title="User:">
+                                <span class="fas fa-user"></span>
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-nav">
+                                <li class=dropdown-header>
+                                    <span style=font-size:medium>
+                                        <i class="far fa-user-circle"></i>
+                                        @User.Identity.Name
+                                    </span>
+                                <li role=separator class=divider>
+                                <li>
+                                    <a href=/Security/Logout>Logout</a>
+                            </ul>
+                        <li>
+                    </ul>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav side-nav menus">
+                            <li>
+                                <a href="/">
+                                    <i class="fas fa-home"></i>
+                                    Home
+                                </a>
+                            <li>
+                                <a href=# data-toggle=collapse data-target=#submenu-2>
+                                    <i class="fas fa-file-alt"></i>
+                                    Reports <i class="fa fa-fw fa-angle-down pull-right"></i>
+                                </a>
+                                <ul id=submenu-2 class="collapse sidebarcollapse">
+                                    <li>
+                                        <a href=/Dashboard/Accounts>
+                                            <i class="fas fa-hand-point-right"></i>
+                                            Accounts
+                                        </a>
+                                   
+                                    <li>
+                                        <a href=/Dashboard/Inventory>
+                                            <i class="fas fa-hand-point-right"></i>
+                                            Inventory
+                                        </a>                                  
+                                </ul>                           
+                        </ul>
+                    </div>
+                </nav>
+                <div class=sidebar-control>
+                    <button class=sidebar-control-btn>
+                        <i class=fas id=side-bar-icon></i>
+                    </button>
+                </div>
+                <div id=page-wrapper>
+                    <div class=container-fluid>
+                        <div class="row marginRow well well-sm">
+                            <div class=col-sm-5>
+                                <h5>
+                                    <strong>Demo Hospital</strong>
+                                </h5>
+                            </div>
+                        </div>                        
+
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </div>
+
+            @await Html.PartialAsync("./PartialViews/_Report")
+          
+            <div id=toast></div>
+
+            <script src="~/js/Shared/jquery-3.4.1.min.js"></script>
+            <script src="~/js/Shared/main.min.js" defer></script>
+            @await RenderSectionAsync("Scripts", required: false)
+
+            <script>
+                $(function () {
+                    $.contextMenu({
+                        selector: '#body',
+                        trigger: 'right',
+                        delay: 500,
+                        autoHide: true,
+                        reposition: false,
+                        zIndex: 10,
+                        callback: function (key, options) {
+                            switch (key) {
+                                case 'refresh':
+                                    if (typeof ReloadPage === "function") {
+                                        ReloadPage();
+                                    }
+                                    break;
+                                case 'clear':
+                                    if (typeof ClearData === "function") {
+                                        ClearData();
+                                    }
+                                    break;
+                            }
+                        },
+                        items: {
+                            "refresh": {
+                                name: "Refresh"
+                            }
+                        }
+                    });
+                });
+            </script>
+
+    </body>
+</html>

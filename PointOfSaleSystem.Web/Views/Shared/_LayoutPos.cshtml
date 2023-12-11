@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=UTF-8>
+    <title>Retail ERP | @ViewBag.Title</title>
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta name=HandheldFriendly content=true>
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=mobile-web-app-capable content=yes>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/Shared/LayoutPos.css"/>
+    <link rel=stylesheet href="~/css/Sales/point_of_sale.assets.css">
+    <script>
+        Date.prototype.toLocalISOString = function () {
+            return new Date(this.getTime() - (this.getTimezoneOffset() * 60000)).toISOString();
+        }
+        const currencySymbol = "";
+        function IsMobile() {
+            return /\b(iPhone|iP[ao]d)/.test(navigator.userAgent) || /\b(iP[ao]d)/.test(navigator.userAgent) || /Android/i.test(navigator.userAgent) || /Mobile/i.test(navigator.userAgent);
+        }
+    </script>
+</head>
+<body id=body>
+
+    @RenderBody()  
+
+    <script src="~/js/Sales/jquery.min.js"></script>
+    <script src="~/js/Sales/posmain.min.js" defer></script>
+
+    <div style=size:auto;margin:0 id=silent-print hidden></div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
