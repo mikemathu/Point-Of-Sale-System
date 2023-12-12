@@ -58,8 +58,7 @@
                 </div>
                 <div id=secReports hidden>
                     <div class=row>
-                        @*<iframe class="col-lg-12 col-md-12 col-sm-12" onload="if(typeof TestConnection==='function'){TestConnection();}" id=DashboardReportIframe src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>*@
-                         @await ViewBag.WebReport.Render()
+                        <iframe class="col-lg-12 col-md-12 col-sm-12" onload="if(typeof TestConnection==='function'){TestConnection();}" id=DashboardReportIframe src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>
                     </div>
                 </div>
             </div>
