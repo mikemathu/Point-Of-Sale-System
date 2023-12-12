@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="Base Report.frx" BaseReportAbsolutePath="C:\Users\Mike\OneDrive\Desktop\Reports\Trials\Project Reports\Base Report.frx" ScriptLanguage="CSharp" ReportInfo.Created="10/28/2023 14:33:06" ReportInfo.Modified="10/31/2023 10:16:05" ReportInfo.CreatorVersion="2023.1.4.0">
+  <Styles>
+    <Style Name="ConFlowerBlueBackground" Fill.Color="CornflowerBlue" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <PostgresDataConnection Name="Connection" ConnectionString="rijcmlq8ZkN6qUj4G/zvKvLeJ9DDB6WCp22J48oQEWWvz8/J/Nbc4Hw7dGeDbsvFUOozh+gqMOuCc6IRMEw0XAxI9Ilv4S7X4Q1QHhjwUezENEeIN8=">
+      <TableDataSource Name="public_Accounts_Ledger_AccountClasses" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.AccountClasses&quot;">
+        <Column Name="accountClassID" DataType="System.Int32"/>
+        <Column Name="className" DataType="System.String"/>
+        <Column Name="accountTypeID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_AccountTypes" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.AccountTypes&quot;">
+        <Column Name="accountTypeID" DataType="System.Int32"/>
+        <Column Name="accountTypeName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_POS_PaymentMethod" DataType="System.Int32" Enabled="true" TableName="public.&quot;POS.PaymentMethod&quot;">
+        <Column Name="paymentMethodID" DataType="System.Int32"/>
+        <Column Name="isDefault" DataType="System.Int32"/>
+        <Column Name="paymentMethodName" DataType="System.String"/>
+        <Column Name="subAccountID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Fiscal_FiscalPeriods" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Fiscal.FiscalPeriods&quot;">
+        <Column Name="fiscalPeriodID" DataType="System.Int32"/>
+        <Column Name="fiscalPeriodNo" DataType="System.Int32"/>
+        <Column Name="openDate" DataType="System.DateTime"/>
+        <Column Name="closeDate" DataType="System.DateTime"/>
+        <Column Name="isActive" DataType="System.Int32"/>
+        <Column Name="isOpen" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_OtherTaxes" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.OtherTaxes&quot;">
+        <Column Name="otherTaxID" DataType="System.Int32"/>
+        <Column Name="otherTaxName" DataType="System.String"/>
+        <Column Name="perRate" DataType="System.Int32"/>
+        <Column Name="vatLiabSubAccountID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_CashFlowCategoryTypes" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.CashFlowCategoryTypes&quot;">
+        <Column Name="cashFlowCategoryTypeID" DataType="System.Int32"/>
+        <Column Name="cashFlowCategoryTypeName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_CashFlowCategories" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.CashFlowCategories&quot;">
+        <Column Name="cashFlowCategoryID" DataType="System.Int32"/>
+        <Column Name="cashFlowCategoryName" DataType="System.String"/>
+        <Column Name="cashFlowCategoryTypeID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_Accounts" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.Accounts&quot;">
+        <Column Name="accountID" DataType="System.Int32"/>
+        <Column Name="accountName" DataType="System.String"/>
+        <Column Name="accountNo" DataType="System.Int32"/>
+        <Column Name="isLocked" DataType="System.Int32"/>
+        <Column Name="accountClassID" DataType="System.Int32"/>
+        <Column Name="cashFlowCategoryID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_SubAccounts" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.SubAccounts&quot;">
+        <Column Name="subAccountID" DataType="System.Int32"/>
+        <Column Name="subAccountName" DataType="System.String"/>
+        <Column Name="currentBalance" DataType="System.Double"/>
+        <Column Name="isActive" DataType="System.Int32"/>
+        <Column Name="isLocked" DataType="System.Int32"/>
+        <Column Name="accountID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_CustomerOrders" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.CustomerOrders&quot;">
+        <Column Name="customerOrderID" DataType="System.Int32"/>
+        <Column Name="createdBySysUID" DataType="System.Int32"/>
+        <Column Name="dateTimeCreated" DataType="System.DateTime"/>
+        <Column Name="customerOrderProductID" DataType="System.Int32"/>
+        <Column Name="quantity" DataType="System.Int32"/>
+        <Column Name="netAmount" DataType="System.Int32"/>
+        <Column Name="totalAmountPaid" DataType="System.Double"/>
+        <Column Name="dateTimeBilled" DataType="System.DateTime"/>
+        <Column Name="saleStatus" DataType="System.Int32"/>
+        <Column Name="salesType" DataType="System.Int32"/>
+        <Column Name="status" DataType="System.String"/>
+        <Column Name="colorClass" DataType="System.String"/>
+        <Column Name="billIsPrinted" DataType="System.Int32"/>
+        <Column Name="billNo" DataType="System.Int32"/>
+        <Column Name="receiptNo" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Security_Privileges" DataType="System.Int32" Enabled="true" TableName="public.&quot;Security.Privileges&quot;">
+        <Column Name="privilegeID" DataType="System.Int32"/>
+        <Column Name="privilegeName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_JV_JournalVouchers" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.JV.JournalVouchers&quot;">
+        <Column Name="journalVoucherID" DataType="System.Int32"/>
+        <Column Name="description" DataType="System.String"/>
+        <Column Name="sourceReference" DataType="System.String"/>
+        <Column Name="amount" DataType="System.Double"/>
+        <Column Name="transactionDateTime" DataType="System.DateTime"/>
+        <Column Name="isAutomatic" DataType="System.Int32"/>
+        <Column Name="isPeriodClosingJournal" DataType="System.Int32"/>
+        <Column Name="isPosted" DataType="System.Int32"/>
+        <Column Name="postedBySysUID" DataType="System.Int32"/>
+        <Column Name="fiscalPeriodID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Security_Roles" DataType="System.Int32" Enabled="true" TableName="public.&quot;Security.Roles&quot;">
+        <Column Name="roleID" DataType="System.Int32"/>
+        <Column Name="roleName" DataType="System.String"/>
+        <Column Name="description" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Sales_POS_OrderItems" DataType="System.Int32" Enabled="true" TableName="public.&quot;Sales.POS.OrderItems&quot;">
+        <Column Name="customerOrderID" DataType="System.Int32"/>
+        <Column Name="productID" DataType="System.Int32"/>
+        <Column Name="quantity" DataType="System.Int32"/>
+        <Column Name="subTotal" DataType="System.Double"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_Items" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.Items&quot;">
+        <Column Name="itemID" DataType="System.Int32"/>
+        <Column Name="itemName" DataType="System.String"/>
+        <Column Name="unitCost" DataType="System.Double"/>
+        <Column Name="unitPrice" DataType="System.Double"/>
+        <Column Name="totalQuantity" DataType="System.Int32"/>
+        <Column Name="availableQuantity" DataType="System.Int32"/>
+        <Column Name="reorderLevel" DataType="System.Int32"/>
+        <Column Name="expiryDate" DataType="System.DateTime"/>
+        <Column Name="itemCode" DataType="System.String"/>
+        <Column Name="barcode" DataType="System.String"/>
+        <Column Name="batch" DataType="System.String"/>
+        <Column Name="image" DataType="System.String"/>
+        <Column Name="itemCategory" DataType="System.String"/>
+        <Column Name="itemClass" DataType="System.String"/>
+        <Column Name="weight" DataType="System.Int32"/>
+        <Column Name="length" DataType="System.Int32"/>
+        <Column Name="width" DataType="System.Int32"/>
+        <Column Name="height" DataType="System.Int32"/>
+        <Column Name="canBePurchased" DataType="System.Int32"/>
+        <Column Name="canBeSold" DataType="System.Int32"/>
+        <Column Name="isNewBatch" DataType="System.Int32"/>
+        <Column Name="showInPOS" DataType="System.Int32"/>
+        <Column Name="isActive" DataType="System.Int32"/>
+        <Column Name="isRetiredBatch" DataType="System.Int32"/>
+        <Column Name="unitOfMeasureID" DataType="System.Int32"/>
+        <Column Name="itemClassID" DataType="System.Int32"/>
+        <Column Name="itemCategoryID" DataType="System.Int32"/>
+        <Column Name="pointOfSaleCategoryID" DataType="System.Int32"/>
+        <Column Name="assetSubAccountID" DataType="System.Int32"/>
+        <Column Name="costOfSaleSubAccountID" DataType="System.Int32"/>
+        <Column Name="revenueSubAccountID" DataType="System.Int32"/>
+        <Column Name="vatTypeID" DataType="System.Int32"/>
+        <Column Name="otherTaxID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Security_Users" DataType="System.Int32" Enabled="true" TableName="public.&quot;Security.Users&quot;">
+        <Column Name="userID" DataType="System.Int32"/>
+        <Column Name="userName" DataType="System.String"/>
+        <Column Name="surName" DataType="System.String"/>
+        <Column Name="otherNames" DataType="System.String"/>
+        <Column Name="dateTimeCreated" DataType="System.DateTime"/>
+        <Column Name="password" DataType="System.String"/>
+        <Column Name="isSuperUser" DataType="System.Int32"/>
+        <Column Name="isEmployee" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_JV_AccountEntries" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.JV.AccountEntries&quot;">
+        <Column Name="accountEntryID" DataType="System.Int32"/>
+        <Column Name="creditAmount" DataType="System.Double"/>
+        <Column Name="debitAmount" DataType="System.Double"/>
+        <Column Name="isContraEntry" DataType="System.Int32"/>
+        <Column Name="creditSubAccountID" DataType="System.Int32"/>
+        <Column Name="debitSubAccountID" DataType="System.Int32"/>
+        <Column Name="journalVoucherID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_ItemCategories" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.ItemCategories&quot;">
+        <Column Name="itemCategoryID" DataType="System.Int32"/>
+        <Column Name="itemCategoryName" DataType="System.String"/>
+        <Column Name="description" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_VATTypes" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.VATTypes&quot;">
+        <Column Name="vatTypeID" DataType="System.Int32"/>
+        <Column Name="vatTypeName" DataType="System.String"/>
+        <Column Name="perRate" DataType="System.Int32"/>
+        <Column Name="vatLiabSubAccountID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_ItemClassType" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.ItemClassType&quot;">
+        <Column Name="itemClassTypeID" DataType="System.Int32"/>
+        <Column Name="itemClassTypeName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Invetory_Inventory_ItemClasses" DataType="System.Int32" Enabled="true" TableName="public.&quot;Invetory.Inventory.ItemClasses&quot;">
+        <Column Name="itemClassID" DataType="System.Int32"/>
+        <Column Name="itemClassName" DataType="System.String"/>
+        <Column Name="description" DataType="System.String"/>
+        <Column Name="itemClassTypeID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_UnitsOfMeasure" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.UnitsOfMeasure&quot;">
+        <Column Name="unitOfMeasureID" DataType="System.Int32"/>
+        <Column Name="unitOfMeasureName" DataType="System.String"/>
+        <Column Name="quantity" DataType="System.Int32"/>
+        <Column Name="isSmallestUnit" DataType="System.Int32"/>
+        <Column Name="isDiscrete" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Inventory_Inventory_PointOfSaleCategories" DataType="System.Int32" Enabled="true" TableName="public.&quot;Inventory.Inventory.PointOfSaleCategories&quot;">
+        <Column Name="pointOfSaleCategoryID" DataType="System.Int32"/>
+        <Column Name="pointOfSaleCategoryName" DataType="System.String"/>
+        <Column Name="description" DataType="System.String"/>
+        <Column Name="isActive" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Security_RolesPrivileges" DataType="System.Int32" Enabled="true" TableName="public.&quot;Security.RolesPrivileges&quot;">
+        <Column Name="roleID" DataType="System.Int32"/>
+        <Column Name="privilegeID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Security_UsersRoles" DataType="System.Int32" Enabled="true" TableName="public.&quot;Security.UsersRoles&quot;">
+        <Column Name="userID" DataType="System.Int32"/>
+        <Column Name="roleID" DataType="System.Int32"/>
+      </TableDataSource>
+    </PostgresDataConnection>
+    <Relation Name="public_Inventory_Inventory_PointOfSaleCategories_public_Inventory_Inventory_Items" ParentDataSource="public_Inventory_Inventory_PointOfSaleCategories" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="pointOfSaleCategoryID" ChildColumns="pointOfSaleCategoryID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_VATTypes_public_Inventory_Inventory_Items" ParentDataSource="public_Inventory_Inventory_VATTypes" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="vatTypeID" ChildColumns="vatTypeID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_OtherTaxes_public_Inventory_Inventory_Items" ParentDataSource="public_Inventory_Inventory_OtherTaxes" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="otherTaxID" ChildColumns="otherTaxID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_ItemCategories_public_Inventory_Inventory_Items" ParentDataSource="public_Inventory_Inventory_ItemCategories" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="itemCategoryID" ChildColumns="itemCategoryID" Enabled="true"/>
+    <Relation Name="public_Accounts_JV_JournalVouchers_public_Accounts_JV_AccountEntries" ParentDataSource="public_Accounts_JV_JournalVouchers" ChildDataSource="public_Accounts_JV_AccountEntries" ParentColumns="journalVoucherID" ChildColumns="journalVoucherID" Enabled="true"/>
+    <Relation Name="public_Security_Users_public_Accounts_JV_JournalVouchers" ParentDataSource="public_Security_Users" ChildDataSource="public_Accounts_JV_JournalVouchers" ParentColumns="userID" ChildColumns="postedBySysUID" Enabled="true"/>
+    <Relation Name="public_Security_Users_public_Security_UsersRoles" ParentDataSource="public_Security_Users" ChildDataSource="public_Security_UsersRoles" ParentColumns="userID" ChildColumns="userID" Enabled="true"/>
+    <Relation Name="public_Security_Roles_public_Security_UsersRoles" ParentDataSource="public_Security_Roles" ChildDataSource="public_Security_UsersRoles" ParentColumns="roleID" ChildColumns="roleID" Enabled="true"/>
+    <Relation Name="public_Security_Roles_public_Security_RolesPrivileges" ParentDataSource="public_Security_Roles" ChildDataSource="public_Security_RolesPrivileges" ParentColumns="roleID" ChildColumns="roleID" Enabled="true"/>
+    <Relation Name="public_Security_Privileges_public_Security_RolesPrivileges" ParentDataSource="public_Security_Privileges" ChildDataSource="public_Security_RolesPrivileges" ParentColumns="privilegeID" ChildColumns="privilegeID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_CashFlowCategories_public_Accounts_Ledger_Accounts" ParentDataSource="public_Accounts_Ledger_CashFlowCategories" ChildDataSource="public_Accounts_Ledger_Accounts" ParentColumns="cashFlowCategoryID" ChildColumns="cashFlowCategoryID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_CashFlowCategoryTypes_public_Accounts_Ledger_CashFlowCategories" ParentDataSource="public_Accounts_Ledger_CashFlowCategoryTypes" ChildDataSource="public_Accounts_Ledger_CashFlowCategories" ParentColumns="cashFlowCategoryTypeID" ChildColumns="cashFlowCategoryTypeID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_SubAccounts_public_Accounts_JV_AccountEntries" ParentDataSource="public_Accounts_Ledger_SubAccounts" ChildDataSource="public_Accounts_JV_AccountEntries" ParentColumns="subAccountID&#13;&#10;subAccountID" ChildColumns="creditSubAccountID&#13;&#10;debitSubAccountID" Enabled="true"/>
+    <Relation Name="public_Accounts_Fiscal_FiscalPeriods_public_Accounts_JV_JournalVouchers" ParentDataSource="public_Accounts_Fiscal_FiscalPeriods" ChildDataSource="public_Accounts_JV_JournalVouchers" ParentColumns="fiscalPeriodID" ChildColumns="fiscalPeriodID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_AccountTypes_public_Accounts_Ledger_AccountClasses3" ParentDataSource="public_Accounts_Ledger_AccountTypes" ChildDataSource="public_Accounts_Ledger_AccountClasses" ParentColumns="accountTypeID" ChildColumns="accountTypeID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_AccountClasses_public_Accounts_Ledger_Accounts" ParentDataSource="public_Accounts_Ledger_AccountClasses" ChildDataSource="public_Accounts_Ledger_Accounts" ParentColumns="accountClassID" ChildColumns="accountClassID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_Accounts_public_Accounts_Ledger_SubAccounts2" ParentDataSource="public_Accounts_Ledger_Accounts" ChildDataSource="public_Accounts_Ledger_SubAccounts" ParentColumns="accountID" ChildColumns="accountID" Enabled="true"/>
+    <Relation Name="public_Security_Users_public_Inventory_Inventory_CustomerOrders" ParentDataSource="public_Security_Users" ChildDataSource="public_Inventory_Inventory_CustomerOrders" ParentColumns="userID" ChildColumns="createdBySysUID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_Items_public_Inventory_Inventory_CustomerOrders" ParentDataSource="public_Inventory_Inventory_Items" ChildDataSource="public_Inventory_Inventory_CustomerOrders" ParentColumns="itemID" ChildColumns="customerOrderProductID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_UnitsOfMeasure_public_Inventory_Inventory_Items" ParentDataSource="public_Inventory_Inventory_UnitsOfMeasure" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="unitOfMeasureID" ChildColumns="unitOfMeasureID" Enabled="true"/>
+    <Relation Name="public_Invetory_Inventory_ItemClasses_public_Inventory_Inventory_Items" ParentDataSource="public_Invetory_Inventory_ItemClasses" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="itemClassID" ChildColumns="itemClassID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_SubAccounts_public_Inventory_Inventory_Items1" ParentDataSource="public_Accounts_Ledger_SubAccounts" ChildDataSource="public_Inventory_Inventory_Items" ParentColumns="subAccountID&#13;&#10;subAccountID&#13;&#10;subAccountID" ChildColumns="assetSubAccountID&#13;&#10;costOfSaleSubAccountID&#13;&#10;revenueSubAccountID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_SubAccounts_public_Inventory_Inventory_VATTypes" ParentDataSource="public_Accounts_Ledger_SubAccounts" ChildDataSource="public_Inventory_Inventory_VATTypes" ParentColumns="subAccountID" ChildColumns="vatLiabSubAccountID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_SubAccounts_public_Inventory_Inventory_OtherTaxes" ParentDataSource="public_Accounts_Ledger_SubAccounts" ChildDataSource="public_Inventory_Inventory_OtherTaxes" ParentColumns="subAccountID" ChildColumns="vatLiabSubAccountID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_ItemClassType_public_Invetory_Inventory_ItemClasses" ParentDataSource="public_Inventory_Inventory_ItemClassType" ChildDataSource="public_Invetory_Inventory_ItemClasses" ParentColumns="itemClassTypeID" ChildColumns="itemClassTypeID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_SubAccounts_public_POS_PaymentMethod" ParentDataSource="public_Accounts_Ledger_SubAccounts" ChildDataSource="public_POS_PaymentMethod" ParentColumns="subAccountID" ChildColumns="subAccountID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_CustomerOrders_public_Sales_POS_OrderItems" ParentDataSource="public_Inventory_Inventory_CustomerOrders" ChildDataSource="public_Sales_POS_OrderItems" ParentColumns="customerOrderID" ChildColumns="customerOrderID" Enabled="true"/>
+    <Relation Name="public_Inventory_Inventory_Items_public_Sales_POS_OrderItems" ParentDataSource="public_Inventory_Inventory_Items" ChildDataSource="public_Sales_POS_OrderItems" ParentColumns="itemID" ChildColumns="productID" Enabled="true"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="ReportTitle1">
+      <inherited Name="Text1"/>
+      <inherited Name="Text2"/>
+      <inherited Name="Text3"/>
+      <inherited Name="Text4"/>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="187.55" Width="718.2" Height="37.8" DataSource="public_Accounts_Ledger_Accounts">
+      <TextObject Name="Text7" Left="18.9" Top="18.9" Width="94.5" Height="18.9" Text="[public_Accounts_Ledger_Accounts.accountNo]" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="141.75" Top="18.9" Width="160.65" Height="18.9" Text="[public_Accounts_Ledger_Accounts.accountName]" Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Left="330.75" Top="18.9" Width="94.5" Height="18.9" Text="[public_Accounts_Ledger_Accounts.public_Accounts_Ledger_AccountClasses.public_Accounts_Ledger_AccountTypes.accountTypeName]" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="472.5" Top="18.9" Width="94.5" Height="18.9" Text="[public_Accounts_JV_AccountEntries.debitAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text15" Left="585.9" Top="9.45" Width="94.5" Height="18.9" Text="[public_Accounts_JV_AccountEntries.creditAmount]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+      <DataHeaderBand Name="DataHeader1" Top="145.75" Width="718.2" Height="37.8">
+        <TextObject Name="Text8" Left="18.9" Width="94.5" Height="18.9" Text="accountNo" Font="Arial, 10pt"/>
+        <TextObject Name="Text10" Left="141.75" Width="160.65" Height="18.9" Text="accountName" Font="Arial, 10pt"/>
+        <TextObject Name="Text12" Left="330.75" Width="94.5" Height="18.9" Text="accountTypeName" Font="Arial, 10pt"/>
+        <TextObject Name="Text14" Left="472.5" Width="94.5" Height="18.9" Text="debitAmount" Font="Arial, 10pt"/>
+        <TextObject Name="Text16" Left="585.9" Width="94.5" Height="18.9" Text="creditAmount" Font="Arial, 10pt"/>
+      </DataHeaderBand>
+      <Sort>
+        <Sort Expression="[public_Accounts_Ledger_Accounts.accountNo]"/>
+      </Sort>
+    </DataBand>
+    <inherited Name="PageFooter1" Top="229.35">
+      <inherited Name="Text5"/>
+      <inherited Name="Text6"/>
+    </inherited>
+  </inherited>
+</inherited>

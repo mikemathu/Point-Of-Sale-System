@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="Base Report.frx" BaseReportAbsolutePath="C:\Users\Mike\OneDrive\Desktop\Reports\Trials\Project Reports\Base Report.frx" ScriptLanguage="CSharp" ReportInfo.Description="Balance Sheet Summary" ReportInfo.Created="10/28/2023 14:33:06" ReportInfo.Modified="10/28/2023 18:09:19" ReportInfo.CreatorVersion="2023.1.4.0">
+  <Styles>
+    <Style Name="ConFlowerBlueBackground" Fill.Color="CornflowerBlue" Font="Arial, 10pt"/>
+    <Style Name="LightGreyBackgroudColor" Fill.Color="LightGray" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <PostgresDataConnection Name="Connection" ConnectionString="rijcmlq8ZkN6qUj4G/zvKvLeJ9DDB6WCp22J48oQEWWvz8/J/Nbc4Hw7dGeDbsvFUOozh+gqMOuCc6IRMEw0XAxI9Ilv/AaAKKRSj37OFWDhLp/zTU=">
+      <TableDataSource Name="public_Accounts_Ledger_AccountClasses" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.AccountClasses&quot;">
+        <Column Name="accountClassID" DataType="System.Int32"/>
+        <Column Name="className" DataType="System.String"/>
+        <Column Name="accountTypeID" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_AccountTypes" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.AccountTypes&quot;">
+        <Column Name="accountTypeID" DataType="System.Int32"/>
+        <Column Name="accountTypeName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="public_Accounts_Ledger_Accounts" DataType="System.Int32" Enabled="true" TableName="public.&quot;Accounts.Ledger.Accounts&quot;">
+        <Column Name="accountID" DataType="System.Int32"/>
+        <Column Name="accountName" DataType="System.String"/>
+        <Column Name="accountNo" DataType="System.Int32"/>
+        <Column Name="isLocked" DataType="System.Int32"/>
+        <Column Name="accountClassID" DataType="System.Int32"/>
+        <Column Name="cashFlowCategoryID" DataType="System.Int32"/>
+      </TableDataSource>
+    </PostgresDataConnection>
+    <Relation Name="public_Accounts_Ledger_AccountTypes_public_Accounts_Ledger_AccountClasses" ParentDataSource="public_Accounts_Ledger_AccountTypes" ChildDataSource="public_Accounts_Ledger_AccountClasses" ParentColumns="accountTypeID" ChildColumns="accountTypeID" Enabled="true"/>
+    <Relation Name="public_Accounts_Ledger_AccountClasses_public_Accounts_Ledger_Accounts" ParentDataSource="public_Accounts_Ledger_AccountClasses" ChildDataSource="public_Accounts_Ledger_Accounts" ParentColumns="accountClassID" ChildColumns="accountClassID" Enabled="true"/>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="ReportTitle1" Height="103.95">
+      <inherited Name="Text1"/>
+      <inherited Name="Text2"/>
+      <inherited Name="Text3"/>
+      <inherited Name="Text4"/>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="107.95" Width="718.2" Height="18.9" DataSource="public_Accounts_Ledger_AccountTypes">
+      <TextObject Name="Text7" Width="718.2" Height="18.9" Fill.Color="LightGray" Text="[UpperCase([public_Accounts_Ledger_AccountTypes.accountTypeName])]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data2" Top="130.85" Width="718.2" Height="37.8" DataSource="public_Accounts_Ledger_AccountClasses">
+        <TextObject Name="Text8" Left="18.9" Top="9.45" Width="699.3" Height="18.9" Border.Lines="Bottom" Text="[public_Accounts_Ledger_AccountClasses.className]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <DataBand Name="Data3" Top="172.65" Width="718.2" Height="18.9" DataSource="public_Accounts_Ledger_Accounts">
+          <TextObject Name="Text9" Left="37.8" Width="444.15" Height="18.9" Border.Lines="Bottom" Text="[public_Accounts_Ledger_Accounts.accountName]" VertAlign="Center" Font="Arial, 10pt"/>
+          <TextObject Name="Text10" Left="481.95" Width="236.25" Height="18.9" Border.Lines="Bottom" Text="4,778,064,169.80" VertAlign="Center" Font="Arial, 10pt"/>
+        </DataBand>
+      </DataBand>
+      <DataBand Name="Data6" Top="195.55" Width="718.2" Height="85.05">
+        <TextObject Name="Text13" Left="141.75" Top="37.8" Width="217.35" Height="18.9" Text="TOTAL [UpperCase([public_Accounts_Ledger_AccountTypes.accountTypeName])]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text14" Left="481.95" Top="37.8" Width="236.25" Height="18.9" Border.Lines="Bottom" Border.Style="Double" Text="4,778,064,169.80" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      </DataBand>
+    </DataBand>
+    <inherited Name="PageFooter1" Top="284.6">
+      <inherited Name="Text5"/>
+      <inherited Name="Text6"/>
+    </inherited>
+  </inherited>
+</inherited>
