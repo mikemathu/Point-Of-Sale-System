@@ -32,7 +32,7 @@ namespace PointOfSaleSystem.Web.Controllers
             var rootPath = _hostingEnvironment.WebRootPath;
 
             // Construct the full path relative to the root directory
-            var reportPath = Path.Combine(rootPath, "Dashboard", "Invoice.frx");
+            var reportPath = Path.Combine(rootPath, "Dashboard", "BalanceSheetByBranch", "Balance Sheet Detailed.frx");
 
             // Load the report from the specified path
             report.Report.Load(reportPath);
@@ -56,7 +56,7 @@ namespace PointOfSaleSystem.Web.Controllers
             var rootPath = _hostingEnvironment.WebRootPath;
 
             // Construct the full path relative to the root directory
-            var reportPath = Path.Combine(rootPath, "Dashboard", "Invoice.frx");
+            var reportPath = Path.Combine(rootPath, "Dashboard", "BalanceSheetByBranch", "Balance Sheet Detailed.frx");
 
             // Load the report from the specified path
             report.Report.Load(reportPath);
