@@ -8,10 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Dashboard\BalanceSheetByBranch\" />
-    <Folder Include="wwwroot\Dashboard\GeneralLedgerByBranch\" />
-    <Folder Include="wwwroot\Dashboard\IncomeStatementByBranch\" />
-    <Folder Include="wwwroot\Dashboard\TrialBalanceByBranch\" />
+    <Compile Remove="wwwroot\Dashboard\GeneralLedgerByBranch\**" />
+    <Content Remove="wwwroot\Dashboard\GeneralLedgerByBranch\**" />
+    <EmbeddedResource Remove="wwwroot\Dashboard\GeneralLedgerByBranch\**" />
+    <None Remove="wwwroot\Dashboard\GeneralLedgerByBranch\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Dashboard\Accounts\CashFlowStatement\" />
+    <Folder Include="wwwroot\Dashboard\Accounts\Expenses\" />
+    <Folder Include="wwwroot\Dashboard\Accounts\GeneralLedger\" />
+    <Folder Include="wwwroot\Dashboard\Inventory\" />
   </ItemGroup>
 
   <ItemGroup>
