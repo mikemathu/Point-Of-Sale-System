@@ -63,7 +63,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         /// <param name=""></param>
         /// <returns></returns>
         [HttpPost("CreateUpdateRole")]
-        [Authorize("CanManageRoles")]
+        //[Authorize("CanManageRoles")]
         public async Task<IActionResult> CreateUpdateRole(RoleDto roleDto)
         {
             RoleDto createdUpdatedUserRole = await _userRoleService.CreateUpdateRoleAsync(roleDto);
@@ -84,7 +84,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("DeleteRole")]
-        [Authorize("CanManageRoles")]
+        //[Authorize("CanManageRoles")]
         public async Task<IActionResult> DeleteRole([FromBody] int roleID)
         {
             await _userRoleService.DeleteRoleAsync(roleID);
@@ -98,7 +98,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         /// <returns></returns>
 
         [HttpPost("CreateUpdatePrivilege")]
-        [Authorize("CanManagePrivileges")]
+        //[Authorize("CanManagePrivileges")]
         public async Task<IActionResult> CreateUpdatePrivilege(PrivilegeDto privilegeDto)
         {
             PrivilegeDto createdUpdatedPrivilege = await _privilegeService.CreateUpdatePrivilegeAsync(privilegeDto);
@@ -120,7 +120,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("AddPrivilegesToRole")]
-        [Authorize("CanManagePrivileges")]
+        //[Authorize("CanManagePrivileges")]
         public async Task<IActionResult> AddPrivilegesToRole(RolePrivilegeDto rolePrivilegeDto)
         {
             IEnumerable<PrivilegeDto> rolePrivilege = await _privilegeService.AddPrivilegesToRoleAsync(rolePrivilegeDto);
@@ -128,14 +128,14 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("DeletePrivilegesFromRole")]
-        [Authorize("CanManagePrivileges")]
+        //[Authorize("CanManagePrivileges")]
         public async Task<IActionResult> DeletePrivilegesFromRole(RolePrivilegeDto rolePrivilegeDto)
         {
             IEnumerable<PrivilegeDto> rolePrivilege = await _privilegeService.DeletePrivilegesFromRoleAsync(rolePrivilegeDto);
             return Ok(rolePrivilege);
         }
         [HttpPost("DeleteRolePrivilege")]
-        [Authorize("CanManagePrivileges")]
+        //[Authorize("CanManagePrivileges")]
         public async Task<IActionResult> DeleteRolePrivilege([FromBody] int privilegeID)
         {
             await _privilegeService.DeleteRolePrivilegeAsync(privilegeID);
@@ -155,7 +155,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("CreateUpdateSystemUser")]
-        [Authorize("CanManageUsers")]
+        //[Authorize("CanManageUsers")]
         public async Task<IActionResult> CreateUpdateSystemUser(SystemUserDto systemUserDto)
         {
             await _userService.CreateUpdateSystemUserAsync(systemUserDto);//TODO

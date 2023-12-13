@@ -122,7 +122,14 @@ namespace PointOfSaleSystem.Repo.Security
                             userCommand.Parameters.AddWithValue("@Username", user.UserName);
                             userCommand.Parameters.AddWithValue("@DateTimeCreated", DateTime.Now);
 
-                            sysUserID = (int)await userCommand.ExecuteScalarAsync();
+                            //sysUserID = (int)await userCommand.ExecuteScalarAsync();
+
+                            object? result = await userCommand.ExecuteScalarAsync();
+
+                            if (result != null && result != DBNull.Value)
+                            {
+                                sysUserID = (int)result; // Unbox only if the result is not null
+                            }
                         }
 
                         string usersRolesInsertCommand = @"
@@ -152,7 +159,7 @@ namespace PointOfSaleSystem.Repo.Security
                         transaction.Commit();
                         return sysUserID > 0;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         throw;

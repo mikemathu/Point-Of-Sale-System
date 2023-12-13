@@ -43,7 +43,7 @@ namespace PointOfSaleSystem.Repo.Security
             }
             return null;
         }
-        public async Task<IEnumerable<Privilege?>> GetAllPrivilegesAsync()
+        public async Task<IEnumerable<Privilege>> GetAllPrivilegesAsync()
         {
             using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
@@ -236,7 +236,7 @@ namespace PointOfSaleSystem.Repo.Security
             await connection.OpenAsync();
 
             using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
-            Privilege updatedPrivilege = null;
+            Privilege? updatedPrivilege = null;
             if (await reader.ReadAsync())
             {
                 updatedPrivilege = new Privilege

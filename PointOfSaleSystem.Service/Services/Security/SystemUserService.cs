@@ -44,10 +44,20 @@ namespace PointOfSaleSystem.Service.Services.Security
             ClaimsIdentity claimsIdentity = await CreateClaimsIdentity(systemUser);
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
         }
+        private int GetSysUserID()
+        {
+            var sysUserIdClaim = _httpContextAccessor.HttpContext.User.FindFirst("SysUserID");
+            int sysUserID = 0;
+            if (sysUserIdClaim != null)
+            {
+                sysUserID = Convert.ToInt32(sysUserIdClaim.Value);
+            }
+            return sysUserID;
+        }
         public async Task AuthenticateAccessPasswordAsync(string password)
         {
-            int userID = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst("SysUserID").Value);
-
+            //int userID = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst("SysUserID").Value);
+            int userID = GetSysUserID();
             bool success = await _userRepository.AuthenticateAccessPasswordAsync(userID, password);
             if (!success)
             {

@@ -39,13 +39,20 @@ namespace PointOfSaleSystem.Service.Services.Security
             {
                 return userID;
             }
-
             return null;
         }
         public IEnumerable<string> GetUserPrivileges()
         {
             var sysUserID = GetServicePointId();
-            return _userRoleRepository.GetUserPrivilege((int)sysUserID);
+            //return _userRoleRepository.GetUserPrivilege((int)sysUserID);
+            if (sysUserID.HasValue) // Check if sysUserID is not null
+            {
+                return _userRoleRepository.GetUserPrivilege(sysUserID.Value);
+            }
+            else
+            {
+                return Enumerable.Empty<string>(); // Return an empty collection
+            }
         }
         public async Task<RoleDto> CreateUpdateRoleAsync(RoleDto roleDto)
         {

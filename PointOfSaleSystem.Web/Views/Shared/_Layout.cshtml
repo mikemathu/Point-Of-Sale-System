@@ -55,15 +55,18 @@
                             </a>
                         <ul class="dropdown-menu dropdown-menu-nav">
                             <li class=dropdown-header>
-                                <span style=font-size:medium>
-                                    <i class="far fa-user-circle"></i>
-                                    if(@User.Identity.Name != null){
+                                @if (User?.Identity?.Name != null)
+                                {
+                                    <span style="font-size:medium">
+                                        <i class="far fa-user-circle"></i>
                                         @User.Identity.Name
-                                    }
-                                </span>
-                            <li role=separator class=divider>                                
+                                    </span>
+                                }
+                            </li>
+                            <li role="separator" class="divider"></li>
                             <li>
-                            <a href=/Security/Logout>Logout</a>
+                                <a href="/Security/Logout">Logout</a>
+                            </li>
                         </ul>
                         <li>
                     </ul>
@@ -183,12 +186,9 @@
     </div>
     <div id="page-wrapper">
         <div class=container-fluid>
-            <ol class=breadcrumb id=appBreadcrumb>
-                    <h5>
-                        <strong>POS System</strong>
-                    </h5>                    
+            <ol style="font-size: 14px; font-weight: bold;" class="breadcrumb" id="appBreadcrumb">
+                POS System
             </ol>
-
             <div id=divBody class=animate-bottom>
                 <div class="container-fluid">
                     <main role="main" class="pb-3">

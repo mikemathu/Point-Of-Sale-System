@@ -40,7 +40,7 @@ namespace PointOfSaleSystem.Repo.Security
                 {
                     Description = reader["description"] is DBNull ? string.Empty : (string)reader["description"],
                     RoleName = reader["roleName"] is DBNull ? string.Empty : (string)reader["roleName"],
-                    RoleID = (int)reader["roleID"] is DBNull ? 0 : (int)reader["roleID"]
+                    RoleID = reader["roleID"] is DBNull ? 0 : (int)reader["roleID"]
                 };
             }
             return null;
@@ -170,7 +170,7 @@ namespace PointOfSaleSystem.Repo.Security
 
             using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
-            Role updatedRole = null;
+            Role? updatedRole = null;
             if (await reader.ReadAsync())
             {
                 updatedRole = new Role

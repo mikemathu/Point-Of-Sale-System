@@ -3,6 +3,6 @@
     public class PrivilegeDto
     {
         public int PrivilegeID { get; set; }
-        public string PrivilegeName { get; set; } = "";
+        public string PrivilegeName { get; set; } = null!;
     }
 }
