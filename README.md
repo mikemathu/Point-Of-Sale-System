@@ -1,8 +1,10 @@
-# Architecture
--> Image
+# Point of Sale System
+--> Project description
 
-## 1. Technology Stack
-List of technologies, frameworks and libraries used for implementation:
+## Features
+--> Features
+
+## Technology Stack
 
 - Frontend: HTML, CSS, JS
 - Backend: C#
@@ -12,7 +14,7 @@ List of technologies, frameworks and libraries used for implementation:
 - API Tests: [Insomnia](https://insomnia.rest/download)
 
 
-## 2. How to Run
+## How to Run
 
 ### Installation
 
@@ -40,7 +42,13 @@ Example config setting in appsettings.json for a database called `Accounts`:
 
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
 
-## 3. Inspirations and Recommendations
+## Architecture
+-> Images
+
+## Application Overview
+-->images
+
+## Inspirations and Recommendations
 
 ### Database and SQL
 
