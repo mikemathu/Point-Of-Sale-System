@@ -11,15 +11,56 @@ namespace PointOfSaleSystem.Web.Controllers
     [Authorize]
     public class DashboardController : Controller
     {
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public DashboardController(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         [Route("Accounts")]
         public IActionResult Accounts()
         {
+            //Creating a connection to PostgreSQL
+
+            RegisteredObjects.AddConnection(typeof(PostgresDataConnection));
+
+            var report = new WebReport(); // create object
+            var data = new DataSet();
+            report.Report.RegisterData(data); // data binding);
+
+            // Get the root path of the application
+            var rootPath = _hostingEnvironment.WebRootPath;
+
+            // Construct the full path relative to the root directory
+            var reportPath = Path.Combine(rootPath, "Dashboard", "Accounts", "TrialBalance", "TrialBalanceDetailed.frx");
+
+            // Load the report from the specified path
+            report.Report.Load(reportPath);
+
+            ViewBag.WebReport = report; // send object to the View
             return View();
         }
 
         [Route("Inventory")]
         public IActionResult Inventory()
         {
+            //Creating a connection to PostgreSQL
+
+            RegisteredObjects.AddConnection(typeof(PostgresDataConnection));
+
+            var report = new WebReport(); // create object
+            var data = new DataSet();
+            report.Report.RegisterData(data); // data binding);
+
+            // Get the root path of the application
+            var rootPath = _hostingEnvironment.WebRootPath;
+
+            // Construct the full path relative to the root directory
+            var reportPath = Path.Combine(rootPath, "Dashboard", "Inventory","TrialBalanceDetailed.frx");
+
+            // Load the report from the specified path
+            report.Report.Load(reportPath);
+
+            ViewBag.WebReport = report; // send object to the View
             return View();
         }
     }

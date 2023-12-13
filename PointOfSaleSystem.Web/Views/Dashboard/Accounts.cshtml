@@ -12,36 +12,36 @@
                         <form class=form-inline id=ReportsForm>
                             <div class=form-group>
                                 <select class="form-control input-sm" id=report required>
-                                    <option value=0>Analytics</option>
                                     <option value=1>Trial Balance (Detailed)</option>
-                                    <option value=9>Trial Balance (Summary)</option>
-                                    <option value=2>Income Statement (Detailed)</option>
-                                    <option value=11>Income Statement (Summary)</option>
-                                    <option value=13>Comprehensive Income Statement</option>
-                                    <option value=3>Balance Sheet (Detailed)</option>
-                                    <option value=15>Balance Sheet (Summary)</option>
-                                    <option value=12>Comprehensive Balance Sheet (Detailed)</option>
+                                    <option value=2>Trial Balance (Summary)</option>
+                                    <option value=3>Income Statement (Detailed)</option>
+                                    <option value=5>Income Statement (Summary)</option>
+                                    <option value=6>Comprehensive Income Statement</option>
+                                    <option value=7>Balance Sheet (Detailed)</option>
+                                    <option value=8>Balance Sheet (Summary)</option>
+                                    <option value=9>Comprehensive Balance Sheet (Detailed)</option>
                                     <option value=10>Cash Flow Statement</option>
-                                    <option value=14>Comprehensive Cash Flow Statement</option>
-                                    <option value=4>General Ledger (Detailed)</option>
-                                    <option value=5>Ledger Sub Account History</option>
-                                    <option value=17>Ledger Account History</option>
-                                    <option value=16>Journal Vouchers By Branch</option>
-                                    <option value=6>All Expenses Detailed</option>
-                                    <option value=7>All Expenses Summary</option>
+                                    <option value=11>Comprehensive Cash Flow Statement</option>
+                                    <option value=12>General Ledger (Detailed)</option>
+                                    <option value=13>Ledger Sub Account History</option>
+                                    <option value=14>Ledger Account History</option>
+                                    <option value=15>Journal Vouchers</option>
+                                    <option value=16>All Expenses Detailed</option>
+                                    <option value=17>All Expenses Summary</option>
                                 </select>
                             </div>
                             <div class=form-group>
                                 <label for=dateFrom>From:</label>
-                                <input type=date class="form-control input-sm" id=dateFrom>
+                                @*<input type=date class="form-control input-sm" id=dateFrom disabled>*@
+                                <input type=date class="form-control input-sm" disabled>
                             </div>
                             <div class=form-group>
                                 <label for=dateTo>To:</label>
-                                <input type=date class="form-control input-sm" id=dateTo>
+                                <input type=date class="form-control input-sm" id=dateTo disabled>
                             </div>
-                            <button class="btn btn-primary btn-xs">View</button>
-                          
-                        </form>
+                                <button disabled class="btn btn-primary btn-xs">View</button>
+                                <input name=__RequestVerificationToken type=hidden value=CfDJ8GFOPcLCLOxIv5GGCPxE9G3lmxqCjv6Gwt0YLYp9wrL9-x2BtFFneAvH6UX0m-bsJFQPC5t0MGYFBck17mr3EHB9Ok5Z2vHaRhqw9hoLQVEkf69cRRV0oJAAmTqKLXcQVjjxXDfJNG9_rb7PhgFZxG6l8blDIh7qbc3dgYAuUj_hdiI9xaY1DEll2JP-JhyyNg>
+                            </form>
                     </div>
                 </div>
                 <div class=row>
@@ -58,7 +58,8 @@
                 </div>
                 <div id=secReports hidden>
                     <div class=row>
-                        <iframe class="col-lg-12 col-md-12 col-sm-12" onload="if(typeof TestConnection==='function'){TestConnection();}" id=DashboardReportIframe src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>
+                        @*<iframe class="col-lg-12 col-md-12 col-sm-12" id=DashboardReportIframe src=about:blank marginheight=0 frameborder=0 border=0 scrolling=auto style=height:73vh;width:100%></iframe>*@
+                        @await ViewBag.WebReport.Render()
                     </div>
                 </div>
             </div>
@@ -67,8 +68,8 @@
 </div>
 </div>
 
-@await Html.PartialAsync("./PartialViews/_SelectPeriod")
+@*@await Html.PartialAsync("./PartialViews/_SelectPeriod")
 @await Html.PartialAsync("./PartialViews/_SelectRedgerAccount")
-@await Html.PartialAsync("./PartialViews/_SelectSubAccount")
+@await Html.PartialAsync("./PartialViews/_SelectSubAccount")*@
 
 <script src="~/js/Dashboard/accounts.min.js" defer></script>
