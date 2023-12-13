@@ -1,7 +1,8 @@
 ﻿body {
-    background: #4ca1af;
+    //background: #4ca1af;
+    background: #c5d6d9;
     background: -webkit-linear-gradient(to right,#4ca1af,#c4e0e5);
-    background: linear-gradient(to right,#4ca1af,#c4e0e5);
+    //background: linear-gradient(to right,#4ca1af,#c4e0e5);
     -webkit-font-smoothing: antialiased;
     font: normal 14px Roboto,arial,sans-serif;
     line-height: 1.2 !important
