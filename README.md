@@ -1,5 +1,12 @@
 # Point of Sale System
---> Project description
+
+**Security**
+
+Each `SystemUser`, `Admin` and `Super Admin` is a `User`. To be a `User`, `User Registration` is required.
+
+Each `User` is assigned none, one or more `User Role`.
+
+Each `User Role` has set of `Privileges`. A `Privilege` defines whether `User` can invoke a particular action.
 
 ## Features
 --> Features
