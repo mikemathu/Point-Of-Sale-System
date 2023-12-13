@@ -10,6 +10,7 @@ using PointOfSaleSystem.Service.Interfaces.Inventory;
 using PointOfSaleSystem.Service.Interfaces.Sales;
 using PointOfSaleSystem.Service.Interfaces.Security;
 using PointOfSaleSystem.Service.Services.Accounts;
+using PointOfSaleSystem.Service.Services.Dashboard;
 using PointOfSaleSystem.Service.Services.Inventory;
 using PointOfSaleSystem.Service.Services.Sales;
 using PointOfSaleSystem.Service.Services.Security;
@@ -157,6 +158,10 @@ builder.Services.AddSingleton<IAuthorizationHandler, CanManageUsersHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, CanSeePrivilegesHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, CanSeeReportsHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, CanSeeUsersHandler>();
+
+//Dashboard
+builder.Services.AddSingleton<ReportsPaths>();
+
 
 var app = builder.Build();
 
