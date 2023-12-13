@@ -11,52 +11,52 @@ namespace PointOfSaleSystem.Service.Services.Dashboard
             switch (dashboardReportDto.ReportID)
             {
                 case 1:
-                    reportLocation = @"TrialBalance\TrialBalanceDetailed.frx";
+                    reportLocation = @"TrialBalance/TrialBalanceDetailed.frx";
                     break;
                 case 2:
-                    reportLocation = @"TrialBalance\TrialBalanceSummary.frx";
+                    reportLocation = @"TrialBalance/TrialBalanceSummary.frx";
                     break;
                 case 3:
-                    reportLocation = @"IncomeStatement\IncomeStatementDetailed.frx";
+                    reportLocation = @"IncomeStatement/IncomeStatementDetailed.frx";
                     break;
                 case 4:
-                    reportLocation = @"IncomeStatement\IncomeStatementSummary.frx";
+                    reportLocation = @"IncomeStatement/IncomeStatementSummary.frx";
                     break;
                 case 5:
-                    reportLocation = @"IncomeStatement\ComprehensiveIncomeStatement.frx";
+                    reportLocation = @"IncomeStatement/ComprehensiveIncomeStatement.frx";
                     break;
                 case 6:
-                    reportLocation = @"BalanceSheet\BalanceSheetDetailed.frx";
+                    reportLocation = @"BalanceSheet/BalanceSheetDetailed.frx";
                     break;
                 case 7:
-                    reportLocation = @"BalanceSheet\BalanceSheetSummary.frx";
+                    reportLocation = @"BalanceSheet/BalanceSheetSummary.frx";
                     break;
                 case 8:
-                    reportLocation = @"BalanceSheet\ComprehensiveBalanceSheetDetailed.frx";
+                    reportLocation = @"BalanceSheet/ComprehensiveBalanceSheetDetailed.frx";
                     break;
                 case 9:
-                    reportLocation = @"CashFlowStatements\CashFlowStatement.frx";
+                    reportLocation = @"CashFlowStatements/CashFlowStatement.frx";
                     break;
                 case 10:
-                    reportLocation = @"CashFlowStatements\ComprehensiveCashFlowStatement.frx";
+                    reportLocation = @"CashFlowStatements/ComprehensiveCashFlowStatement.frx";
                     break;
                 case 11:
-                    reportLocation = @"GeneralLedger\GeneralLedgerDetailed.frx";
+                    reportLocation = @"GeneralLedger/GeneralLedgerDetailed.frx";
                     break;
                 case 12:
-                    reportLocation = @"GeneralLedger\LedgerSubAccountHistory.frx";
+                    reportLocation = @"GeneralLedger/LedgerSubAccountHistory.frx";
                     break;
                 case 13:
-                    reportLocation = @"GeneralLedger\LedgerAccountHistory.frx";
+                    reportLocation = @"GeneralLedger/LedgerAccountHistory.frx";
                     break;
                 case 14:
-                    reportLocation = @"GeneralLedger\JournalVouchers.frx";
+                    reportLocation = @"GeneralLedger/JournalVouchers.frx";
                     break;
                 case 15:
-                    reportLocation = @"Expenses\AllExpensesDetailed.frx";
+                    reportLocation = @"Expenses/AllExpensesDetailed.frx";
                     break;
                 case 16:
-                    reportLocation = @"Expenses\AllExpensesSummary.frx";
+                    reportLocation = @"Expenses/AllExpensesSummary.frx";
                     break;
                 default:
                     //
@@ -72,52 +72,19 @@ namespace PointOfSaleSystem.Service.Services.Dashboard
             switch (dashboardReportDto.ReportID)
             {
                 case 1:
-                    reportLocation = @"TrialBalance\TrialBalanceDetailed.frx";
+                    reportLocation = @"BelowReorderLevel.frx";
                     break;
                 case 2:
-                    reportLocation = @"TrialBalance\TrialBalanceSummary.frx";
+                    reportLocation = @"OutOfStock.frx";
                     break;
                 case 3:
-                    reportLocation = @"IncomeStatement\IncomeStatementDetailed.frx";
+                    reportLocation = @"NearExpiry.frx";
                     break;
                 case 4:
-                    reportLocation = @"IncomeStatement\IncomeStatementSummary.frx";
+                    reportLocation = @"StockExpiry.frx";
                     break;
                 case 5:
-                    reportLocation = @"IncomeStatement\ComprehensiveIncomeStatement.frx";
-                    break;
-                case 6:
-                    reportLocation = @"BalanceSheet\BalanceSheetDetailed.frx";
-                    break;
-                case 7:
-                    reportLocation = @"BalanceSheet\BalanceSheetSummary.frx";
-                    break;
-                case 8:
-                    reportLocation = @"BalanceSheet\ComprehensiveBalanceSheetDetailed.frx";
-                    break;
-                case 9:
-                    reportLocation = @"CashFlowStatements\CashFlowStatement.frx";
-                    break;
-                case 10:
-                    reportLocation = @"CashFlowStatements\ComprehensiveCashFlowStatement.frx";
-                    break;
-                case 11:
-                    reportLocation = @"GeneralLedger\GeneralLedgerDetailed.frx";
-                    break;
-                case 12:
-                    reportLocation = @"GeneralLedger\LedgerSubAccountHistory.frx";
-                    break;
-                case 13:
-                    reportLocation = @"GeneralLedger\LedgerAccountHistory.frx";
-                    break;
-                case 14:
-                    reportLocation = @"GeneralLedger\JournalVouchers.frx";
-                    break;
-                case 15:
-                    reportLocation = @"Expenses\AllExpensesDetailed.frx";
-                    break;
-                case 16:
-                    reportLocation = @"Expenses\AllExpensesSummary.frx";
+                    reportLocation = @"FastMovingItems.frx";
                     break;
                 default:
                     //
