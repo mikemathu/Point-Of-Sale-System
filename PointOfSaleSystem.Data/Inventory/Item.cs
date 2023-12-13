@@ -6,7 +6,7 @@ namespace PointOfSaleSystem.Data.Inventory
     public class Item
     {
         public int ItemID { get; set; }
-        public string ItemName { get; set; }
+        public string ItemName { get; set; } = "";
         public double UnitCost { get; set; }
         public double UnitPrice { get; set; }
         public int TotalQuantity { get; set; }

@@ -280,7 +280,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     var (creditAccountTypeID, debitAccountTypeID) = await GetAccountTypesAsync(connection, item.JournalVoucherEntryID);
 
-                    string commandText = null;
+                    string commandText = "";
 
                     //Debit
                     if (debitAccountTypeID == 1 || debitAccountTypeID == 5)//asset and expence increace recorded ans debit
@@ -376,7 +376,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                     {
                         var (creditAccountTypeID, debitAccountTypeID) = await GetAccountTypesAsync(connection, item.JournalVoucherEntryID);
 
-                        string commandText = null;
+                        string commandText = "";
 
                         //Debit
                         if (debitAccountTypeID == 1 || debitAccountTypeID == 5)//asset and expence increace recorded ans debit

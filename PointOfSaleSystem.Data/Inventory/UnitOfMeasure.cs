@@ -6,7 +6,7 @@ namespace PointOfSaleSystem.Data.Inventory
     {
         [Key]
         public int UnitOfMeasureID { get; set; }
-        public string UnitOfMeasureName { get; set; }
+        public string UnitOfMeasureName { get; set; } = "";
         public int IsSmallestUnit { get; set; }
 
     }

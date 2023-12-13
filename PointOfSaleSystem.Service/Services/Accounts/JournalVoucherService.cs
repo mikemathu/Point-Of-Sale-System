@@ -55,13 +55,24 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             return _mapper.Map<IEnumerable<JournalVoucherEntryDto>>(journalVoucherEntriesDetails);
         }
+        private int GetSysUserID()
+        {
+            int sysUserID = 0;
+
+            var sysUserIdClaim = _httpContextAccessor.HttpContext.User.FindFirst("SysUserID");
+            if (sysUserIdClaim != null)
+            {
+                sysUserID = Convert.ToInt32(sysUserIdClaim.Value);
+            }
+            return sysUserID;
+        }
         public async Task<JournalVoucherDto> CreateUpdateJournalVoucherAsync(JournalVoucherDto journalVoucherDto)
         {
             JournalVoucher? journalVoucher = null;
 
             if (journalVoucherDto.JournalVoucherID == 0)//Create
             {
-                int userId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst("SysUserID").Value);
+                int userId = GetSysUserID();
                 journalVoucher = await _journalVoucherRepository.CreateJournalVoucherAsync(_mapper.Map<JournalVoucher>(journalVoucherDto), userId);
             }
             else//update

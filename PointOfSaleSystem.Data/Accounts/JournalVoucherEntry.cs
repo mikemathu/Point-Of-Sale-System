@@ -15,11 +15,11 @@ namespace PointOfSaleSystem.Data.Accounts
         public int DebitAccountID { get; set; }
 
         [ForeignKey("CreditSubAccountID")]
-        public SubAccount CreditSubAccount { get; set; }
+        public SubAccount CreditSubAccount { get; set; } = new SubAccount();
         public int CreditSubAccountID { get; set; }
 
         [ForeignKey("DebitSubAccountID")]
-        public SubAccount DebitSubAccount { get; set; }
+        public SubAccount DebitSubAccount { get; set; } = new SubAccount();
         public int DebitSubAccountID { get; set; }
 
         [ForeignKey("JournalVoucherID")]

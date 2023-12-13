@@ -7,7 +7,7 @@
         public int CurrentBalance { get; set; }
         public int IsActive { get; set; }
         public int IsLocked { get; set; }
-        public string SubAccountName { get; set; }
+        public string SubAccountName { get; set; } = null!; 
         public int SubAccountID { get; set; }
     }
     public class TransferSubAccountBalanceDto

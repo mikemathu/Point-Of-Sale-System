@@ -168,7 +168,7 @@ namespace PointOfSaleSystem.Repo.Accounts
 
             using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
-            FiscalPeriod fiscalPeriod = null;
+            FiscalPeriod? fiscalPeriod = null;
 
             if (await reader.ReadAsync())
             {

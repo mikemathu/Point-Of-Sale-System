@@ -97,11 +97,11 @@ namespace PointOfSaleSystem.Repo.Accounts
                 return new Account
                 {
                     AccountClassID = reader["accountClassID"] is DBNull ? 0 : (int)reader["accountClassID"],
-                    AccountID = (int)(reader["accountID"] is DBNull ? 0 : reader["accountID"]),
-                    AccountNo = (int)(reader["accountNo"] is DBNull ? 0 : reader["accountNo"]),
+                    AccountID = reader["accountID"] is DBNull ? 0 : (int)reader["accountID"],
+                    AccountNo = reader["accountNo"] is DBNull ? 0 : (int)reader["accountNo"],
                     CashFlowCategoryID = reader["cashFlowCategoryID"] is DBNull ? 0 : (int)reader["cashFlowCategoryID"],
                     IsLocked = reader["isLocked"] is DBNull ? 0 : (int)reader["isLocked"],
-                    AccountName = (string)reader["accountName"] is DBNull ? string.Empty : (string)reader["accountName"]
+                    AccountName = reader["accountName"] is DBNull ? string.Empty : (string)reader["accountName"]
                 };
             }
             return null;

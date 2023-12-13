@@ -8,7 +8,7 @@ namespace PointOfSaleSystem.Data.Accounts
 
         [Key]
         public int AccountID { get; set; }
-        public string AccountName { get; set; }
+        public string AccountName { get; set; } = "";
         public int AccountNo { get; set; }
         public int IsLocked { get; set; }
         public int ConfigurationType { get; set; }

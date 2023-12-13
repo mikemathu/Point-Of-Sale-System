@@ -8,7 +8,7 @@ namespace PointOfSaleSystem.Data.Inventory
     {
         [Key]
         public int OtherTaxID { get; set; }
-        public string OtherTaxName { get; set; }
+        public string OtherTaxName { get; set; } = "";
         public int PerRate { get; set; }
 
         [ForeignKey("VATLiabSubAccountID")]

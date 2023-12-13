@@ -3,7 +3,7 @@
     public class Privilege
     {
         public int PrivilegeID { get; set; }
-        public string PrivilegeName { get; set; }
+        public string PrivilegeName { get; set; } = "";
         public IEnumerable<RolePrivilege> UserRolePrivileges { get; set; }
     }
 }

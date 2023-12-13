@@ -6,6 +6,6 @@ namespace PointOfSaleSystem.Data.Inventory
     {
         [Key]
         public int ProductClassTypeID { get; set; }
-        public string ProductClassTypeName { get; set; }
+        public string ProductClassTypeName { get; set; } = "";
     }
 }

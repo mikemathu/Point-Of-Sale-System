@@ -7,10 +7,10 @@ namespace PointOfSaleSystem.Data.Accounts
     {
         [Key]
         public int CashFlowCategoryID { get; set; }
-        public string CashFlowCategoryName { get; set; }
+        public string CashFlowCategoryName { get; set; } = "";
 
         [ForeignKey("CashFlowCategoryTypeID")]
-        public CashFlowCategoryType CashFlowCategoryType { get; set; }
+        public CashFlowCategoryType CashFlowCategoryType { get; set; } = new CashFlowCategoryType();
         public int CashFlowCategoryTypeID { get; set; }
     }
     public enum CashFlowCategoryTypee

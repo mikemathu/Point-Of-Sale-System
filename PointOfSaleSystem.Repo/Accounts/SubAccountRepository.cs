@@ -106,7 +106,7 @@ namespace PointOfSaleSystem.Repo.Accounts
             }
             return accountSubAccounts;
         }
-        public async Task<SubAccount> GetSubAccountDetailsAsync(int subAccountID)
+        public async Task<SubAccount?> GetSubAccountDetailsAsync(int subAccountID)
         {
             using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 

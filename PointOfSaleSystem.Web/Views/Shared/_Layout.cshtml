@@ -57,7 +57,9 @@
                             <li class=dropdown-header>
                                 <span style=font-size:medium>
                                     <i class="far fa-user-circle"></i>
-                                    @User.Identity.Name
+                                    if(@User.Identity.Name != null){
+                                        @User.Identity.Name
+                                    }
                                 </span>
                             <li role=separator class=divider>                                
                             <li>

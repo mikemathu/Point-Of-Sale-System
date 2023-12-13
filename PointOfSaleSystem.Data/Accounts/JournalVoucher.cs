@@ -7,8 +7,8 @@ namespace PointOfSaleSystem.Data.Accounts
     {
         [Key]
         public int JournalVoucherID { get; set; }
-        public string Description { get; set; }
-        public string SourceReference { get; set; }
+        public string Description { get; set; } = "";
+        public string SourceReference { get; set; } = "";
         public double Amount { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public int IsAutomatic { get; set; }

@@ -4,7 +4,7 @@
     {
         public int RoleID { get; set; }
         public int PrivilegeID { get; set; }
-        public Role Role { get; set; }
+        public Role Role { get; set; } = new Role();
         public Privilege Privilege { get; set; }
         public int[] SelectedPrivilegesIDs { get; set; }
     }

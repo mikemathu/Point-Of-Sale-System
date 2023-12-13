@@ -12,8 +12,8 @@ namespace PointOfSaleSystem.Service.Dtos.Accounts
         public float DebitAmount { get; set; }
         public int DebitSubAccountID { get; set; }
         public int JournalVoucherID { get; set; }
-        public SubAccount CreditSubAccount { get; set; }
-        public SubAccount DebitSubAccount { get; set; }
+        public SubAccount CreditSubAccount { get; set; } = new SubAccount();
+        public SubAccount DebitSubAccount { get; set; } = new SubAccount();
     }
 
     public class JournalVoucherEntryDto2

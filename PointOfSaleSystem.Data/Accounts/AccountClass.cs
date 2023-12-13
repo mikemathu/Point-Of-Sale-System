@@ -7,7 +7,7 @@ namespace PointOfSaleSystem.Data.Accounts
     {
         [Key]
         public int AccountClassID { get; set; }
-        public string ClassName { get; set; }
+        public string ClassName { get; set; } = "";
 
         [ForeignKey("AccountTypeID")]
         public int AccountTypeID { get; set; }

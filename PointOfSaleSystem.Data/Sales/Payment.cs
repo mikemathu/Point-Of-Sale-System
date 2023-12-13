@@ -5,7 +5,7 @@ namespace PointOfSaleSystem.Data.Sales
     public class Payment
     {
         public int CustomerOrderID { get; set; }
-        public PosPaymentItems[] PosPaymentItems { get; set; }
+        public PosPaymentItems?[] PosPaymentItems { get; set; }
     }
     public class PosPaymentItems
     {

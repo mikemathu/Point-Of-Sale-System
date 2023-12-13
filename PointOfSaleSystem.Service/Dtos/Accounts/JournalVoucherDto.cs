@@ -3,8 +3,8 @@
     public class JournalVoucherDto
     {
         public int JournalVoucherID { get; set; }
-        public string Description { get; set; }
-        public string SourceReference { get; set; }
+        public string Description { get; set; } = null!;
+        public string SourceReference { get; set; } = null!; 
         public float Amount { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public int IsAutomatic { get; set; }

@@ -7,7 +7,7 @@ namespace PointOfSaleSystem.Data.Accounts
     {
         [Key]
         public int SubAccountID { get; set; }
-        public string SubAccountName { get; set; }
+        public string SubAccountName { get; set; } = "";
         // Override ToString() to return the SubAccountName
         public override string ToString()
         {

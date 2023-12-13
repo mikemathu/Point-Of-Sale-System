@@ -7,7 +7,7 @@ namespace PointOfSaleSystem.Data.Security
     {
         [Key]
         public int SysUserID { get; set; }
-        public string SurName { get; set; }
+        public string SurName { get; set; } = "";
         public string UserName { get; set; }
         public int[] UserRolesIDs { get; set; }
 

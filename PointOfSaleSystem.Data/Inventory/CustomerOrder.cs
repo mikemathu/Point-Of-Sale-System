@@ -7,7 +7,7 @@ namespace PointOfSaleSystem.Data.Inventory
     {
         [Key]
         public int CustomerOrderID { get; set; }
-        public string CustomerName { get; set; }
+        public string CustomerName { get; set; } = "";
         public string ItemName { get; set; }
         public int Quantity { get; set; }
         public int NetAmount { get; set; }
