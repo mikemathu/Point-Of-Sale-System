@@ -1,5 +1,21 @@
 # Point of Sale System
 
+**Accounts module**
+
+The Accounts module encompasses various functionalities, including managing fiscal periods, ledger accounts, journal vouchers, and taxes within the system.
+
+***Fiscal Periods:***
+Fiscal periods enable structuring and manage financial data according to defined timeframes. Users can create, edit, and delete specific periods to align with their accounting needs.
+
+***Ledger Accounts:***
+Ledger accounts are the foundational elements of accounting, representing individual accounts for assets, liabilities, equity, revenue, and expenses. Users can perform CRUD (Create, Read, Update, Delete) operations on these accounts to maintain accurate financial records.
+
+***Journal Voucher:***
+This feature facilitates the creation and management of journal vouchers, essential for recording financial transactions. Users can add, modify, and delete vouchers, ensuring comprehensive transactional documentation.
+
+***Taxes:***
+The tax management functionality allows users to define, edit, and manage various tax configurations. It enables the setup and modification of tax-related information essential for accurate financial calculations and compliance.
+
 **Security**
 
 Each `SystemUser`, `Admin` and `Super Admin` is a `User`. To be a `User`, `User Registration` is required.
