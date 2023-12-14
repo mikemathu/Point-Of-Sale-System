@@ -48,7 +48,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     VATTypeID = reader["vatTypeID"] is DBNull ? 0 : (int)reader["vatTypeID"],
                     VATTypeName = reader["vatTypeName"] is DBNull ? string.Empty : (string)reader["vatTypeName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 };
             }
@@ -87,7 +87,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     VATTypeID = reader["vatTypeID"] is DBNull ? 0 : (int)reader["vatTypeID"],
                     VATTypeName = reader["vatTypeName"] is DBNull ? string.Empty : (string)reader["vatTypeName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
 
                 };
@@ -117,7 +117,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 vatTypes.Add(new VatType
                 {
                     VATTypeName = reader["vatTypeName"] is DBNull ? string.Empty : (string)reader["vatTypeName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"],
                     VATTypeID = reader["vatTypeID"] is DBNull ? 0 : (int)reader["vatTypeID"]
                 });
@@ -151,7 +151,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     VATTypeID = reader["vatTypeID"] is DBNull ? 0 : (int)reader["vatTypeID"],
                     VATTypeName = reader["vatTypeName"] is DBNull ? string.Empty : (string)reader["vatTypeName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 };
             }
@@ -232,7 +232,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     OtherTaxID = reader["otherTaxID"] is DBNull ? 0 : (int)reader["otherTaxID"],
                     OtherTaxName = reader["otherTaxName"] is DBNull ? string.Empty : (string)reader["otherTaxName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 };
             }
@@ -271,7 +271,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     OtherTaxID = reader["otherTaxID"] is DBNull ? 0 : (int)reader["otherTaxID"],
                     OtherTaxName = reader["otherTaxName"] is DBNull ? string.Empty : (string)reader["otherTaxName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 };
             }
@@ -302,7 +302,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     OtherTaxID = reader["otherTaxID"] is DBNull ? 0 : (int)reader["otherTaxID"],
                     OtherTaxName = reader["otherTaxName"] is DBNull ? string.Empty : (string)reader["otherTaxName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 });
             }
@@ -335,7 +335,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     OtherTaxID = reader["otherTaxID"] is DBNull ? 0 : (int)reader["otherTaxID"],
                     OtherTaxName = reader["otherTaxName"] is DBNull ? string.Empty : (string)reader["otherTaxName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 };
             }
@@ -397,7 +397,7 @@ namespace PointOfSaleSystem.Repo.Accounts
 
             using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
 
-            command.Parameters.AddWithValue("@accountID", 132);
+            command.Parameters.AddWithValue("@accountID", 190);//Accrued Liabilities
 
             await connection.OpenAsync();
 

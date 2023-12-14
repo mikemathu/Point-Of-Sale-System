@@ -4,7 +4,7 @@
     {
         public int VATTypeID { get; set; }
         public string VATTypeName { get; set; }
-        public int PerRate { get; set; }
+        public double PerRate { get; set; }
         public int VATLiabSubAccountID { get; set; }
     }
 }

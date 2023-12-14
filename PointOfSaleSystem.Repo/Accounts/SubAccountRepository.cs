@@ -203,6 +203,30 @@ namespace PointOfSaleSystem.Repo.Accounts
                 return reader["currentBalance"] is DBNull ? 0 : (double)reader["currentBalance"];
             }
             return 0;
+        }  
+        public async Task<double> GetSourceSubAccountBalanceAsync(int sourceSubAccountID)
+        {
+            using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
+            string commandText = $@"SELECT 
+                                        ""currentBalance""
+                                    FROM 
+                                        ""Accounts.Ledger.SubAccounts""
+                                    WHERE 
+                                        ""subAccountID"" = @subAccountID";
+            using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
+
+            command.Parameters.AddWithValue("@subAccountID", sourceSubAccountID);
+
+            await connection.OpenAsync();
+
+            using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+
+            if (await reader.ReadAsync())
+            {
+                return reader["currentBalance"] is DBNull ? 0 : (double)reader["currentBalance"];
+            }
+            return 0;
         }
 
         public async Task<bool> TransferSubAccountBalanceAsync(TransferSubAccountBalance destSubAccountBalance, double sourceSubAccountBalance)

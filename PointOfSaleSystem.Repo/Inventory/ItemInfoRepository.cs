@@ -127,7 +127,7 @@ namespace PointOfSaleSystem.Repo.Inventory
                 {
                     OtherTaxName = reader["otherTaxName"] is DBNull ? string.Empty : (string)reader["otherTaxName"],
                     OtherTaxID = reader["otherTaxID"] is DBNull ? 0 : (int)reader["otherTaxID"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"]
                 });
             }
@@ -157,7 +157,7 @@ namespace PointOfSaleSystem.Repo.Inventory
                 vatTypes.Add(new VatType
                 {
                     VATTypeName = reader["vatTypeName"] is DBNull ? string.Empty : (string)reader["vatTypeName"],
-                    PerRate = reader["perRate"] is DBNull ? 0 : (int)reader["perRate"],
+                    PerRate = reader["perRate"] is DBNull ? 0 : (double)reader["perRate"],
                     VATLiabSubAccountID = reader["vatLiabSubAccountID"] is DBNull ? 0 : (int)reader["vatLiabSubAccountID"],
                     VATTypeID = reader["vatTypeID"] is DBNull ? 0 : (int)reader["vatTypeID"]
                 });

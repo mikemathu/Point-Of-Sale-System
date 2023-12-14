@@ -156,7 +156,7 @@
 
                 $("#DebitAccountID").val(entryDetails.debitAccountID).select2().trigger("change");
                 $("#CreditAccountID").val(entryDetails.creditAccountID).select2().trigger("change");
-                $("#JournalVoucherEntryID").val(entryDetails.accountEntryID);
+                $("#AccountEntryID").val(entryDetails.journalVoucherEntryID);
                 $("#EntryAmount").val(entryDetails.creditAmount);
 
                 var debitSubAccountInterval = setInterval(function () {
@@ -423,7 +423,7 @@
     $("#JournalVoucherEntryForm").submit(function(event) {
         event.preventDefault();
 
-        var entryID = Number($("#JournalVoucherEntryID").val());
+        var entryID = Number($("#AccountEntryID").val());
         var voucherID = $("#JournalVoucherID").val();
         var laddaButton = Ladda.create(document.querySelector("#btnaddentry"));
 

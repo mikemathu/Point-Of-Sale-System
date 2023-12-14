@@ -17,6 +17,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
         }
         public async Task CreateAccountClassAsync(AccountClassDto accountClassDto)
         {
+            //TODO: Validate AccountTypeID
             bool isAccountClassCreated = await _accountClassRepository.CreateAccountClassAsync(_mapper.Map<AccountClass>(accountClassDto));
             if (!isAccountClassCreated)
             {

@@ -1,6 +1,19 @@
 # Point of Sale System
 
-**Accounts module**
+This project has 5 modules as outlined below.
+
+**1. Security Module**
+
+Each `SystemUser`, `Admin` and `Super Admin` is a `User`. To be a `User`, `User Registration` is required.
+
+Each `User` is assigned none, one or more `User Role`.
+
+Each `User Role` has set of `Privileges`. A `Privilege` defines whether `User` can invoke a particular action.
+
+**2. Inventory module**
+-->
+
+**3. Accounts module**
 
 The Accounts module encompasses various functionalities, including managing fiscal periods, ledger accounts, journal vouchers, and taxes within the system.
 
@@ -16,13 +29,9 @@ This feature facilitates the creation and management of journal vouchers, essent
 ***Taxes:***
 The tax management functionality allows users to define, edit, and manage various tax configurations. It enables the setup and modification of tax-related information essential for accurate financial calculations and compliance.
 
-**Security**
+**4. Point of Sale module**
 
-Each `SystemUser`, `Admin` and `Super Admin` is a `User`. To be a `User`, `User Registration` is required.
 
-Each `User` is assigned none, one or more `User Role`.
-
-Each `User Role` has set of `Privileges`. A `Privilege` defines whether `User` can invoke a particular action.
 
 ## Features
 --> Features

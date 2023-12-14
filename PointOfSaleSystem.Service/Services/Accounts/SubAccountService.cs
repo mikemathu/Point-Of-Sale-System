@@ -81,14 +81,27 @@ namespace PointOfSaleSystem.Service.Services.Accounts
         public async Task DeleteSubAccountAsync(int subAccountID)
         {
             await ValidateSubAccountId(subAccountID);
+            double sourceSubAccountBalance = await _subAccountRepository.GetSourceSubAccountBalanceAsync(subAccountID);
+            if (sourceSubAccountBalance > 0)
+            {
+                throw new FalseException($"Cannot delete this Sub Account with a balance of {sourceSubAccountBalance}. Consider transfering the balance first.");
+            }
             bool isSubAccountDeleted = await _subAccountRepository.DeleteSubAccountAsync(subAccountID);
             if (!isSubAccountDeleted)
             {
                 throw new FalseException("Could not Delete Sub Account. Pleace try again.");
             }
         }
+        private void CheckIfSubAccountsAreSame(TransferSubAccountBalanceDto destSubAccountBalance)
+        {
+            if (destSubAccountBalance.SourceSubAccountID == destSubAccountBalance.DestSubAccountID)
+            {
+                throw new FalseException("Cannot transfer to the same Sub Account");
+            }
+        }
         public async Task TransferSubAccountBalanceAsync(TransferSubAccountBalanceDto destSubAccountBalance)
         {
+            CheckIfSubAccountsAreSame(destSubAccountBalance);
             double sourceSubAccountBalance = await GetSourceSubAccountBalanceAsync(destSubAccountBalance);
             bool isSubAccountBalanceTransfered = await _subAccountRepository.TransferSubAccountBalanceAsync(
                 _mapper.Map<TransferSubAccountBalance>(destSubAccountBalance), sourceSubAccountBalance);

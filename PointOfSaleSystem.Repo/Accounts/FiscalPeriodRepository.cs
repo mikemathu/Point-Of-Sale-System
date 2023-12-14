@@ -206,7 +206,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 VALUES 
                         ( @openDate, @closeDate, @isActive, @isOpen)
                 RETURNING 
-                        ""fiscalPeriodNo"", ""openDate"", ""closeDate"", ""isActive"", ""isOpen""  ";
+                       ""fiscalPeriodID"", ""fiscalPeriodNo"", ""openDate"", ""closeDate"", ""isActive"", ""isOpen""  ";
 
             using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
 
@@ -226,6 +226,7 @@ namespace PointOfSaleSystem.Repo.Accounts
                 {
                     CloseDate = reader["closeDate"] is DBNull ? DateTime.MinValue : (DateTime)reader["closeDate"],
                     FiscalPeriodNo = reader["fiscalPeriodNo"] is DBNull ? 0 : (int)reader["fiscalPeriodNo"],
+                    FiscalPeriodID = reader["fiscalPeriodID"] is DBNull ? 0 : (int)reader["fiscalPeriodID"],
                     IsActive = reader["isActive"] is DBNull ? 0 : (int)reader["isActive"],
                     IsOpen = reader["isOpen"] is DBNull ? 0 : (int)reader["isOpen"],
                     OpenDate = reader["openDate"] is DBNull ? DateTime.MinValue : (DateTime)reader["openDate"]

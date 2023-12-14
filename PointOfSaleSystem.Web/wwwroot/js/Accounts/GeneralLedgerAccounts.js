@@ -514,6 +514,69 @@
         $("#addcfcat").show()
     });
 
+    $("#AddAccountClassForm").submit(function (event) {
+        var laddaButton, className, accountType;
+        event.preventDefault();
+
+        laddaButton = Ladda.create(document.querySelector("#addAccountClass"));
+        laddaButton.start();
+        laddaButton.isLoading();
+        laddaButton.setProgress(-1);
+
+        className = $("#AccountClassName").val();
+        accountType = $("#AccountType").val();
+        className = className.substr(0, 1).toUpperCase() + className.substr(1);
+
+        var requestVerificationToken = $("#AddAccountClassForm input[name=__RequestVerificationToken]").val();
+        var requestData = { AccountClassID: 0, ClassName: className, AccountTypeID: accountType };
+
+        GetOrPostAsync("POST", "/Accounts/CreateAccountClass/", requestData, requestVerificationToken)
+            .then((response) => {
+                    var newOption = new Option(response.className, response.accountClassID, true, true);
+                    $(".select-account-class").append(newOption);
+                    $("#AddAccountClassForm")[0].reset();
+                    laddaButton.stop();
+                    $(".add-accountclass-modal").modal("toggle");
+                    Notify(true, "Account Class Created Successfully");
+                    laddaButton.stop();           
+            })
+            .catch((error) => {
+                Notify(false, error);
+                laddaButton.stop();
+            });
+    });
+
+
+    $("#TransferSubAccountForm").submit(function (event) {
+        var laddaButton;
+        event.preventDefault();
+
+        laddaButton = Ladda.create(document.querySelector("#btnTransferSubAccountBalance"));
+        laddaButton.start();
+        laddaButton.isLoading();
+        laddaButton.setProgress(-1);
+
+        var transferData = {
+            SourceSubAccountID: $("#SubAccount_SubAccountID").val(),
+            DestSubAccountID: $("#TransferDestSubAccountID").val()
+        };
+
+        var requestVerificationToken = $("#TransferSubAccountForm input[name=__RequestVerificationToken]").val();
+
+        GetOrPostAsync("POST", "/Accounts/TransferSubAccountBalance/", transferData, requestVerificationToken)
+            .then(() => {
+                laddaButton.stop();
+                Notify(true, "Balance Transferred Successfully.");
+                $(".transfer-balance-modal").modal("toggle");
+            })
+            .catch(error => {
+                laddaButton.stop();
+                Notify(false, error);
+            });
+    });
+
+
+
     $(function () {
         $.contextMenu({
             selector: '#body',

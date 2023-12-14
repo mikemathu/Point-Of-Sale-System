@@ -62,7 +62,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             int? accountTypeID = await _accountClassRepository.GetAccountTypeIdAsync(accountDto.AccountClassID);
             if (accountTypeID == null)
             {
-                throw new FalseException("Account Type not Found.");
+                throw new FalseException("Invalid Account Class ID. Account Type not Found.");
             }
             return (int)accountTypeID;
         }

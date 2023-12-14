@@ -69,7 +69,6 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("DeleteAccount")]
-        [Authorize("CanDeleteAccountPolic")]
         public async Task<IActionResult> DeleteAccount([FromBody] int accountID)
         {
             await _accountService.DeleteAccountAsync(accountID);
@@ -265,7 +264,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         public async Task<IActionResult> CreateUpdateFiscalPeriod(FiscalPeriodDto fiscalPeriodDto)
         {
             FiscalPeriodDto fiscalPeriod = await _fiscalPeriodService.CreateUpdateFiscalPeriodAsync(fiscalPeriodDto);
-            return Ok(fiscalPeriodDto);
+            return Ok(fiscalPeriod);
         }
 
         [HttpGet("GetAllFiscalPeriods")]
