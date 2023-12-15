@@ -81,8 +81,8 @@ The tax management functionality allows users to define, edit, and manage variou
 
 ## Technology Stack
 
-- Frontend: HTML, CSS, JS
-- Backend: C#
+- Frontend: ASP.NET Core MVC with HTML, CSS, JS
+- Backend: ASP.NET Core Web API with C#
 - Database: [Postgres](https://www.postgresql.org/download/)
 - Data Access: [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 - Platform: [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 
