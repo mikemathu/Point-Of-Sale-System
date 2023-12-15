@@ -8,17 +8,17 @@ namespace PointOfSaleSystem.Data.Inventory
         [Key]
         public int CustomerOrderID { get; set; }
         public string CustomerName { get; set; } = "";
-        public string ItemName { get; set; }
+        public string ItemName { get; set; } = "";
         public int Quantity { get; set; }
         public int NetAmount { get; set; }
         public DateTime DateTimeBilled { get; set; }
         public int SaleStatus { get; set; }
         public int SalesType { get; set; }
         public int Status { get; set; }
-        public string ColorClass { get; set; }
+        //public string ColorClass { get; set; } = "";
 
         [ForeignKey("CustomerOrderItemID")]
-        public Item Item { get; set; }
+        public Item Item { get; set; } = new Item();
         public int CustomerOrderItemID { get; set; }
         public DateTime DateTimeCreated { get; set; }
         public int CreatedBySysUID { get; set; }

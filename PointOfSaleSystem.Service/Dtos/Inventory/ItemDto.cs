@@ -3,16 +3,16 @@
     public class ItemDto
     {
         public int ItemID { get; set; } = 111;
-        public string ItemName { get; set; }
+        public string ItemName { get; set; } = null!; 
         public double UnitCost { get; set; }
         public double UnitPrice { get; set; }
         public int TotalQuantity { get; set; }
         public int AvailableQuantity { get; set; }
         public int ReorderLevel { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public string ItemCode { get; set; }
-        public string Barcode { get; set; }
-        public string Batch { get; set; }
+        public string ItemCode { get; set; } = null!;
+        public string Barcode { get; set; } = null!;
+        public string Batch { get; set; } = null!;
         public string Image { get; set; } = "";
         public int Weight { get; set; }
         public int Length { get; set; }

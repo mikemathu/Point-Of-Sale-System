@@ -25,7 +25,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
         }
-        private async Task ValidateFilterFlag(FilterItemDto filterFlag)
+        private void ValidateFilterFlag(FilterItemDto filterFlag)
         {
             if (filterFlag.FilterFlag < 0 || filterFlag.FilterFlag > 6)
             {
@@ -33,7 +33,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
                     $"FilterFlag {filterFlag.FilterFlag} is beyond expected range");
             }
         }
-        private async Task IsItemNameValid(string itemName)
+        private void IsItemNameValid(string itemName)
         {
             if (itemName == null)
             {
@@ -61,6 +61,26 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             return (int)fiscalPeriodID;
         }
+        private int GetSysUserID()
+        {
+            int sysUserID = 0;
+
+            var sysUserIdClaim = _httpContextAccessor.HttpContext.User.FindFirst("SysUserID");
+            if (sysUserIdClaim != null)
+            {
+                sysUserID = Convert.ToInt32(sysUserIdClaim.Value);
+            }
+            return sysUserID;
+        }
+        private async Task<Item> GetItemDetailsAsync(ItemDto itemDto)
+        {
+            Item? itemDetails = await _itemRepository.GetItemDetailsAsync(itemDto.ItemID);
+            if (itemDetails == null)
+            {
+                throw new FalseException("Could not find Item details. Try agin later.");
+            }
+            return itemDetails;
+        }
         public async Task<ItemDto> CreateUpdateItemAsync(ItemDto itemDto)
         {
             Item? createdUpdatedItem = null;
@@ -70,10 +90,10 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             else//Update
             {
-                Item? itemDetails = await _itemRepository.GetItemDetailsAsync(itemDto.ItemID);
+                Item? itemDetails = await GetItemDetailsAsync(itemDto);
                 if (itemDto.TotalQuantity != itemDetails.AvailableQuantity)
                 {
-                    int userID = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst("SysUserID").Value);
+                    int userID = GetSysUserID();
                     int fiscalPeriodID = await GetActiveFiscalPeriodID();
                     createdUpdatedItem = await _itemRepository.UpdateItemCreatingJVAsync(
                         _mapper.Map<Item>(itemDto), itemDetails, userID, fiscalPeriodID);
@@ -88,7 +108,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
         }
         public async Task<IEnumerable<ItemDto>> FilterItemsAsync(FilterItemDto filterFlag)
         {
-            await ValidateFilterFlag(filterFlag);
+            ValidateFilterFlag(filterFlag);
             IEnumerable<Item> items = await _itemRepository.FilterItemsAsync(_mapper.Map<FilterItem>(filterFlag));
             if (!items.Any())
             {
@@ -98,7 +118,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
         }
         public async Task<ItemDto> SearchItemsAsync(string itemName)
         {
-            await IsItemNameValid(itemName);
+            IsItemNameValid(itemName);
             Item? item = await _itemRepository.SearchItemsAsync(itemName);
             if (item == null)
             {

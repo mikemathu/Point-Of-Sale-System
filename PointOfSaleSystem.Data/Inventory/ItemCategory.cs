@@ -7,6 +7,6 @@ namespace PointOfSaleSystem.Data.Inventory
         [Key]
         public int ItemCategoryID { get; set; }
         public string ItemCategoryName { get; set; } = "";
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
     }
 }

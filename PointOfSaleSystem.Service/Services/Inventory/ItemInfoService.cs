@@ -17,7 +17,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             itemInfoRepository = productConfigurationRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ItemCategoryDto?>> GetAllItemCategoriesAsync()
+        public async Task<IEnumerable<ItemCategoryDto>> GetAllItemCategoriesAsync()
         {
             IEnumerable<ItemCategory> itemCategories = await itemInfoRepository.GetAllItemCategoriesAsync();
             if (!itemCategories.Any())
@@ -26,7 +26,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             return _mapper.Map<IEnumerable<ItemCategoryDto>>(itemCategories);
         }
-        public async Task<IEnumerable<ItemClassDto?>> GetAllItemClasses()
+        public async Task<IEnumerable<ItemClassDto>> GetAllItemClasses()
         {
             IEnumerable<ItemClass> itemClasses = await itemInfoRepository.GetAllItemClasses();
             if (!itemClasses.Any())

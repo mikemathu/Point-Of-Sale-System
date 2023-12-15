@@ -8,10 +8,10 @@ namespace PointOfSaleSystem.Data.Inventory
         [Key]
         public int ItemClassID { get; set; }
         public string ItemClassName { get; set; } = "";
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
 
         [ForeignKey("ItemClassTypeID")]
-        public ItemClassType ItemClassType { get; set; }
+        public ItemClassType ItemClassType { get; set; } = new ItemClassType();
         public int ItemClassTypeID { get; set; }
     }
 }

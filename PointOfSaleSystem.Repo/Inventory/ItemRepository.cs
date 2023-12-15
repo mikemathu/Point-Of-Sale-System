@@ -183,7 +183,7 @@ namespace PointOfSaleSystem.Repo.Inventory
             return null;
         }
 
-        private async Task<string> GetCommandTextByFlag(FilterItem filterFlag)
+        private string GetCommandTextByFlag(FilterItem filterFlag)
         {
             string commandText = $@"
                         SELECT 
@@ -259,7 +259,7 @@ namespace PointOfSaleSystem.Repo.Inventory
         }
         public async Task<IEnumerable<Item>> FilterItemsAsync(FilterItem filterFlag)
         {
-            string commandText = await GetCommandTextByFlag(filterFlag);
+            string commandText = GetCommandTextByFlag(filterFlag);
 
             using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
@@ -365,7 +365,7 @@ namespace PointOfSaleSystem.Repo.Inventory
             return null;
         }
 
-        public async Task<Item> UpdateItemCreatingJVAsync(Item itemModel, Item itemDetails, int userID, int fiscalPeriodID)
+        public async Task<Item?> UpdateItemCreatingJVAsync(Item itemModel, Item itemDetails, int userID, int fiscalPeriodID)
         {
             try
             {
@@ -406,7 +406,7 @@ namespace PointOfSaleSystem.Repo.Inventory
                         ""itemID"" = @itemID 
                     RETURNING
                         ""itemName"", ""batch"", ""unitCost"", ""unitPrice"", ""totalQuantity"", ""availableQuantity"", ""expiryDate"", ""itemID""";
-                Item createdItem = null;
+                Item? createdItem = null;
                 using (NpgsqlCommand command = new NpgsqlCommand(commandText, connection, transaction))
                 {
                     command.Parameters.AddWithValue("@itemID", itemModel.ItemID);
@@ -542,7 +542,7 @@ namespace PointOfSaleSystem.Repo.Inventory
                 throw;
             }
         }
-        public async Task<Item> UpdateItemAsync(Item itemModel)
+        public async Task<Item?> UpdateItemAsync(Item itemModel)
         {
             using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 

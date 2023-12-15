@@ -13,10 +13,10 @@ namespace PointOfSaleSystem.Data.Inventory
         public int AvailableQuantity { get; set; }
         public int ReorderLevel { get; set; }
         public DateTime ExpiryDate { get; set; }
-        public string ItemCode { get; set; }
-        public string Barcode { get; set; }
-        public string Batch { get; set; }
-        public string Image { get; set; }
+        public string ItemCode { get; set; } = ""; 
+        public string Barcode { get; set; } = "";
+        public string Batch { get; set; } = "";
+        public string Image { get; set; } = "";
         public int Weight { get; set; }
         public int Length { get; set; }
         public int Width { get; set; }
@@ -25,19 +25,19 @@ namespace PointOfSaleSystem.Data.Inventory
         public int IsActive { get; set; }
 
         [ForeignKey("UnitOfMeasureID")]
-        public UnitOfMeasure UnitOfMeasure { get; set; }
+        public UnitOfMeasure UnitOfMeasure { get; set; } = new UnitOfMeasure();
         public int UnitOfMeasureID { get; set; }
 
         [ForeignKey("ItemClassID")]
-        public ItemClass ItemClass { get; set; }
+        public ItemClass ItemClass { get; set; } = new ItemClass();
         public int ItemClassID { get; set; }
 
         [ForeignKey("ItemCategoryID")]
-        public ItemCategory ItemCategory { get; set; }
+        public ItemCategory ItemCategory { get; set; } = new ItemCategory();
         public int ItemCategoryID { get; set; }
 
         [ForeignKey("AssetSubAccountID")]
-        public SubAccount SubAccount { get; set; }
+        public SubAccount SubAccount { get; set; } = new SubAccount();
         public int AssetSubAccountID { get; set; }
 
         [ForeignKey("CostOfSaleSubAccountID")]
@@ -47,7 +47,7 @@ namespace PointOfSaleSystem.Data.Inventory
         public int RevenueSubAccountID { get; set; }
 
         [ForeignKey("VatTypeID")]
-        public VatType VATType { get; set; }
+        public VatType VATType { get; set; } = new VatType();
         public int VatTypeID { get; set; }
 
         [ForeignKey("OtherTaxID")]

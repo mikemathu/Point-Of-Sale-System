@@ -12,7 +12,7 @@ namespace PointOfSaleSystem.Data.Inventory
         public double PerRate { get; set; }
 
         [ForeignKey("VATLiabSubAccountID")]
-        public SubAccount SubAccount { get; set; }
+        public SubAccount SubAccount { get; set; } = new SubAccount();
         public int VATLiabSubAccountID { get; set; }
     }
 }
