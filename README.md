@@ -74,7 +74,44 @@ The tax management functionality allows users to define, edit, and manage variou
 
 **4. Point of Sale module**
 
+Point of Sale (POS) Module Description:
 
+The Point of Sale (POS) module serves as the central component for conducting sales transactions, managing inventory, and processing payments within the system.
+Key Entities:
+
+    Sales Transactions:
+        Represents individual transactions where products or services are sold to customers, capturing details such as items sold, quantities, prices, and payment methods.
+
+    Inventory Items:
+        Inventory items are the products available for sale, holding details like item name, price, quantity, and associated attributes necessary for sales transactions.
+
+    Customer Information (if applicable):
+        Stores details of customers making purchases, facilitating customer-centric sales, and providing insights into customer behavior.
+
+Relationships:
+
+    Sales Transactions and Inventory Items:
+        Each sales transaction involves one or more inventory items, deducting sold quantities from the available stock.
+
+    Sales Transactions and Customer Information:
+        If capturing customer data, sales transactions might link to customer information for tracking customer purchases and preferences.
+
+System Functionality:
+
+    Sales Processing:
+        Facilitates the creation and management of sales transactions, allowing for the addition, modification, and removal of items during a sale.
+
+    Inventory Management:
+        Tracks inventory levels, automatically updating quantities upon sales transactions to reflect changes in stock availability.
+
+    Payment Processing:
+        Handles various payment methods (cash, credit/debit cards, digital payments) and completes transactions securely and efficiently.
+
+    Customer Engagement (if applicable):
+        Enables the capture and utilization of customer information for personalized services, loyalty programs, and targeted marketing strategies.
+
+    Reporting and Analytics:
+        Generates reports and analytics based on sales data, providing insights into sales performance, popular products, and revenue trends.
 
 ## Features
 --> Features
