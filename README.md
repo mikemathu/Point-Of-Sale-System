@@ -11,7 +11,50 @@ Each `User` is assigned none, one or more `User Role`.
 Each `User Role` has set of `Privileges`. A `Privilege` defines whether `User` can invoke a particular action.
 
 **2. Inventory module**
--->
+
+The Inventory module manages the cataloging, tracking, and control of products, facilitating efficient management of stock and sales within the system.
+Key Entities:
+
+    Items:
+        Each Item represents a product available in the inventory, holding details such as name, cost, price, quantity, and associated attributes like unit of measure, item class, and item category.
+
+    Unit of Measure:
+        Defines the measurement units associated with items, enabling uniformity in quantifying different types of products.
+
+    Item Class and Item Category:
+        Item Class and Category provide a structured categorization for items, aiding in organizing and classifying products based on their characteristics and types.
+
+    Sub-Accounts:
+        Sub-Accounts within the inventory context help in associating items, item classes, or categories with specific accounts (e.g., Asset, Cost of Sale, Revenue).
+
+Relationships:
+
+    Item and Unit of Measure:
+        Each Item is associated with a specific Unit of Measure, defining how the quantity of the item is measured or sold.
+
+    Item and Item Class/Category:
+        Items are categorized under specific Item Classes and Categories, providing a systematic grouping for easier management and analysis.
+
+    Items and Accounts:
+        Items are linked to relevant Sub-Accounts, allowing for proper financial tracking and association with accounting aspects such as asset management, cost of sale, and revenue generation.
+
+System Functionality:
+
+    Inventory Management:
+        Allows the addition, modification, and removal of items.
+        Tracks and manages quantities, costs, prices, and other attributes associated with inventory items.
+
+    Categorization and Structuring:
+        Enables the organization and grouping of items through Item Classes and Categories for better management and reporting.
+
+    Financial Integration:
+        Associates items with financial aspects by linking them to Sub-Accounts, ensuring accurate accounting and financial tracking.
+
+    Reporting and Analysis:
+        Provides functionalities for generating reports and conducting analyses based on inventory data, facilitating informed decision-making.
+
+    Permissions and Access Control (if applicable):
+        Might implement access controls defining user roles and privileges related to inventory operations, ensuring proper control and security within the module.
 
 **3. Accounts module**
 
