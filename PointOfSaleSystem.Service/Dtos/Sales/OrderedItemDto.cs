@@ -6,8 +6,8 @@
         public int Quantity { get; set; }
         public int ItemID { get; set; }
         public int CustomerOrderID { get; set; }
-        public string ItemName { get; set; }
+        public string ItemName { get; set; } = null!;
         public double UnitPrice { get; set; }
-        public string UnitOfMeasureName { get; set; }
+        public string UnitOfMeasureName { get; set; } = null!;
     }
 }

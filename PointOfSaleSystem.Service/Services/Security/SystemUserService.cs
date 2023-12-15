@@ -41,7 +41,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             {
                 throw new AuthenticationException("Validation failed due to incorrect Username and/or Password");
             }
-            ClaimsIdentity claimsIdentity = await CreateClaimsIdentity(systemUser);
+            ClaimsIdentity claimsIdentity =  CreateClaimsIdentity(systemUser);
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
         }
         private int GetSysUserID()
@@ -64,7 +64,7 @@ namespace PointOfSaleSystem.Service.Services.Security
                 throw new AuthenticationException("Access Denied. Provided access password is incorrect.");
             }
         }
-        private async Task ValidateUserDetails(RegisterLoginDto systemUserDto)
+        private void ValidateUserDetails(RegisterLoginDto systemUserDto)
         {
             if (systemUserDto.UserName == string.Empty || systemUserDto.Password == string.Empty)
             {
@@ -73,16 +73,16 @@ namespace PointOfSaleSystem.Service.Services.Security
         }
         public async Task RegisterUserAsync(RegisterLoginDto systemUserDto)
         {
-            await ValidateUserDetails(systemUserDto);
+            ValidateUserDetails(systemUserDto);
             SystemUser? systemUser = await _userRepository.RegisterUserAsync(_mapper.Map<SystemUser>(systemUserDto));
             if (systemUser == null)
             {
                 throw new FalseException("Could not register user. Try again.");
             }
-            ClaimsIdentity claimsIdentity = await CreateClaimsIdentity(systemUser);
+            ClaimsIdentity claimsIdentity = CreateClaimsIdentity(systemUser);
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
         }
-        private async Task<ClaimsIdentity> CreateClaimsIdentity(SystemUser systemUser)
+        private ClaimsIdentity CreateClaimsIdentity(SystemUser systemUser)
         {
             var claims = new List<Claim>
             {
@@ -103,7 +103,7 @@ namespace PointOfSaleSystem.Service.Services.Security
         public async Task<SystemUserDto> GetUserDetailsAsync(int userID)
         {
             await ValidateSystemUserId(userID);
-            SystemUser userDetails = await _userRepository.GetUserDetailsAsync(userID);
+            SystemUser? userDetails = await _userRepository.GetUserDetailsAsync(userID);
             if (userDetails == null)
             {
                 throw new FalseException("User Details not found.");

@@ -66,7 +66,6 @@
                         $orders.html(ordersHTML);
                         $(".order-button").on("click", ChangeOrder);
                         LoadOrderItems();
-                        GetOrderDetails();
                     }
                 })
                 .catch(error => {
@@ -86,21 +85,27 @@
                 });
         }
 
-        function DeleteOrder() {
-            var selectedOrderID = ___SelectedOrderID___;
-            var token = $("#SampleForm input[name=__RequestVerificationToken]").val();
+        function DeleteOrder() {           
 
-            GetOrPostAsync("POST", "/Sales/RemoveOrder/", selectedOrderID, token).then(() => {
+            if (!isNaN(___SelectedOrderID___)) {
+                var selectedOrderID = ___SelectedOrderID___;
+
+                var token = $("#SampleForm input[name=__RequestVerificationToken]").val();
+
+                GetOrPostAsync("POST", "/Sales/RemoveOrder/", selectedOrderID, token).then(() => {
                     LoadUserPendingOrders();
-            })
-            .catch(error => {
-                Notify(false, error);
-            });
+                })
+                    .catch(error => {
+                        Notify(false, error);
+                    });
+            } else {
+                Notify(false, "Ensure order is selected");
+            }           
         }
 
 
         function GetItemHtml(item) {
-            let imageElement = (item.image === "none.png") ? "<span>Image</span>" : `<img src="/Sales/images/${item.image}" loading="lazy" alt="Product image">`;
+            let imageElement = (item.image === "") ? "<span>Image</span>" : `<img src="images/Sales/${item.image}" loading="lazy" alt="Product image">`;
             return `
             <article class="product" data-branchitemid="${item.itemID}"  tabindex="0">
                 <div class="product-img">
@@ -157,7 +162,6 @@
             $(".summary").empty();
 
             LoadOrderItems();
-            GetOrderDetails();
         }
 
         function GetPaymentModes() {
@@ -227,7 +231,11 @@
 
 
         function LoadOrderItems() {
-            var selectedOrderID = ___SelectedOrderID___;
+            var selectedOrderID = 0;
+
+            if (!isNaN(___SelectedOrderID___)) {
+                selectedOrderID = ___SelectedOrderID___;
+            }
             var token = $("#SampleForm input[name=__RequestVerificationToken]").val();
             let orderItems = $(".order-items");
             let summary = $(".summary");

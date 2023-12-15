@@ -4,8 +4,8 @@ namespace PointOfSaleSystem.Data.Sales
 {
     public class Payment
     {
-        public int CustomerOrderID { get; set; }
-        public PosPaymentItems?[] PosPaymentItems { get; set; }
+        public int CustomerOrderID { get; set; } 
+        public PosPaymentItems[] PosPaymentItems { get; set; } = Array.Empty<PosPaymentItems>();
     }
     public class PosPaymentItems
     {
@@ -19,7 +19,7 @@ namespace PointOfSaleSystem.Data.Sales
     {
         public int PaymentMethodID { get; set; }
         public int IsDefault { get; set; }
-        public string PaymentMethodName { get; set; }
+        public string PaymentMethodName { get; set; } = "";
 
         [ForeignKey("SubAccountID")]
         public int SubAccountID { get; set; }

@@ -11,7 +11,7 @@
             <div class=pos-branding>
                 <a href="/">
                     <h1>
-                        Loyon<strong>POSS</strong>
+                        POS System
                     </h1>
                 </a>
             </div>
@@ -20,10 +20,10 @@
                     <span class="orders touch-scrollable"></span>
                     <span class="order-button square neworder-button">
                         
-                        <i class="fas fa-plus" role=img aria-label="New order" title="New order"></i>
+                        <i class="fa fa-plus" role=img aria-label="New order" title="New order"></i>
                     </span>
                     <span class="order-button square deleteorder-button">
-                        <i class="fas fa-minus" role=img aria-label="Delete order" title="Delete order"></i>
+                        <i class="fa fa-minus" role=img aria-label="Delete order" title="Delete order"></i>
                     </span>
                 </div>
                 <div class="oe_status js_synch">
@@ -33,6 +33,7 @@
                     </div>
                     <div class="js_connecting oe_icon oe_hidden">
                         <i class="fa fa-fw fa-spin fa-spinner" role=img aria-label="Synchronisation Connecting" title="Synchronisation Connecting"></i>
+                       
                     </div>
                     <div class="js_disconnected oe_icon oe_red oe_hidden">
                         <i class="fa fa-fw fa-wifi" role=img aria-label="Synchronisation Disconnected" title="Synchronisation Disconnected"></i>
@@ -42,7 +43,12 @@
                     </div>
                 </div>
                 <div class=oe_status>
-                    <span class=username>tuser2 </span>
+                    @if (User?.Identity?.Name != null)
+                    {
+                        <span class=username>
+                            @User.Identity.Name
+                        </span>
+                    }
                 </div>
                @* <div class="header-button exit-session">Exit</div>*@
             </div>
@@ -75,44 +81,44 @@
                                                     <div class=control-buttons></div>
                                                     <div class=actionpad>
                                                         <button  class="button set-customerr" title="Select Customer">
-                                                            <i class="fas fa-user" role=img aria-label=Customer title=Customer ></i>
+                                                            <i class="fa fa-user" role=img aria-label=Customer title=Customer ></i>
                                                             <span id=sel-cust>Customer</span>
                                                         </button>
                                                       <button class="button order-splitt" title="Split Order">
-                                                            <i  class="fas fa-files-o" role=img aria-label=Split title="Split Order"></i>
+                                                            <i  class="fa fa-files-o" role=img aria-label=Split title="Split Order"></i>
                                                             <span id=sel-guest>Split</span>
                                                         </button>
                                                         <button class="button order-mergee" title="Merge Orders">
-                                                            <i class="fas fa-object-group" role=img aria-label=Merge title="Merge Orders"></i>
+                                                            <i class="fa fa-object-group" role=img aria-label=Merge title="Merge Orders"></i>
                                                             <span id=sel-guest >Merge</span>
                                                         </button>
                                                         <button class="button make-payment">
-                                                            <i class="fas fa-chevron-right" role=img aria-label=Payment title=Payment></i>
+                                                            <i class="fa fa-chevron-right" role=img aria-label=Payment title=Payment></i>
                                                             Payment
                                                         </button>
                                                     </div>
                                                     <div class="numpad ">
-                                                        <button class="input-button number-char" onclick="addCode('1')">1</button>
-                                                        <button class="input-button number-char" onclick="addCode('2')">2</button>
-                                                        <button class="input-button number-char" onclick="addCode('3')">3</button>
+                                                        <button class="input-button number-char" onclick=" ('1')">1</button>
+                                                        <button class="input-button number-char" onclick=" ('2')">2</button>
+                                                        <button class="input-button number-char" onclick=" ('3')">3</button>
                                                         <button class="mode-button selected-mode" data-mode=1>Qty</button>
                                                         <br>
-                                                        <button class="input-button number-char" onclick="addCode('4')">4</button>
-                                                        <button class="input-button number-char" onclick="addCode('5')">5</button>
-                                                        <button class="input-button number-char" onclick="addCode('6')">6</button>
+                                                        <button class="input-button number-char" onclick=" ('4')">4</button>
+                                                        <button class="input-button number-char" onclick=" ('5')">5</button>
+                                                        <button class="input-button number-char" onclick=" ('6')">6</button>
                                                         <button class=mode-button data-mode=2>Disc</button>
                                                         <br>
-                                                        <button class="input-button number-char" onclick="addCode('7')">7</button>
-                                                        <button class="input-button number-char" onclick="addCode('8')">8</button>
-                                                        <button class="input-button number-char" onclick="addCode('9')">9</button>
+                                                        <button class="input-button number-char" onclick=" ('7')">7</button>
+                                                        <button class="input-button number-char" onclick=" ('8')">8</button>
+                                                        <button class="input-button number-char" onclick=" ('9')">9</button>
                                                         <button class=mode-button data-mode=3>Price</button>
                                                         <br>
                                                         <button class="input-button numpad-minus print-orderr" title="Print Order">
-                                                            <i class="fas fa-print"></i>
+                                                            <i class="fa fa-print"></i>
                                                         </button>
-                                                        <button class="input-button number-char" onclick="addCode('0')">0</button>
-                                                        <button class="input-button number-char" onclick="addCode('.')">.</button>
-                                                        <button class="input-button numpad-backspace" onclick="addCode('&lt;')">
+                                                        <button class="input-button number-char" onclick=" ('0')">0</button>
+                                                        <button class="input-button number-char" onclick=" ('.')">.</button>
+                                                        <button class="input-button numpad-backspace" onclick=" ('&lt;')">
                                                             <img style=pointer-events:none src="/images/Sales/backspace.png" width=24 height=21 alt=Backspace>
                                                         </button>
                                                     </div>
@@ -198,7 +204,8 @@
                                         </span>
                                         <h1>Payment</h1>
                                         <button class="button next btn-save-payments" disabled>
-                                            Save Payment <i class="fa fa-angle-double-right"></i>
+                                            Save Payment
+                                            <i class="fa fa-angle-double-right"></i>
                                         </button>
                                     </div>
                                     <div class="left-content pc40 touch-scrollable scrollable-y">
@@ -212,40 +219,45 @@
                                                 <div class="total pay-total"></div>
                                                 <div class=message>Please select a payment method.</div>
                                             </div>
-                                            <table class=paymentlines>
+                                            <table class="paymentlines">
                                                 <colgroup>
-                                                    <col class=due>
-                                                    <col class=tendered>
-                                                    <col class=change>
-                                                    <col class=method>
-                                                    <col class=controls>
+                                                    <col class="due">
+                                                    <col class="tendered">
+                                                    <col class="change">
+                                                    <col class="method">
+                                                    <col class="controls">
+                                                </colgroup>
                                                 <thead>
-                                                    <tr class=label>
-                                                        <th>Due
-                                                        <th>Tendered
-                                                        <th>Change
-                                                        <th>Method
-                                                        <th>
-                                                <tbody class=paymentlines-body>
+                                                    <tr class="label">
+                                                        <th>Due</th>
+                                                        <th>Tendered</th>
+                                                        <th>Change</th>
+                                                        <th>Method</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="paymentlines-body">
+                                                </tbody>
                                             </table>
+
                                         </section>
                                         <section class=payment-numpad>
                                             <div class=numpad>
-                                                <button class="input-button number-char" onclick="addCodePayment('1')" data-action=1>1</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('2')" data-action=2>2</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('3')" data-action=3>3</button>
+                                                <button class="input-button number-char" onclick=  "('1')" data-action=1>1</button>
+                                                <button class="input-button number-char" onclick=  "('2')" data-action=2>2</button>
+                                                <button class="input-button number-char" onclick=  "('3')" data-action=3>3</button>
                                                 <br>
-                                                <button class="input-button number-char" onclick="addCodePayment('4')" data-action=4>4</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('5')" data-action=5>5</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('6')" data-action=6>6</button>
+                                                <button class="input-button number-char" onclick=  "('4')" data-action=4>4</button>
+                                                <button class="input-button number-char" onclick=  "('5')" data-action=5>5</button>
+                                                <button class="input-button number-char" onclick=  "('6')" data-action=6>6</button>
                                                 <br>
-                                                <button class="input-button number-char" onclick="addCodePayment('7')" data-action=7>7</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('8')" data-action=8>8</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('9')" data-action=9>9</button>
+                                                <button class="input-button number-char" onclick=  "('7')" data-action=7>7</button>
+                                                <button class="input-button number-char" onclick=  "('8')" data-action=8>8</button>
+                                                <button class="input-button number-char" onclick=  "('9')" data-action=9>9</button>
                                                 <br>
-                                                <button class="input-button number-char" onclick="addCodePayment('0')" data-action=0>0</button>
-                                                <button class="input-button number-char" onclick="addCodePayment('.')" data-action=.>.</button>
-                                                <button class="input-button numpad-backspace" onclick="addCodePayment('&lt;')" data-action=BACKSPACE>
+                                                <button class="input-button number-char" onclick=  "('0')" data-action=0>0</button>
+                                                <button class="input-button number-char" onclick=  "('.')" data-action=.>.</button>
+                                                <button class="input-button numpad-backspace" onclick=  "('&lt;')" data-action=BACKSPACE>
                                                     <img src="/images/Sales/backspace.png" width=24 height=21 alt=Backspace>
                                                 </button>
                                             </div>

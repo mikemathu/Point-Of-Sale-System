@@ -315,6 +315,7 @@ namespace PointOfSaleSystem.Repo.Security
             {
                 try
                 {
+#pragma warning disable CS8601 // Possible null reference assignment.
                     return new SystemUser
                     {
                         SurName = reader["surName"] is DBNull ? string.Empty : (string)reader["surName"],
@@ -325,6 +326,7 @@ namespace PointOfSaleSystem.Repo.Security
                         SysUserID = reader["sysUserID"] is DBNull ? 0 : (int)reader["sysUserID"],
                         UserRolesIDs = reader["UserRolesIDs"] is DBNull ? Array.Empty<int>() : reader["UserRolesIDs"] as int[]
                     };
+#pragma warning restore CS8601 // Possible null reference assignment.
                 }
                 catch (Exception ex)
                 {

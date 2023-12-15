@@ -114,7 +114,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             }
             return (int)fiscalPeriodID;
         }
-        public async Task<IEnumerable<PaymentMethodDto?>> GetAllPaymentModesAsync()
+        public async Task<IEnumerable<PaymentMethodDto>> GetAllPaymentModesAsync()
         {
             IEnumerable<PaymentMethod> paymentMethods = await _paymentMethodRepository.GetAllPaymentModesAsync();
             if (!paymentMethods.Any())
@@ -123,11 +123,22 @@ namespace PointOfSaleSystem.Service.Services.Sales
             }
             return _mapper.Map<IEnumerable<PaymentMethodDto>>(paymentMethods);
         }
+        private int GetSysUserID()
+        {
+            int sysUserID = 0;
+
+            var sysUserIdClaim = _httpContextAccessor.HttpContext.User.FindFirst("SysUserID");
+            if (sysUserIdClaim != null)
+            {
+                sysUserID = Convert.ToInt32(sysUserIdClaim.Value);
+            }
+            return sysUserID;
+        }
         public async Task ReceivePosPaymentsAsync(PaymentDto paymentDto)
         {
             await ValidateOrder(paymentDto);
             IEnumerable<OrderedItem> orderItemsQuantity = await _orderRepository.GetQuantity(paymentDto.CustomerOrderID);
-            int userID = Convert.ToInt32(_httpContextAccessor.HttpContext.User.FindFirst("SysUserID").Value);
+            int userID = GetSysUserID();
             int fiscalPeriodID = await GetActiveFiscalPeriodID();
             bool isPaymentReceived = await _paymentMethodRepository.ReceivePosPaymentsAsync(
                 _mapper.Map<Payment>(paymentDto), _mapper.Map<IEnumerable<OrderedItem>>(orderItemsQuantity), userID, fiscalPeriodID);

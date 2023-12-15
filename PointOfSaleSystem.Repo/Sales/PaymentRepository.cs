@@ -322,9 +322,9 @@ namespace PointOfSaleSystem.Repo.Sales
                 journalVoucherEntries.Add(new JournalVoucherEntry
                 {
 
-                    DebitSubAccount = new SubAccount { SubAccountID = (int)reader["debitSubAccountID"] is DBNull ? 0 : (int)reader["debitSubAccountID"] },
-                    CreditSubAccount = new SubAccount { SubAccountID = (int)reader["creditSubAccountID"] is DBNull ? 0 : (int)reader["creditSubAccountID"] },
-                    JournalVoucherEntryID = (int)reader["accountEntryID"] is DBNull ? 0 : (int)reader["accountEntryID"],
+                    DebitSubAccount = new SubAccount { SubAccountID = reader["debitSubAccountID"] is DBNull ? 0 : (int)reader["debitSubAccountID"] },
+                    CreditSubAccount = new SubAccount { SubAccountID = reader["creditSubAccountID"] is DBNull ? 0 : (int)reader["creditSubAccountID"] },
+                    JournalVoucherEntryID = reader["accountEntryID"] is DBNull ? 0 : (int)reader["accountEntryID"],
                     DebitAmount = reader["debitAmount"] is DBNull ? 0 : (double)reader["debitAmount"],
                     CreditAmount = reader["creditAmount"] is DBNull ? 0 : (double)reader["creditAmount"],
                     JournalVoucherID = reader["journalVoucherID"] is DBNull ? 0 : (int)reader["journalVoucherID"]
@@ -346,7 +346,7 @@ namespace PointOfSaleSystem.Repo.Sales
                 {
                     var (creditAccountTypeID, debitAccountTypeID) = await GetAccountTypesAsync(connection, item.JournalVoucherEntryID);
 
-                    string commandText = null;
+                    string? commandText = null;
 
                     //Debit
                     if (debitAccountTypeID == 1 || debitAccountTypeID == 5)//asset and expence increace recorded ans debit

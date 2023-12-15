@@ -263,7 +263,7 @@ namespace PointOfSaleSystem.Repo.Sales
 
             if (await reader.ReadAsync())
             {
-                return (double)reader["unitPrice"] is DBNull ? 0 : (double)reader["unitPrice"];
+                return reader["unitPrice"] is DBNull ? 0 : (double)reader["unitPrice"];
             }
             return 0;
         }
@@ -496,12 +496,12 @@ namespace PointOfSaleSystem.Repo.Sales
             {
                 items.Add(new Item
                 {
-                    Barcode = (string)reader["barcode"],
-                    Image = (string)reader["image"],
-                    ItemName = (string)reader["itemName"],
-                    ItemCategoryID = (int)reader["itemCategoryID"],
-                    UnitPrice = (double)reader["unitPrice"],
-                    ItemID = (int)reader["itemID"]
+                    Barcode = reader["barcode"] is DBNull ? string.Empty : (string)reader["barcode"],
+                    Image = reader["image"] is DBNull ? string.Empty : (string)reader["image"],
+                    ItemName = reader["itemName"] is DBNull ? string.Empty : (string)reader["itemName"],
+                    ItemCategoryID = reader["itemCategoryID"] is DBNull ? 0 : (int)reader["itemCategoryID"],
+                    UnitPrice = reader["unitPrice"] is DBNull ? 0 : (double)reader["unitPrice"],
+                    ItemID = reader["itemID"] is DBNull ? 0 : (int)reader["itemID"]
                 });
             }
             return items;
@@ -530,9 +530,9 @@ namespace PointOfSaleSystem.Repo.Sales
             {
                 itemCategories.Add(new ItemCategory
                 {
-                    Description = (string)reader["description"],
-                    ItemCategoryID = (int)reader["itemCategoryID"],
-                    ItemCategoryName = (string)reader["itemCategoryName"]
+                    Description = reader["description"] is DBNull ? string.Empty : (string)reader["description"],
+                    ItemCategoryID = reader["itemCategoryID"] is DBNull ? 0 : (int)reader["itemCategoryID"],
+                    ItemCategoryName = reader["itemCategoryName"] is DBNull ? string.Empty : (string)reader["itemCategoryName"]
                 });
             }
             return itemCategories;

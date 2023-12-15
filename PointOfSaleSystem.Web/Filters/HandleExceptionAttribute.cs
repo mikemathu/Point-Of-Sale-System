@@ -134,10 +134,6 @@ namespace PointOfSaleSystem.Web.Filters
                     StatusCode = StatusCodes.Status422UnprocessableEntity
                 };
             }
-            else
-            {
-                return new ObjectResult(ex.Message);
-            }
             return new ObjectResult("Internal Server Error.")
             {
                 StatusCode = StatusCodes.Status500InternalServerError

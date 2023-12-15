@@ -120,10 +120,10 @@ namespace PointOfSaleSystem.Service.Services.Sales
         {
             //await IsOrderIdValid(orderID);
             IEnumerable<OrderedItem> orderItems = await _orderRepository.GetPosOrderItemsAsync(orderID);
-            if (!orderItems.Any())
+           /* if (!orderItems.Any())
             {
                 throw new NullException();
-            }
+            }*/
             return _mapper.Map<IEnumerable<OrderedItemDto>>(orderItems);
         }
         public async Task<IEnumerable<OrderedItemDto>> GetQuantity(int customerOrderID)
