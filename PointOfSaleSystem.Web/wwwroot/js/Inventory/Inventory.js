@@ -8,7 +8,7 @@
             LoadAllCostOfSaleSubAccounts();
             LoadAllVatTypes();
             LoadAllUnitOfMeasures();
-            LoadPOSCategories();
+            //LoadPOSCategories();
             FilterProducts()
         }
 
@@ -126,7 +126,7 @@
             });
         }
 
-        function LoadPOSCategories() {
+     /*   function LoadPOSCategories() {
             var t = $("#InventoryItemForm input[name=__RequestVerificationToken]").val()
                 , n = $("#CompanyBranchItem_PointOfSaleCategoryID");
             n.empty();
@@ -137,7 +137,7 @@
                         n.append(new Option(t[i].pointOfSaleCategoryName, t[i].pointOfSaleCategoryID))
             }
             ).catch(n => Notify(!1, n))
-        }
+        }*/
 
         function GetInventoryItemDetails(n) {
             var t = n
@@ -182,9 +182,9 @@
                     $("#PreviousUnitCost").val(t.unitCost);
                     $("#PreviousQuantity").val(t.totalQuantity);
                     $("#PreviousUnitPrice").val(t.unitPrice);
-                    $("#CompanyBranchItem_AssetSubAccountID").prop("disabled", !0);
-                    $("#CompanyBranchItem_CostOfSaleSubAccountID").prop("disabled", !0);
-                    $("#CompanyBranchItem_RevenueSubAccountID").prop("disabled", !0);
+                    $("#CompanyBranchItem_AssetSubAccountID").prop("disabled", !1);
+                    $("#CompanyBranchItem_CostOfSaleSubAccountID").prop("disabled", !1);
+                    $("#CompanyBranchItem_RevenueSubAccountID").prop("disabled", !1);
                     //LoadImage(t.image);
                     $("#addproduct").hide();
                     $("#updateproduct").show();

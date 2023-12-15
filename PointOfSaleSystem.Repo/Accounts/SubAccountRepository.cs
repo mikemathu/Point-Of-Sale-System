@@ -292,7 +292,7 @@ namespace PointOfSaleSystem.Repo.Accounts
 
             using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
 
-            command.Parameters.AddWithValue("@accountID", 1);
+            command.Parameters.AddWithValue("@accountID", 179);//Inventory Account
 
             await connection.OpenAsync();
 
@@ -328,7 +328,7 @@ namespace PointOfSaleSystem.Repo.Accounts
 
             using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
 
-            command.Parameters.AddWithValue("@accountID", 2);
+            command.Parameters.AddWithValue("@accountID", 187);//Cost of Goods Sold Account
 
             await connection.OpenAsync();
 
@@ -364,7 +364,7 @@ namespace PointOfSaleSystem.Repo.Accounts
 
             using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
 
-            command.Parameters.AddWithValue("@accountID", 3);
+            command.Parameters.AddWithValue("@accountID", 185); //Revenue Account
 
             await connection.OpenAsync();
 
