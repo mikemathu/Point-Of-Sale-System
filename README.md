@@ -72,7 +72,7 @@ Generates reports based on both recorded financial information along with sales 
 
 ### Create database
 
-- Use pgAdmin to create an empty database named **Accounts**. 
+- Use pgAdmin(or other) to create an empty database named **Accounts**. 
 - Import the **accounts.sql** file in the **wwwroot/AppData/Database** directory of this project.
 
 ### Configure connection string
@@ -93,10 +93,10 @@ Example config setting in appsettings.json for a database called `Accounts`:
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
 
 ## Architecture
--> Images
+<img src=".AppData/images/Fiscalperiods.png" width=600>
 
 ## Application Overview
--->images
+-
 
 ## Inspirations and Recommendations
 
