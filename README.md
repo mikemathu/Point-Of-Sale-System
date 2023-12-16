@@ -2,119 +2,56 @@
 
 This project has 5 modules as outlined below.
 
-**1. Security Module**
+**1. Accounts Module**
 
-Each `SystemUser`, `Admin` and `Super Admin` is a `User`. To be a `User`, `User Registration` is required.
+`Fiscal Period`, such as monthly, quarterly, or yearly intervals, serve as the structural framework for the accounting cycle. The accounting in this system operates within the context of the latest open and active period.
 
-Each `User` is assigned none, one or more `User Role`.
+`Account` (such as Inventory, Revenue, etc.) is used to categorize and record financial transactions. Each `Account` is further divided into sub-accounts (like Inventory-Electronics, Revenue-Electronics, etc.). `Sub Account` provide further categorization within an `Account`, offering more detailed breakdowns of financial transactions.
 
-Each `User Role` has set of `Privileges`. A `Privilege` defines whether `User` can invoke a particular action.
+Both `Account Type` (Assets, Liabilities, Equity, Revenue, and Expenses) and `Cashflow Category Type` (Operating Activities, Investing Activities, and Financing Activities) are foundational classifications used to categorize various accounts based on their nature and purpose within the system.
 
-**2. Inventory module**
+Both `Account Class` and `Cashflow Category` are used to further categorize accounts. `Account Class` classify accounts based on account types, offering specific classifications such as Current Assets, Current Liabilities, Fixed Assets, Sales Revenue, Cost of Goods Sold, etc. On the other hand, `Cashflow Category` categorize accounts according to cashflow category types, providing specific classifications such as Cash from Sales, Cash Payments to Suppliers, etc.
 
-The Inventory module manages the cataloging, tracking, and control of products, facilitating efficient management of stock and sales within the system.
-Key Entities:
+`Journal Voucher` serve as documentation for recording financial transactions, providing details of debit and credit journal voucher entries, transaction dates, descriptions, and references to other supporting documents such as receipt or invoices.
 
-    Items:
-        Each Item represents a product available in the inventory, holding details such as name, cost, price, quantity, and associated attributes like unit of measure, item class, and item category.
+Within each `Journal Voucher`, there is/are journal voucher entry/(ies). `Journal Voucher Entry` document individual item by recording debit and credit linked to specific sub-accounts. Each `Journal Voucher Entry` includes details such as the debited and credited sub-accounts along with the transaction amounts.
 
-    Unit of Measure:
-        Defines the measurement units associated with items, enabling uniformity in quantifying different types of products.
+The `Taxes` feature allows for configuring and managing various tax setups within the system. Configuration includes setting up tax rates, types, and their associated sub-accounts.(note that although taxes can be configured within the setup, they are currently not applied or included in the displayed item transactions)
 
-    Item Class and Item Category:
-        Item Class and Category provide a structured categorization for items, aiding in organizing and classifying products based on their characteristics and types.
+**2. Inventory Module**
 
-    Sub-Accounts:
-        Sub-Accounts within the inventory context help in associating items, item classes, or categories with specific accounts (e.g., Asset, Cost of Sale, Revenue).
+`Item` represent individual product available for sale within the system. Each `Item` is characterized by attributes such as name, cost, price, quantity, unit of measure, classification (`Item Class` and `Item Category`), and specific identifiers like code or barcode.
 
-Relationships:
+Each `Item` is linked to a specific `Unit of Measure`, establishing how the quantity of the `Item` is measured and sold.
 
-    Item and Unit of Measure:
-        Each Item is associated with a specific Unit of Measure, defining how the quantity of the item is measured or sold.
+`Item Class Type` (such as Electronics, Clothing, Home Appliances, etc.) are foundational classifications used to categorize various items according to their characteristics. These item class types are further categorized by item classes, providing more specific classifications.
 
-    Item and Item Class/Category:
-        Items are categorized under specific Item Classes and Categories, providing a systematic grouping for easier management and analysis.
+Both `Item Class` and `Item Category` provide structured classifications for grouping and organizing items based on their characteristics or types.
 
-    Items and Accounts:
-        Items are linked to relevant Sub-Accounts, allowing for proper financial tracking and association with accounting aspects such as asset management, cost of sale, and revenue generation.
+`Item` are associated with relevant sub-accounts, enabling the financial tracking of inventory, cost of sale, and revenue within the system. 
 
 System Functionality:
+When the quantity of an `Item` is updated, the system automatically generates and posts a corresponding `Journal Voucher` to reflect this change. The balance amount linked to the items' inventory `Sub Account` is adjusted accordingly, either increased or decreased based on the updated quantity of the `Item`.
 
-    Inventory Management:
-        Allows the addition, modification, and removal of items.
-        Tracks and manages quantities, costs, prices, and other attributes associated with inventory items.
+**3. Point of Sale Module**
 
-    Categorization and Structuring:
-        Enables the organization and grouping of items through Item Classes and Categories for better management and reporting.
-
-    Financial Integration:
-        Associates items with financial aspects by linking them to Sub-Accounts, ensuring accurate accounting and financial tracking.
-
-    Reporting and Analysis:
-        Provides functionalities for generating reports and conducting analyses based on inventory data, facilitating informed decision-making.
-
-    Permissions and Access Control (if applicable):
-        Might implement access controls defining user roles and privileges related to inventory operations, ensuring proper control and security within the module.
-
-**3. Accounts module**
-
-The Accounts module encompasses various functionalities, including managing fiscal periods, ledger accounts, journal vouchers, and taxes within the system.
-
-***Fiscal Periods:***
-Fiscal periods enable structuring and manage financial data according to defined timeframes. Users can create, edit, and delete specific periods to align with their accounting needs.
-
-***Ledger Accounts:***
-Ledger accounts are the foundational elements of accounting, representing individual accounts for assets, liabilities, equity, revenue, and expenses. Users can perform CRUD (Create, Read, Update, Delete) operations on these accounts to maintain accurate financial records.
-
-***Journal Voucher:***
-This feature facilitates the creation and management of journal vouchers, essential for recording financial transactions. Users can add, modify, and delete vouchers, ensuring comprehensive transactional documentation.
-
-***Taxes:***
-The tax management functionality allows users to define, edit, and manage various tax configurations. It enables the setup and modification of tax-related information essential for accurate financial calculations and compliance.
-
-**4. Point of Sale module**
-
-Point of Sale (POS) Module Description:
-
-The Point of Sale (POS) module serves as the central component for conducting sales transactions, managing inventory, and processing payments within the system.
-Key Entities:
-
-    Sales Transactions:
-        Represents individual transactions where products or services are sold to customers, capturing details such as items sold, quantities, prices, and payment methods.
-
-    Inventory Items:
-        Inventory items are the products available for sale, holding details like item name, price, quantity, and associated attributes necessary for sales transactions.
-
-    Customer Information (if applicable):
-        Stores details of customers making purchases, facilitating customer-centric sales, and providing insights into customer behavior.
-
-Relationships:
-
-    Sales Transactions and Inventory Items:
-        Each sales transaction involves one or more inventory items, deducting sold quantities from the available stock.
-
-    Sales Transactions and Customer Information:
-        If capturing customer data, sales transactions might link to customer information for tracking customer purchases and preferences.
+An `Item` is sold, capturing details such as item name, quantities, prices, and payment methods.
 
 System Functionality:
+Each sales transaction involves one or more inventory items, reducing the available stock by the sold quantities. Additionally, an automatic `Journal Voucher` is posted, adjusting the balance amounts linked to the inventory, Cost of Sale, and Revenue sub-accounts for each `Item`.
 
-    Sales Processing:
-        Facilitates the creation and management of sales transactions, allowing for the addition, modification, and removal of items during a sale.
+**4. Security Module**
+Super Admin, Admin and User are consideres as `System User`. To become a `System User`, registration is required.
 
-    Inventory Management:
-        Tracks inventory levels, automatically updating quantities upon sales transactions to reflect changes in stock availability.
+Each `System User` can be assigned none, one, or multiple User `Roles`.
 
-    Payment Processing:
-        Handles various payment methods (cash, credit/debit cards, digital payments) and completes transactions securely and efficiently.
+Each user `Role` encompasses a set of privileges. `Privilege` define whether a System User can perform specific actions.
 
-    Customer Engagement (if applicable):
-        Enables the capture and utilization of customer information for personalized services, loyalty programs, and targeted marketing strategies.
 
-    Reporting and Analytics:
-        Generates reports and analytics based on sales data, providing insights into sales performance, popular products, and revenue trends.
+**5. Reports Module**
 
-## Features
---> Features
+Generates reports based on both recorded financial information along with sales data.(note: Not yet implemented)
+
 
 ## Technology Stack
 
