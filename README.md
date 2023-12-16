@@ -93,10 +93,53 @@ Example config setting in appsettings.json for a database called `Accounts`:
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
 
 ## Architecture
-<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Fiscalperiods.png">
+
+
+
+
 
 ## Application Overview
--
+Get Request
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/API/GetRequest.png">
+
+Post Request
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/API/PostRequest.png">
+
+Point of Sale
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/POS/PointofSale.png">
+
+Point of Sale
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/POS/POS.png">
+
+Fiscal Period
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/Fiscalperiods.png">
+
+Journal Voucher
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/JournalVouchers.png">
+
+Journal Voucher Entries
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/JournalVouchersEntries.png">
+
+Ledger Voucher
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/LedgerAccounts.png">
+
+Taxes
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/Taxes.png">
+
+Inventory
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/Taxes.png">
+
+Units Of Measure
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/UnitsofMeasures.png">
+
+Privileges
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Privileges.png">
+
+Roles
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Roles.png">
+
+Users
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Users.png">
 
 ## Inspirations and Recommendations
 
