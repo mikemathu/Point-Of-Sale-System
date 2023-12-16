@@ -68,12 +68,12 @@ Generates reports based on both recorded financial information along with sales 
 
 ### Installation
 
-    Clone and open the solution file in Visual Studio
+    clone and open the solution file in Visual Studio
 
 ### Create database
 
 - Use pgAdmin(or other) to create an empty database named **Accounts**. 
-- Import the **accounts.sql** file in the **wwwroot/AppData/Database** directory of this project.
+- Import the **Accounts.sql** file from the **wwwroot/AppData/Database** directory of this project.
 
 ### Configure connection string
 
@@ -92,18 +92,45 @@ Example config setting in appsettings.json for a database called `Accounts`:
 
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
 
+### Configure an API client for interacting with the API
+
+- Open Insomnia (or another tool) and import the **PointOfSale.json** file from the 'wwwroot/AppData' directory of this project.
+- Ensure you first make the POST request along with the provided JSON below to authenticate.
+
+```json
+ {
+    "UserName": "Super Admin",
+    "Password": "123"
+}
+```
+
+
 ## Architecture
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Architecture.png">
 
+## ER Diagrams
 
+Accounts Module
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/Accounts.png">
 
+Inventory Module
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/Inventory.png">
 
+Security Module
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/Security.png">
 
-## Application Overview
+Entire ER Diagram
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/EntireERDigram.png">
+
+## API Requests
+
 Get Request
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/API/GetRequest.png">
 
 Post Request
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/API/PostRequest.png">
+
+## Application Overview
 
 Point of Sale
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/POS/PointofSale.png">
@@ -120,14 +147,14 @@ Journal Voucher
 Journal Voucher Entries
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/JournalVouchersEntries.png">
 
-Ledger Voucher
+Ledger Accounts
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/LedgerAccounts.png">
 
 Taxes
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Accounts/Taxes.png">
 
 Inventory
-<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/Taxes.png">
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/Inventory.png">
 
 Units Of Measure
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/UnitsofMeasures.png">
