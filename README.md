@@ -41,6 +41,7 @@ System Functionality:
 Each sales transaction involves one or more inventory items, reducing the available stock by the sold quantities. Additionally, an automatic `Journal Voucher` is posted, adjusting the balance amounts linked to the inventory, Cost of Sale, and Revenue sub-accounts for each `Item`.
 
 **4. Security Module**
+
 Super Admin, Admin and User are consideres as `System User`. To become a `System User`, registration is required.
 
 Each `System User` can be assigned none, one, or multiple User `Roles`.
