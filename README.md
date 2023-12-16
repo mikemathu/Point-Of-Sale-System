@@ -91,6 +91,7 @@ Example config setting in appsettings.json for a database called `Accounts`:
 ### Configure startup in IDE
 
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
+- Log in with user name **Super Admin** and password **123**
 
 ### Configure an API client for interacting with the API
 
@@ -105,7 +106,9 @@ Example config setting in appsettings.json for a database called `Accounts`:
 ```
 
 
-## Architecture
+## Architecture 
+(not maintained, only for demonstration)
+
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Architecture.png">
 
 ## ER Diagrams
@@ -119,7 +122,7 @@ Inventory Module
 Security Module
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/Security.png">
 
-Entire ER Diagram
+Entire Project ER Diagram
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/ERDiagrams/EntireERDigram.png">
 
 ## API Requests
