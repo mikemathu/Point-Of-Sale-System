@@ -93,7 +93,7 @@ Example config setting in appsettings.json for a database called `Accounts`:
 - Set the Startup Item in your IDE to **PointOfSaleSystem.Web** and start the server.
 
 ## Architecture
-<img src=".AppData/images/Fiscalperiods.png" width=600>
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Fiscalperiods.png">
 
 ## Application Overview
 -
