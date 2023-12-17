@@ -40,6 +40,7 @@ namespace PointOfSaleSystem.Service.Configurations
             CreateMap<OrderedItemDto, OrderedItem>().ReverseMap();
             CreateMap<PaymentDto, Payment>().ReverseMap();
             CreateMap<PaymentMethodDto, PaymentMethod>().ReverseMap();
+            CreateMap<UpdateOrderedItemDto, OrderedItem>().ReverseMap();
 
             //Security
             CreateMap<PrivilegeDto, Privilege>().ReverseMap();

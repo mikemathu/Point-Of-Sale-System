@@ -10,4 +10,11 @@
         public double UnitPrice { get; set; }
         public string UnitOfMeasureName { get; set; } = null!;
     }
+
+    public class UpdateOrderedItemDto
+    {
+        public int CustomerOrderID { get; set; }
+        public int ItemID { get; set; }
+        public int Quantity { get; set; }
+    }
 }

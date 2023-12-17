@@ -73,7 +73,7 @@ namespace PointOfSaleSystem.Web.ApiControllers
         }
 
         [HttpPost("UpdatePosItemQuantity")]
-        public async Task<IActionResult> UpdatePosItemQuantity(OrderedItemDto orderItemDto)
+        public async Task<IActionResult> UpdatePosItemQuantity(UpdateOrderedItemDto orderItemDto)
         {
             await _customerOrderService.UpdatePosItemQuantityAsync(orderItemDto);
             return Ok(new { message = "Pos Item Updated Sussessfully." });

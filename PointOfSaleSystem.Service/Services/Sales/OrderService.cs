@@ -135,7 +135,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             }
             return _mapper.Map<IEnumerable<OrderedItemDto>>(orderItemQuantity);
         }
-        public async Task UpdatePosItemQuantityAsync(OrderedItemDto orderItemDto)
+        public async Task UpdatePosItemQuantityAsync(UpdateOrderedItemDto orderItemDto)
         {
             var checkquantity = await CheckQuantity(orderItemDto);
             if (checkquantity == 0)
@@ -150,11 +150,11 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool customerOrders = await UpdatePosItemQuantity(orderItemDto, unitPrice);
         }
 
-        public async Task<int> CheckQuantity(OrderedItemDto orderItemDto)
+        public async Task<int> CheckQuantity(UpdateOrderedItemDto orderItemDto)
         {
             return await _orderRepository.CheckQuantity(_mapper.Map<OrderedItem>(orderItemDto));
         }
-        public async Task<bool> UpdatePosItemQuantity(OrderedItemDto orderItemDto, double unitPrice)
+        public async Task<bool> UpdatePosItemQuantity(UpdateOrderedItemDto orderItemDto, double unitPrice)
         {
             return await _orderRepository
                  .UpdatePosItemQuantity(_mapper.Map<OrderedItem>(orderItemDto), unitPrice);
