@@ -177,12 +177,12 @@ Users
 
 ### C#
 
-- ["Pro C# 9 with .NET 5, Tenth Edition"](https://www.amazon.com/Pro-NET-Foundational-Principles-Programming/dp/1484269381) Book,  Andrew Troelsen
+- ["Pro C# 10 with .NET 6, Eleventh Edition"](https://www.amazon.com/Pro-NET-Foundational-Principles-Programming-dp-1484278682/dp/1484278682/ref=dp_ob_title_bk) Book,  Andrew Troelsen
 
 ### ASP.NET Core
 
-- ["ASP.NET Core in Action, Second Edition"](https://www.manning.com/books/asp-net-core-in-action-second-edition) Book,  Andrew Lock
+- ["ASP.NET Core in Action, Third Edition"](https://www.manning.com/books/asp-net-core-in-action-third-edition) Book,  Andrew Lock
 
 ### Accounting
-- ["Schaum's Outline of Principles of Accounting, 5th Edition"](https://www.youtube.com/watch?v=DYg2jT9aUG4) Book,  Joel Lerner
+- ["Schaum's Outline of Principles of Accounting, 5th Edition"](https://www.mheducation.com/highered/product/schaum-s-outline-principles-accounting-i-fifth-edition-lerner-cashin/9780071635387.html) Book,  Joel Lerner
 - ["Financial Accounting"](https://www.youtube.com/watch?v=DYg2jT9aUG4) Video, pmtycoon
