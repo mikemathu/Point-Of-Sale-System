@@ -96,7 +96,7 @@ Example config setting in appsettings.json for a database called `Accounts`:
 ### Configure an API client for interacting with the API
 
 - Open Insomnia (or another tool) and import the **PointOfSale.json** file from the 'wwwroot/AppData' directory of this project.
-- Ensure that you make the POST request along with the provided JSON, as shown below, to authenticate.
+- Ensure that you make the POST request along with the JSON, as shown below, to authenticate.
 
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Authenticate.png">
 

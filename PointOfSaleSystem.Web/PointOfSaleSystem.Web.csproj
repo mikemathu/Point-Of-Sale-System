@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\AppData\Database\" />
     <Folder Include="wwwroot\Dashboard\Accounts\CashFlowStatement\" />
     <Folder Include="wwwroot\Dashboard\Accounts\Expenses\" />
     <Folder Include="wwwroot\Dashboard\Accounts\GeneralLedger\" />

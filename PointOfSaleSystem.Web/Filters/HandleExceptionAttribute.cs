@@ -44,7 +44,8 @@ namespace PointOfSaleSystem.Web.Filters
                             StatusCode = StatusCodes.Status422UnprocessableEntity
                         };
                     }
-                    return new ObjectResult("Sorry, the action couldn't be completed due to the database constrain.")
+                    //return new ObjectResult("Sorry, the action couldn't be completed due to the database constrain.")
+                    return new ObjectResult(ex.Message)
                     {
                         StatusCode = StatusCodes.Status422UnprocessableEntity
                     };
