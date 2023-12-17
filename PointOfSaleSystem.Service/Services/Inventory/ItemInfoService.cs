@@ -22,7 +22,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<ItemCategory> itemCategories = await itemInfoRepository.GetAllItemCategoriesAsync();
             if (!itemCategories.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<ItemCategoryDto>>(itemCategories);
         }
@@ -31,7 +31,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<ItemClass> itemClasses = await itemInfoRepository.GetAllItemClasses();
             if (!itemClasses.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<ItemClassDto>>(itemClasses);
         }
@@ -40,7 +40,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<UnitOfMeasure> unitsOfMeasure = await itemInfoRepository.GetAllUnitOfMeasures();
             if (!unitsOfMeasure.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<UnitOfMeasureDto>>(unitsOfMeasure);
         }
@@ -49,7 +49,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<OtherTax> otherTaxes = await itemInfoRepository.GetAllOtherTaxesAsync();
             if (!otherTaxes.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<OtherTaxDto>>(otherTaxes);
         }
@@ -58,7 +58,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<VatType> vatTypes = await itemInfoRepository.GetAllVATTypesAsync();
             if (!vatTypes.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<VatTypeDto>>(vatTypes);
         }

@@ -21,7 +21,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isAccountClassCreated = await _accountClassRepository.CreateAccountClassAsync(_mapper.Map<AccountClass>(accountClassDto));
             if (!isAccountClassCreated)
             {
-                throw new FalseException("Could not create Account Class.");
+                throw new ActionFailedException("Could not create Account Class.");
             }
         }
         public async Task<IEnumerable<AccountClassDto>> GetAllAccountClassesAsync()
@@ -29,7 +29,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<AccountClass> accountClasses = await _accountClassRepository.GetAllAccountClassesAsync();
             if (!accountClasses.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<AccountClassDto>>(accountClasses);
         }

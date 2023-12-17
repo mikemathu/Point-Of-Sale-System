@@ -27,7 +27,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool doesRoleExist = await _userRoleRepository.DoesRoleExist(roleID);
             if (!doesRoleExist)
             {
-                throw new ValidationRowNotFoudException($"Role with Id {roleID} not found.");
+                throw new ItemNotFoundException($"Role with Id {roleID} not found.");
             }
         }
         public int? GetServicePointId()
@@ -67,7 +67,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             }
             if (createdUpdatedUserRole == null)
             {
-                throw new FalseException("Could not Create/Update Role");
+                throw new ActionFailedException("Could not Create/Update Role");
             }
             return _mapper.Map<RoleDto>(createdUpdatedUserRole);
         }
@@ -76,7 +76,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<Role> roles = await _userRoleRepository.GetAllRolesAsync();
             if (!roles.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<RoleDto>>(roles);
         }
@@ -86,7 +86,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             Role? role = await _userRoleRepository.GetRoleDetailsAsync(roleID);
             if (role == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<RoleDto>(role);
         }
@@ -96,7 +96,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool isRoleDeleted = await _userRoleRepository.DeleteRoleAsync(roleID);
             if (!isRoleDeleted)
             {
-                throw new FalseException("Could not delete role. Try again.");
+                throw new ActionFailedException("Could not delete role. Try again.");
             }
         }
     }

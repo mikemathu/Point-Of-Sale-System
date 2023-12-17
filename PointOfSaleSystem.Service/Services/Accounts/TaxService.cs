@@ -27,7 +27,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesVATTypeExist = await _taxRepository.DoesVATTypeExistAsync(vatTypeID);
             if (!doesVATTypeExist)
             {
-                throw new ValidationRowNotFoudException($"Vat Type with Id {vatTypeID} not found.");
+                throw new ItemNotFoundException($"Vat Type with Id {vatTypeID} not found.");
             }
         }
         private async Task ValidateOtherTaxId(int otherTaxID)
@@ -39,7 +39,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesOtherTaxExist = await _taxRepository.DoesOtherTaxExistAsync(otherTaxID);
             if (!doesOtherTaxExist)
             {
-                throw new ValidationRowNotFoudException($"Other Tax with Id {otherTaxID} not found.");
+                throw new ItemNotFoundException($"Other Tax with Id {otherTaxID} not found.");
             }
         }
         public async Task<VatTypeDto> CreateUpdateVATTypeAsync(VatTypeDto vatTypeDto)
@@ -56,7 +56,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (vatType == null)
             {
-                throw new FalseException("Could not Create/Update Item Category.");
+                throw new ActionFailedException("Could not Create/Update Item Category.");
             }
             return _mapper.Map<VatTypeDto>(vatType);
         }
@@ -65,7 +65,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<VatType> vatTypes = await _taxRepository.GetAllVATTypesAsync();
             if (!vatTypes.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<VatTypeDto>>(vatTypes);
         }
@@ -75,7 +75,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             VatType? vatTypeDetails = await _taxRepository.GetVATTypeDetailsAsync(vatTypeID);
             if (vatTypeDetails == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<VatTypeDto>(vatTypeDetails);
         }
@@ -85,7 +85,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isVatTypeDeleted = await _taxRepository.DeleteVATTypeAsync(vatTypeID);
             if (!isVatTypeDeleted)
             {
-                throw new FalseException("Could not Vat Type. Try again later.");
+                throw new ActionFailedException("Could not Vat Type. Try again later.");
             }
         }
 
@@ -104,7 +104,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (otherTax == null)
             {
-                throw new FalseException("Could not Create/Update Item Category.");
+                throw new ActionFailedException("Could not Create/Update Item Category.");
             }
             return _mapper.Map<OtherTaxDto>(otherTax);
         }
@@ -113,7 +113,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<OtherTax> otherTax = await _taxRepository.GetAllOtherTaxesAsync();
             if (!otherTax.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<OtherTaxDto>>(otherTax);
         }
@@ -123,7 +123,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             OtherTax? otherTaxDetails = await _taxRepository.GetOtherTaxDetailsAsync(otherTaxID);
             if (otherTaxDetails == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<OtherTaxDto>(otherTaxDetails);
         }
@@ -133,7 +133,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isOtherTaxDeleted = await _taxRepository.DeleteOtherTaxAsync(otherTaxID);
             if (!isOtherTaxDeleted)
             {
-                throw new FalseException("Could not delete Other Tax. Try again later.");
+                throw new ActionFailedException("Could not delete Other Tax. Try again later.");
             }
         }
 
@@ -143,7 +143,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<SubAccount> subAccounts = await _taxRepository.GetAllLiabilitySubAccountsAsync();
             if (!subAccounts.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SubAccountDto>>(subAccounts);
         }

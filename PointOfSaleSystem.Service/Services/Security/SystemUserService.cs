@@ -31,7 +31,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool doesSubAccountExist = await _userRepository.DoesUserExist(systemUserID);
             if (!doesSubAccountExist)
             {
-                throw new ValidationRowNotFoudException($"User with Id {systemUserID} not found.");
+                throw new ItemNotFoundException($"User with Id {systemUserID} not found.");
             }
         }
         public async Task AuthenticateUserAsync(RegisterLoginDto systemUserDto)
@@ -68,7 +68,7 @@ namespace PointOfSaleSystem.Service.Services.Security
         {
             if (systemUserDto.UserName == string.Empty || systemUserDto.Password == string.Empty)
             {
-                throw new FalseException("Invalid inputs.Please check your input fields and ensure they are all filled.");
+                throw new ActionFailedException("Invalid inputs.Please check your input fields and ensure they are all filled.");
             }
         }
         public async Task RegisterUserAsync(RegisterLoginDto systemUserDto)
@@ -77,7 +77,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             SystemUser? systemUser = await _userRepository.RegisterUserAsync(_mapper.Map<SystemUser>(systemUserDto));
             if (systemUser == null)
             {
-                throw new FalseException("Could not register user. Try again.");
+                throw new ActionFailedException("Could not register user. Try again.");
             }
             ClaimsIdentity claimsIdentity = CreateClaimsIdentity(systemUser);
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
@@ -96,7 +96,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<SystemUser> users = await _userRepository.GetAllUsersAsync();
             if (!users.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SystemUserDto>>(users);
         }
@@ -106,7 +106,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             SystemUser? userDetails = await _userRepository.GetUserDetailsAsync(userID);
             if (userDetails == null)
             {
-                throw new FalseException("User Details not found.");
+                throw new ActionFailedException("User Details not found.");
             }
             return _mapper.Map<SystemUserDto>(userDetails);
         }
@@ -124,7 +124,7 @@ namespace PointOfSaleSystem.Service.Services.Security
 
             if (!createUpdateUserSuccess)
             {
-                throw new FalseException("Could not Create/Update User. Try Again.");
+                throw new ActionFailedException("Could not Create/Update User. Try Again.");
             }
         }
     }

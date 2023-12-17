@@ -229,6 +229,34 @@ namespace PointOfSaleSystem.Repo.Accounts
             return 0;
         }
 
+        public async Task<bool> IsSubAccountLockedAsync(int subAccountID)
+        {
+            using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
+            string commandText = @"SELECT 
+                                        ""isLocked""
+                                    FROM 
+                                        ""Accounts.Ledger.SubAccounts"" 
+                                    WHERE 
+                                        ""subAccountID"" = @subAccountID";
+
+            using NpgsqlCommand command = new NpgsqlCommand(commandText, connection);
+
+            command.Parameters.AddWithValue("@subAccountID", subAccountID);
+
+            await connection.OpenAsync();
+
+            using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+
+            int isLocked = 0;
+
+            if (await reader.ReadAsync())
+            {
+                isLocked = reader["isLocked"] is DBNull ? 0 : (int)reader["isLocked"];
+            }
+            return isLocked > 0;
+        }
+
         public async Task<bool> TransferSubAccountBalanceAsync(TransferSubAccountBalance destSubAccountBalance, double sourceSubAccountBalance)
         {
             using NpgsqlConnection connection = new NpgsqlConnection(_configuration.GetConnectionString("DefaultConnection"));

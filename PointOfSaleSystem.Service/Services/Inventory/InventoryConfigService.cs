@@ -24,7 +24,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool doesItemCategoryExist = await _inventoryConfig.DoesItemCategoryExist(itemCategoryID);
             if (!doesItemCategoryExist)
             {
-                throw new ValidationRowNotFoudException($"Item Category with Id {itemCategoryID} not found.");
+                throw new ItemNotFoundException($"Item Category with Id {itemCategoryID} not found.");
             }
         }
         private async Task ValidateItemClassId(int itemClassID)
@@ -36,7 +36,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool doesItemClassExist = await _inventoryConfig.DoesItemClassExist(itemClassID);
             if (!doesItemClassExist)
             {
-                throw new ValidationRowNotFoudException($"Item Class with Id {itemClassID} not found.");
+                throw new ItemNotFoundException($"Item Class with Id {itemClassID} not found.");
             }
         }
 
@@ -55,7 +55,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             if (itemCategory == null)
             {
-                throw new FalseException("Could not Create/Update Item Category.");
+                throw new ActionFailedException("Could not Create/Update Item Category.");
             }
             return _mapper.Map<ItemCategoryDto>(itemCategory);
         }
@@ -65,7 +65,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             ItemCategory? itemCategory = await _inventoryConfig.GetItemCategoryDetailsAsync(itemCategoryID);
             if (itemCategory == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<ItemCategoryDto>(itemCategory);
         }
@@ -75,7 +75,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool isItemCategoryDeleted = await _inventoryConfig.DeleteItemCategoryAsync(itemCategoryID);
             if (!isItemCategoryDeleted)
             {
-                throw new FalseException("Could not delete Item Category. Try again later.");
+                throw new ActionFailedException("Could not delete Item Category. Try again later.");
             }
         }
         //ItemClass  
@@ -93,7 +93,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             if (itemClass == null)
             {
-                throw new FalseException("Could not Create/Update Item Category.");
+                throw new ActionFailedException("Could not Create/Update Item Category.");
             }
             return _mapper.Map<ItemClassDto>(itemClass);
         }
@@ -103,7 +103,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             ItemClass? itemClass = await _inventoryConfig.GetItemClassDetailsAsync(itemClassID);
             if (itemClass == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<ItemClassDto>(itemClass);
         }
@@ -113,7 +113,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool isItemClassDeleted = await _inventoryConfig.DeleteItemClassAsync(itemClassID);
             if (!isItemClassDeleted)
             {
-                throw new FalseException("Could not delete Item Class. Try again later.");
+                throw new ActionFailedException("Could not delete Item Class. Try again later.");
             }
         }
     }

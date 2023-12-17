@@ -11,6 +11,7 @@ namespace PointOfSaleSystem.Service.Interfaces.Accounts
         Task<bool> DeleteSubAccountAsync(int subAccountID);
         Task<double> GetSourceSubAccountBalanceAsync(TransferSubAccountBalance sourceSubAccount);//TODO: combine this method to GetSourceSubAccountBalanceAsync(int sourceSubAccountID). From callers to its implementation
         Task<double> GetSourceSubAccountBalanceAsync(int sourceSubAccountID);
+        Task<bool> IsSubAccountLockedAsync(int subAccountID);
         Task<bool> TransferSubAccountBalanceAsync(TransferSubAccountBalance destSubAccountBalance, double sourceSubAccountBalance);
 
         //Inventoty project

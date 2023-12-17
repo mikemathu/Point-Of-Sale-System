@@ -26,7 +26,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesSubAccountExist = await _subAccountRepository.DoesSubAccountExist(subAccountID);
             if (!doesSubAccountExist)
             {
-                throw new ValidationRowNotFoudException($"Sub Account with Id {subAccountID} not found.");
+                throw new ItemNotFoundException($"Sub Account with Id {subAccountID} not found.");
             }
         }
         private async Task ValidateAccountId(int accountID)
@@ -38,7 +38,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesSubAccountExist = await _accountRepository.DoesAccountExist(accountID);
             if (!doesSubAccountExist)
             {
-                throw new ValidationRowNotFoudException($"Account with Id {accountID} not found.");
+                throw new ItemNotFoundException($"Account with Id {accountID} not found.");
             }
         }
         public async Task CreateUpdateSubAccountAsync(SubAccountDto subAccountDto)
@@ -55,7 +55,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (!isSubAccountCreateUpdateSuccess)
             {
-                throw new FalseException("Could not Create/Update Account.");
+                throw new ActionFailedException("Could not Create/Update Account.");
             }
         }
         public async Task<IEnumerable<SubAccountDto>> GetAllSubAccountsByAccountIDAsync(int accountID)
@@ -64,7 +64,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<SubAccount> subAccounts = await _subAccountRepository.GetAllSubAccountsByAccountIDAsync(accountID);
             if (!subAccounts.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SubAccountDto>>(subAccounts);
         }
@@ -74,29 +74,38 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             SubAccount? subAccount = await _subAccountRepository.GetSubAccountDetailsAsync(subAccountID);
             if (subAccount == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<SubAccountDto>(subAccount);
+        }
+        private async Task IsSubAccountLockedAsync(int subAccountID)
+        {
+            bool isSubAccountLocked = await _subAccountRepository.IsSubAccountLockedAsync(subAccountID);
+            if (isSubAccountLocked)
+            {
+                throw new ActionFailedException("Cannot delete Sub Account. You are attempting to delete a locked account.");
+            }
         }
         public async Task DeleteSubAccountAsync(int subAccountID)
         {
             await ValidateSubAccountId(subAccountID);
+            await IsSubAccountLockedAsync(subAccountID);
             double sourceSubAccountBalance = await _subAccountRepository.GetSourceSubAccountBalanceAsync(subAccountID);
             if (sourceSubAccountBalance > 0)
             {
-                throw new FalseException($"Cannot delete this Sub Account with a balance of {sourceSubAccountBalance}. Consider transfering the balance first.");
+                throw new ActionFailedException($"Cannot delete this Sub Account with a balance of {sourceSubAccountBalance}. Consider transfering the balance first.");
             }
             bool isSubAccountDeleted = await _subAccountRepository.DeleteSubAccountAsync(subAccountID);
             if (!isSubAccountDeleted)
             {
-                throw new FalseException("Could not Delete Sub Account. Pleace try again.");
+                throw new ActionFailedException("Could not Delete Sub Account. Pleace try again.");
             }
         }
         private void CheckIfSubAccountsAreSame(TransferSubAccountBalanceDto destSubAccountBalance)
         {
             if (destSubAccountBalance.SourceSubAccountID == destSubAccountBalance.DestSubAccountID)
             {
-                throw new FalseException("Cannot transfer to the same Sub Account");
+                throw new ActionFailedException("Cannot transfer to the same Sub Account");
             }
         }
         public async Task TransferSubAccountBalanceAsync(TransferSubAccountBalanceDto destSubAccountBalance)
@@ -107,7 +116,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
                 _mapper.Map<TransferSubAccountBalance>(destSubAccountBalance), sourceSubAccountBalance);
             if (!isSubAccountBalanceTransfered)
             {
-                throw new FalseException("Could not transfer Balance.");
+                throw new ActionFailedException("Could not transfer Balance.");
             }
         }
         private async Task<double> GetSourceSubAccountBalanceAsync(TransferSubAccountBalanceDto destSubAccountBalance)
@@ -116,7 +125,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
               _mapper.Map<TransferSubAccountBalance>(destSubAccountBalance));
             if (sourceSubAccountBalance == 0)
             {
-                throw new FalseException($"Source Sub Account has a balance of '{sourceSubAccountBalance}");
+                throw new ActionFailedException($"Source Sub Account has a balance of '{sourceSubAccountBalance}");
             }
             return sourceSubAccountBalance;
         }
@@ -126,7 +135,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<SubAccount> inventorySubAccounts = await _subAccountRepository.GetInventorySubAccountAsync();
             if (!inventorySubAccounts.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SubAccountDto>>(inventorySubAccounts);
         }
@@ -135,7 +144,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<SubAccount> costOfSaleSubAccount = await _subAccountRepository.GetCostOfSalesSubAccountsAsync();
             if (!costOfSaleSubAccount.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SubAccountDto>>(costOfSaleSubAccount);
         }
@@ -144,7 +153,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<SubAccount> incomeSubAccounts = await _subAccountRepository.GetIncomeSubAccountsAsync();
             if (!incomeSubAccounts.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<SubAccountDto>>(incomeSubAccounts);
         }

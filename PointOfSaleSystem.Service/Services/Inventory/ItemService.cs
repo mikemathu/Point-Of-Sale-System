@@ -49,7 +49,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool doesItemExist = await _itemRepository.DoesItemExist(itemID);
             if (!doesItemExist)
             {
-                throw new ValidationRowNotFoudException($"Item with Id {itemID} not found.");
+                throw new ItemNotFoundException($"Item with Id {itemID} not found.");
             }
         }
         private async Task<int> GetActiveFiscalPeriodID()
@@ -57,7 +57,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             int? fiscalPeriodID = await _fiscalPeriodRepository.GetActiveFiscalPeriodID();
             if (fiscalPeriodID == null)
             {
-                throw new FalseException("Something went wrong. Pleace try again");
+                throw new ActionFailedException("Something went wrong. Pleace try again");
             }
             return (int)fiscalPeriodID;
         }
@@ -77,7 +77,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             Item? itemDetails = await _itemRepository.GetItemDetailsAsync(itemDto.ItemID);
             if (itemDetails == null)
             {
-                throw new FalseException("Could not find Item details. Try agin later.");
+                throw new ActionFailedException("Could not find Item details. Try agin later.");
             }
             return itemDetails;
         }
@@ -102,7 +102,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             if (createdUpdatedItem == null)
             {
-                throw new FalseException("Could not Create/Update Item.");
+                throw new ActionFailedException("Could not Create/Update Item.");
             }
             return _mapper.Map<ItemDto>(createdUpdatedItem);
         }
@@ -112,7 +112,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             IEnumerable<Item> items = await _itemRepository.FilterItemsAsync(_mapper.Map<FilterItem>(filterFlag));
             if (!items.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<ItemDto>>(items);
         }
@@ -122,7 +122,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             Item? item = await _itemRepository.SearchItemsAsync(itemName);
             if (item == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<ItemDto>(item);
         }
@@ -132,7 +132,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             Item? itemDetails = await _itemRepository.GetItemDetailsAsync(itemID);
             if (itemDetails == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<ItemDto>(itemDetails);
         }
@@ -142,7 +142,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool isItemDeleted = await _itemRepository.DeleteItemAsync(itemID);
             if (!isItemDeleted)
             {
-                throw new FalseException("Could not Delete Item.Try again later.");
+                throw new ActionFailedException("Could not Delete Item.Try again later.");
             }
         }
     }

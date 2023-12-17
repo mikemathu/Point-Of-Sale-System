@@ -19,18 +19,11 @@ namespace PointOfSaleSystem.Web.Filters
 
         private IActionResult HandleException(Exception ex)
         {
-            if (ex is NpgsqlException)
+            if (ex is NpgsqlException)//DB exceptions
             {
-                if (ex.Message.Contains("duplicate key value violates unique constraint"))
+                if (ex.Message.Contains("value violates unique constraint"))
                 {
-                    if (ex.Message.Contains("itemName"))
-                    {
-                        return new ObjectResult("Item with a similar Name already exists.")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    return new ObjectResult("Name already exists.")
+                    return new ObjectResult("Sorry, the Name already exists. Use a different name.")
                     {
                         StatusCode = StatusCodes.Status422UnprocessableEntity
                     };
@@ -44,59 +37,29 @@ namespace PointOfSaleSystem.Web.Filters
                 }
                 else if (ex.Message.Contains("violates foreign key constraint"))
                 {
-                    if (ex.Message.Contains("Accounts.Ledger.Accounts"))
+                    if (ex.Message.Contains("violates foreign key constraint \"cashflowcategoryfk\""))
                     {
-                        return new ObjectResult("Cannot delete Account as there are Sub accounts assiciated with it.")
+                        return new ObjectResult("CashFlow Category is required.")
                         {
                             StatusCode = StatusCodes.Status422UnprocessableEntity
                         };
                     }
-                    if (ex.Message.Contains("Security.Roles"))
+                    return new ObjectResult("Sorry, the action couldn't be completed due to the database constrain.")
                     {
-                        return new ObjectResult("Cannot delete role as there are privileges associated with it.")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    if (ex.Message.Contains("Accounts.Fiscal.Periods"))
-                    {
-                        return new ObjectResult("This period has associated Journl voucher(s)")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    if (ex.Message.Contains("Accounts.JV.JournalVouchers"))
-                    {
-                        return new ObjectResult("This Journal Voucher has an associted entries")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    if (ex.Message.Contains("Inventory.Inventory.Items"))//itemIDFk
-                    {
-                        return new ObjectResult("You are attempting to delete an ordered item. Consider deactivating the item instead")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    if (ex.Message.Contains("Inventory.Inventory.CustomerOrders"))//customerOrderIDFk
-                    {
-                        return new ObjectResult("You are attempting to delete order with item. Consider removing items first and try again.")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
-                    if (ex.Message.Contains("userName"))//customerOrderIDFk
-                    {
-                        return new ObjectResult("Name already exists.")
-                        {
-                            StatusCode = StatusCodes.Status422UnprocessableEntity
-                        };
-                    }
+                        StatusCode = StatusCodes.Status422UnprocessableEntity
+                    };
+                    //Possible constraints
+                    //Accounts.Ledger.Accounts: Cannot delete Account as there are Sub accounts assiciated with it.
+                    //Security.Roles : Cannot delete role as there are privileges associated with it.
+                    //Accounts.Fiscal.Periods: This period has associated Journl voucher(s)
+                    //Accounts.JV.JournalVouchers: This Journal Voucher has an associted entries
+                    //Inventory.Inventory.Items : You are attempting to delete an ordered item. Consider deactivating the item instead
+                    //Inventory.Inventory.CustomerOrders->customerOrderIDFk : You are attempting to delete order with item. Consider removing items first and try again.
+                    //Accounts.Ledger.SubAccounts : You are attempting to delete sub account that is associated with a product.
                 }
             }
             if (ex is AuthenticationException)
-            {
+            { 
                 return new ObjectResult(ex.Message)
                 {
                     StatusCode = StatusCodes.Status422UnprocessableEntity
@@ -109,18 +72,18 @@ namespace PointOfSaleSystem.Web.Filters
                     StatusCode = StatusCodes.Status422UnprocessableEntity
                 };
             }
-            if (ex is NullException)
+            if (ex is EmptyDataResultException)
             {
                 return new ObjectResult(new { data = new List<object>() });
             }
-            if (ex is ValidationRowNotFoudException)//validateId Id not found
+            if (ex is ItemNotFoundException)//validateId Id not found
             {
                 return new ObjectResult(ex.Message)
                 {
                     StatusCode = StatusCodes.Status404NotFound
                 };
             }
-            if (ex is FalseException)
+            if (ex is ActionFailedException)
             {
                 return new ObjectResult(ex.Message)
                 {
@@ -134,7 +97,7 @@ namespace PointOfSaleSystem.Web.Filters
                     StatusCode = StatusCodes.Status422UnprocessableEntity
                 };
             }
-            return new ObjectResult("Internal Server Error.")
+            return new ObjectResult("Internal Server Error. Try again Later.")
             {
                 StatusCode = StatusCodes.Status500InternalServerError
             };

@@ -26,7 +26,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isJournalVoucherPosted = await _journalVoucherRepository.IsJournalVoucherPostedAsync(journalVoucherEntryDto.JournalVoucherID);
             if (isJournalVoucherPosted)
             {
-                throw new FalseException("This Journal Voucher has already been posted");
+                throw new ActionFailedException("This Journal Voucher has already been posted");
             }
         }
         private async Task IsJournalVoucherIdValid(int journalVoucherID)
@@ -38,7 +38,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesJournalVoucherExist = await _journalVoucherRepository.DoesJournalVoucherExist(journalVoucherID);
             if (!doesJournalVoucherExist)
             {
-                throw new ValidationRowNotFoudException($"Journal Voucher with Id {journalVoucherID} not found.");
+                throw new ItemNotFoundException($"Journal Voucher with Id {journalVoucherID} not found.");
             }
         }
         private async Task IsAccountEntryIdValid(int accountEntryID)
@@ -50,7 +50,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesAccountEntryExist = await _journalVoucherEntryRepository.DoesAccountEntryExist(accountEntryID);
             if (!doesAccountEntryExist)
             {
-                throw new ValidationRowNotFoudException($"Account Entry with Id {accountEntryID} not found.");
+                throw new ItemNotFoundException($"Account Entry with Id {accountEntryID} not found.");
             }
         }
         public async Task CreateUpdateEntryAsync(JournalVoucherEntryDto2 journalVoucherEntryDto)
@@ -71,7 +71,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (!isEntryCreateUpdateSuccess)
             {
-                throw new FalseException("Could Not Create/Update Entry");
+                throw new ActionFailedException("Could Not Create/Update Entry");
             }
         }
         public async Task<JournalVoucherEntryDto> GetJournalVoucherEntryDetailsAsync(int accountEntryID)
@@ -80,7 +80,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             JournalVoucherEntry? journalVoucherEntry = await _journalVoucherEntryRepository.GetJournalVoucherEntryDetailsAsync(accountEntryID);
             if (journalVoucherEntry == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<JournalVoucherEntryDto>(journalVoucherEntry);
         }
@@ -89,7 +89,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<JournalVoucherEntry> journalVoucherEntry = await _journalVoucherEntryRepository.GetJournalVoucherEntriesDetailsAsync(accountEntryID);
             if (!journalVoucherEntry.Any())
             {
-                //throw new FalseException("Entries not Found.");
+                //throw new ActionFailedException("Entries not Found.");
             }
             return _mapper.Map<IEnumerable<JournalVoucherEntryDto>>(journalVoucherEntry);
         }
@@ -98,7 +98,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isEntryPosted = await _journalVoucherEntryRepository.IsEntryPostedAsync(accountEntryID);
             if (isEntryPosted)
             {
-                throw new FalseException("This Entry is already Posted");
+                throw new ActionFailedException("This Entry is already Posted");
             }
         }
         public async Task<IEnumerable<JournalVoucherEntryDto>> GetJournalVoucherEntriesAsync(int journalVoucherID)
@@ -107,7 +107,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<JournalVoucherEntry> journalVoucherEntries = await _journalVoucherEntryRepository.GetJournalVoucherEntriesAsync(journalVoucherID);
             if (!journalVoucherEntries.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<JournalVoucherEntryDto>>(journalVoucherEntries);
         }
@@ -118,14 +118,14 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isEntryDeleted = await _journalVoucherEntryRepository.DeleteEntryAsync(accountEntryID);
             if (!isEntryDeleted)
             {
-                throw new FalseException("Could not delete the account entry. Try again later.");
+                throw new ActionFailedException("Could not delete the account entry. Try again later.");
             }
         }
         private void AreSubAccountSame(JournalVoucherEntryDto2 journalVoucherEntryDto)
         {
             if (journalVoucherEntryDto.DebitSubAccountID == journalVoucherEntryDto.CreditSubAccountID)
             {
-                throw new FalseException("The entry cannot have the same sub-accounts.");
+                throw new ActionFailedException("The entry cannot have the same sub-accounts.");
             }
         }
     }

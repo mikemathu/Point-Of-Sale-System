@@ -34,7 +34,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesJournalVoucherExist = await _journalVoucherRepository.DoesJournalVoucherExist(journalVoucherID);
             if (!doesJournalVoucherExist)
             {
-                throw new ValidationRowNotFoudException($"Journal Voucher with Id {journalVoucherID} not found.");
+                throw new ItemNotFoundException($"Journal Voucher with Id {journalVoucherID} not found.");
             }
         }
         private async Task<IEnumerable<JournalVoucherEntryDto>> GetJournalVoucherEntriesAsync(int journalVoucherID)
@@ -42,7 +42,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<JournalVoucherEntry> journalVoucherEntries = await _journalVoucherEntryRepository.GetJournalVoucherEntriesAsync(journalVoucherID);
             if (!journalVoucherEntries.Any())
             {
-                throw new FalseException("This Journal Voucher has no entries");
+                throw new ActionFailedException("This Journal Voucher has no entries");
             }
             return _mapper.Map<IEnumerable<JournalVoucherEntryDto>>(journalVoucherEntries);
         }
@@ -51,7 +51,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<JournalVoucherEntry> journalVoucherEntriesDetails = await _journalVoucherEntryRepository.GetJournalVoucherEntriesDetailsAsync(journalVoucherID);
             if (!journalVoucherEntriesDetails.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<JournalVoucherEntryDto>>(journalVoucherEntriesDetails);
         }
@@ -83,7 +83,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (journalVoucher == null)
             {
-                throw new FalseException("Could not Create/Update Item.");
+                throw new ActionFailedException("Could not Create/Update Item.");
             }
             return _mapper.Map<JournalVoucherDto>(journalVoucher);
         }
@@ -94,7 +94,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             JournalVoucher? journalVoucher = await _journalVoucherRepository.GetJournalVoucherDetailsAsync(journalVoucherID);
             if (journalVoucher == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<JournalVoucherDto>(journalVoucher);
         }
@@ -136,7 +136,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
                 _mapper.Map<FilterJournalVoucher>(filterJournalVoucherDto), isAutomatic, isPosted);
             if (!journalVouchers.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<JournalVoucherDto>>(journalVouchers);
         }
@@ -145,7 +145,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isJournalVoucherPosted = await _journalVoucherRepository.IsJournalVoucherPostedAsync(journalVoucherID);
             if (isJournalVoucherPosted)
             {
-                throw new FalseException("This Journal Voucher has already been posted");
+                throw new ActionFailedException("This Journal Voucher has already been posted");
             }
         }
         public async Task PostJournalVoucherAsync(int journalVoucherID)
@@ -156,7 +156,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isPostJournalVoucherPosted = await _journalVoucherRepository.PostJournalVoucherAsync(_mapper.Map<IEnumerable<JournalVoucherEntry>>(journalVoucherEntries));
             if (!isPostJournalVoucherPosted)
             {
-                throw new FalseException("Could not post Journal voucher. Pleace Try again");
+                throw new ActionFailedException("Could not post Journal voucher. Pleace Try again");
             }
         }
         public async Task UnPostJournalVoucherAsync(int journalVoucherID)
@@ -165,14 +165,14 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isJournalVoucherPosted = await _journalVoucherRepository.IsJournalVoucherPostedAsync(journalVoucherID);
             if (!isJournalVoucherPosted)
             {
-                throw new FalseException("This Journal Voucher is not Posted");
+                throw new ActionFailedException("This Journal Voucher is not Posted");
             }
             await IsJournalVoucherAutomaticallyPostedAsync(journalVoucherID);
             IEnumerable<JournalVoucherEntryDto> journalVoucherEntriesDetails = await GetJournalVoucherEntriesDetailsAsync(journalVoucherID);
             bool isJournalVoucherUnPosted = await _journalVoucherRepository.UnPostJournalVoucherAsync(_mapper.Map<IEnumerable<JournalVoucherEntry>>(journalVoucherEntriesDetails));
             if (!isJournalVoucherUnPosted)
             {
-                throw new FalseException("Could not Unpost Journal voucher. Pleace Try again");
+                throw new ActionFailedException("Could not Unpost Journal voucher. Pleace Try again");
             }
         }
         private async Task IsJournalVoucherAutomaticallyPostedAsync(int journalVoucherID)
@@ -180,7 +180,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isJournalVoucherAutomaticallyPostedAsync = await _journalVoucherRepository.IsJournalVoucherAutomaticallyPostedAsync(journalVoucherID);
             if (isJournalVoucherAutomaticallyPostedAsync)
             {
-                throw new FalseException("You are attempting to unpost an automatically posted voucher. Post a reversal instead.");
+                throw new ActionFailedException("You are attempting to unpost an automatically posted voucher. Post a reversal instead.");
             }
         }
         public async Task DeleteJournalVoucherAsync(int journalVoucherID)
@@ -190,7 +190,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isJournalVoucherDeleted = await _journalVoucherRepository.DeleteJournalVoucherAsync(journalVoucherID);
             if (!isJournalVoucherDeleted)
             {
-                throw new FalseException("Could not delete Journal Voucher. Try again later.");
+                throw new ActionFailedException("Could not delete Journal Voucher. Try again later.");
             }
         }
     }

@@ -24,7 +24,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool doesItemClassExist = await _unitofMeasureRepository.DoesUnitOfMeasureExist(unitOfMeasureID);
             if (!doesItemClassExist)
             {
-                throw new ValidationRowNotFoudException($"Unit Of Measure with with Id {unitOfMeasureID} not found.");
+                throw new ItemNotFoundException($"Unit Of Measure with with Id {unitOfMeasureID} not found.");
             }
         }
         public async Task<UnitOfMeasureDto> CreateUpdateUnitOfMeasureAsync(UnitOfMeasureDto unitOfMeasureDto)
@@ -42,7 +42,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             }
             if (unitOfMeasure == null)
             {
-                throw new FalseException("Could not Create/Update Item Category.");
+                throw new ActionFailedException("Could not Create/Update Item Category.");
             }
             return _mapper.Map<UnitOfMeasureDto>(unitOfMeasure);
         }
@@ -53,7 +53,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             UnitOfMeasure? unitOfMeasure = await _unitofMeasureRepository.GetUnitOfMeasureDetailsAsync(unitOfMeasureID);
             if (unitOfMeasure == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<UnitOfMeasureDto>(unitOfMeasure);
         }
@@ -64,7 +64,7 @@ namespace PointOfSaleSystem.Service.Services.Inventory
             bool isItemCategoryDeleted = await _unitofMeasureRepository.DeleteUnitOfMeasureAsync(unitOfMeasureID);
             if (!isItemCategoryDeleted)
             {
-                throw new FalseException("Could not delete Item Category. Try again later.");
+                throw new ActionFailedException("Could not delete Item Category. Try again later.");
             }
         }
     }

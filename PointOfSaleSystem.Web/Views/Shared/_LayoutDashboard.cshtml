@@ -60,10 +60,13 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-nav">
                                 <li class=dropdown-header>
-                                    <span style=font-size:medium>
-                                        <i class="far fa-user-circle"></i>
-                                        @User.Identity.Name
-                                    </span>
+                                    @if (User?.Identity?.Name != null)
+                                    {
+                                        <span style="font-size:medium">
+                                            <i class="far fa-user-circle"></i>
+                                            @User.Identity.Name
+                                        </span>
+                                    }
                                 <li role=separator class=divider>
                                 <li>
                                     <a href=/Security/Logout>Logout</a>

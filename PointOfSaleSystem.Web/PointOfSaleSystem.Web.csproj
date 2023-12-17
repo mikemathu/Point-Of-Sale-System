@@ -21,6 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\AppData\images\ERDiagrams\Accounts.pgerd" />
+    <None Include="wwwroot\AppData\images\ERDiagrams\Inventory.pgerd" />
+    <None Include="wwwroot\AppData\images\ERDiagrams\InventoryManagemeny.pgerd" />
+    <None Include="wwwroot\AppData\images\ERDiagrams\Project.pgerd" />
+    <None Include="wwwroot\AppData\images\ERDiagrams\Security.pgerd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PointOfSaleSystem.Repo\PointOfSaleSystem.Repo.csproj" />
     <ProjectReference Include="..\PointOfSaleSystem.Service\PointOfSaleSystem.Service.csproj" />
 	  <PackageReference Include="FastReport.Data.Postgres" Version="2023.2.0" />

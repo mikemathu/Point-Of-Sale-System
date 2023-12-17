@@ -26,7 +26,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool doesOrderExist = await _orderRepository.DoesOrderExist(orderID);
             if (!doesOrderExist)
             {
-                throw new ValidationRowNotFoudException($"Order with Id {orderID} not found.");
+                throw new ItemNotFoundException($"Order with Id {orderID} not found.");
             }
         }
         private async Task IsItemIdValid(int itemID)
@@ -38,7 +38,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool doesItemExist = await _orderRepository.DoesItemExist(itemID);
             if (!doesItemExist)
             {
-                throw new ValidationRowNotFoudException($"Item with Id {itemID} not found.");
+                throw new ItemNotFoundException($"Item with Id {itemID} not found.");
             }
 
         }
@@ -47,7 +47,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool isOrderPaid = await _orderRepository.IsOrderPaid(customerOrderID);
             if (isOrderPaid)
             {
-                throw new FalseException("This order is already paid for.");
+                throw new ActionFailedException("This order is already paid for.");
             }
         }
         private async Task<IEnumerable<ItemDto>> GetAllItemsOnPOSAsync()
@@ -55,7 +55,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<Item> items = await _orderRepository.GetAllItemsOnPOSAsync();
             if (!items.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<ItemDto>>(items);
         }
@@ -64,7 +64,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<ItemCategory> itemCategories = await _orderRepository.GetAllItemCategoriesAsync();
             if (!itemCategories.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<ItemCategoryDto>>(itemCategories);
         }
@@ -73,7 +73,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<CustomerOrder> pendingOrders = await _orderRepository.GetUserPendingOrdersAsync();
             if (!pendingOrders.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<CustomerOrderDto>>(pendingOrders);
         }
@@ -82,7 +82,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool isPosOrderCreated = await _orderRepository.CreatePosOrderAsync();
             if (!isPosOrderCreated)
             {
-                throw new FalseException("Could not create Order. Try again");
+                throw new ActionFailedException("Could not create Order. Try again");
             }
         }
         public async Task RemoveOrderAsync(int orderID)
@@ -91,7 +91,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool isOrderRemoved = await _orderRepository.RemoveOrderAsync(orderID);
             if (!isOrderRemoved)
             {
-                throw new FalseException("Could not Delete Order. Try again.");
+                throw new ActionFailedException("Could not Delete Order. Try again.");
             }
         }
         public async Task AddPosItemToOrderAsync(CustomerOrderDto customerOrderDto)
@@ -113,7 +113,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             }
             if (!isPosItemAddedToOrder)
             {
-                throw new FalseException("Could not Add Item to order. Try again.");
+                throw new ActionFailedException("Could not Add Item to order. Try again.");
             }
         }
         public async Task<IEnumerable<OrderedItemDto>> GetPosOrderItemAsync(int orderID)
@@ -122,7 +122,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<OrderedItem> orderItems = await _orderRepository.GetPosOrderItemsAsync(orderID);
            /* if (!orderItems.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }*/
             return _mapper.Map<IEnumerable<OrderedItemDto>>(orderItems);
         }
@@ -131,7 +131,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<OrderedItem> orderItemQuantity = await _orderRepository.GetQuantity(customerOrderID);
             if (!orderItemQuantity.Any())
             {
-                throw new FalseException("Item Not Found.");
+                throw new ActionFailedException("Item Not Found.");
             }
             return _mapper.Map<IEnumerable<OrderedItemDto>>(orderItemQuantity);
         }
@@ -143,7 +143,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
                 bool isItemRemoved = await _orderRepository.RemoveItem(_mapper.Map<OrderedItem>(orderItemDto));
                 if (!isItemRemoved)
                 {
-                    throw new FalseException("Error happened. Please try again.");
+                    throw new ActionFailedException("Error happened. Please try again.");
                 }
             }
             double unitPrice = await _orderRepository.GetItemUnitPriceAsync(orderItemDto.ItemID);

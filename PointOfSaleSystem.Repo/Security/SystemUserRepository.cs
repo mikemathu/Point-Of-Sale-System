@@ -153,7 +153,7 @@ namespace PointOfSaleSystem.Repo.Security
                             if (rowsAffected < user.UserRolesIDs.Length)
                             {
                                 transaction.Commit();
-                                throw new FalseException("User was inserted, but some roles were not updated. Try adding and/or removing the roles again and update.");
+                                throw new ActionFailedException("User was inserted, but some roles were not updated. Try adding and/or removing the roles again and update.");
                             }
                         }
                         transaction.Commit();
@@ -236,7 +236,7 @@ namespace PointOfSaleSystem.Repo.Security
                             if (rowsAffected < user.UserRolesIDs.Length)
                             {
                                 transaction.Commit();
-                                throw new FalseException("User was inserted, but some roles were not updated. Try adding and/or removing the roles again and update.");
+                                throw new ActionFailedException("User was inserted, but some roles were not updated. Try adding and/or removing the roles again and update.");
                             }
                         }
                         // Commit the transaction if everything was successful

@@ -30,14 +30,14 @@ Both `Item Class` and `Item Category` provide structured classifications for gro
 
 `Item` are associated with relevant sub-accounts, enabling the financial tracking of inventory, cost of sale, and revenue within the system. 
 
-System Functionality:
+**System Functionality:**
 When the quantity of an `Item` is updated, the system automatically generates and posts a corresponding `Journal Voucher` to reflect this change. The balance amount linked to the items' inventory `Sub Account` is adjusted accordingly, either increased or decreased based on the updated quantity of the `Item`.
 
 **3. Point of Sale Module**
 
 An `Item` is sold, capturing details such as item name, quantities, prices, and payment methods.
 
-System Functionality:
+**System Functionality:** 
 Each sales transaction involves one or more inventory items, reducing the available stock by the sold quantities. Additionally, an automatic `Journal Voucher` is posted, adjusting the balance amounts linked to the inventory, Cost of Sale, and Revenue sub-accounts for each `Item`.
 
 **4. Security Module**
@@ -96,15 +96,9 @@ Example config setting in appsettings.json for a database called `Accounts`:
 ### Configure an API client for interacting with the API
 
 - Open Insomnia (or another tool) and import the **PointOfSale.json** file from the 'wwwroot/AppData' directory of this project.
-- Ensure you first make the POST request along with the provided JSON below to authenticate.
+- Ensure that you make the POST request along with the provided JSON, as shown below, to authenticate.
 
-```json
- {
-    "UserName": "Super Admin",
-    "Password": "123"
-}
-```
-
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Authenticate.png">
 
 ## Architecture 
 (not maintained, only for demonstration)
@@ -162,11 +156,11 @@ Inventory
 Units Of Measure
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Inventory/UnitsofMeasures.png">
 
-Privileges
-<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Privileges.png">
-
 Roles
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Roles.png">
+
+Privileges
+<img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Privileges.png">
 
 Users
 <img src="https://github.com/mikemathu/Point-Of-Sale-System/blob/main/PointOfSaleSystem.Web/wwwroot/AppData/images/Security/Users.png">

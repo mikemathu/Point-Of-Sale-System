@@ -25,7 +25,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesCashFlowCategoryExist = await _cashFlowCategoryRepository.DoesCashFlowCategoryExist(cashFlowCategoryID);
             if (!doesCashFlowCategoryExist)
             {
-                throw new ValidationRowNotFoudException($"CashFlow Category with Id {cashFlowCategoryID} not found.");
+                throw new ItemNotFoundException($"CashFlow Category with Id {cashFlowCategoryID} not found.");
             }
         }
         public async Task CreateUpdateCashFlowCategoryAsync(CashFlowCategoryDto cashFlowCategory)
@@ -43,7 +43,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (!isCashFlowCategoryCreatUpdateSuccess)
             {
-                throw new FalseException("Could not Create/Update CashFlow Category. Try again later.");
+                throw new ActionFailedException("Could not Create/Update CashFlow Category. Try again later.");
             }
         }
         public async Task<IEnumerable<CashFlowCategoryDto>> GetActiveCashFlowCategoriesAsync()
@@ -51,7 +51,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<CashFlowCategory> cashFlowCategories = await _cashFlowCategoryRepository.GetActiveCashFlowCategoriesAsync();
             if (!cashFlowCategories.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<CashFlowCategoryDto>>(cashFlowCategories);
         }
@@ -61,7 +61,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             CashFlowCategory? cashFlowCategoryDetails = await _cashFlowCategoryRepository.GetCashFlowCategoryDetailsAsync(cashFlowCategoryID);
             if (cashFlowCategoryDetails == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<CashFlowCategoryDto>(cashFlowCategoryDetails);
         }
@@ -71,7 +71,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isCashFlowCategoryDeleted = await _cashFlowCategoryRepository.DeleteCashFlowCategoryAsync(cashFlowCategoryID);
             if (!isCashFlowCategoryDeleted)
             {
-                throw new FalseException("Could not Delete Cashflow Category.Try again later.");
+                throw new ActionFailedException("Could not Delete Cashflow Category.Try again later.");
             }
         }
     }

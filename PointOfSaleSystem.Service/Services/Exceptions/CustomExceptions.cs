@@ -1,15 +1,15 @@
 ﻿namespace PointOfSaleSystem.Service.Services.Exceptions
 {
-    public class NullException : ApplicationException //NoDataFoundException
+    public class EmptyDataResultException : ApplicationException //NoDataFoundException
     {
-        public NullException() { }
+        public EmptyDataResultException() { }
     }
-    public class ValidationRowNotFoudException : ApplicationException
+    public class ItemNotFoundException : ApplicationException
     {
-        public ValidationRowNotFoudException(string? message) : base(message) { }
+        public ItemNotFoundException(string? message) : base(message) { }
     }
-    public class FalseException : ApplicationException
+    public class ActionFailedException : ApplicationException
     {
-        public FalseException(string? message) : base(message) { }
+        public ActionFailedException(string? message) : base(message) { }
     }
 }

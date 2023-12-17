@@ -26,7 +26,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesSubAccountExist = await _accountRepository.DoesAccountExist(accountID);
             if (!doesSubAccountExist)
             {
-                throw new ValidationRowNotFoudException($"Account with Id {accountID} not found.");
+                throw new ItemNotFoundException($"Account with Id {accountID} not found.");
             }
         }
         private async Task IsAccountLockedAsync(int accountID)
@@ -34,7 +34,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isAccountLocked = await _accountRepository.IsAccountLockedAsync(accountID);
             if (isAccountLocked)
             {
-                throw new FalseException("Cannot delete Account. You are attempting to delete a locked account.");
+                throw new ActionFailedException("Cannot delete Account. You are attempting to delete a locked account.");
             }
         }
         public async Task<AccountDto> CreateUpdateAccountAsync(AccountDto accountDto)
@@ -52,7 +52,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (!isAccountCreateUpdateSuccess)
             {
-                throw new FalseException("Could not Create/Update Account.");
+                throw new ActionFailedException("Could not Create/Update Account.");
             }
             AccountDto accountDetails = await GetAccountDetailsAndAccountClassNameAsync(accountDto);
             return _mapper.Map<AccountDto>(accountDetails);
@@ -62,7 +62,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             int? accountTypeID = await _accountClassRepository.GetAccountTypeIdAsync(accountDto.AccountClassID);
             if (accountTypeID == null)
             {
-                throw new FalseException("Invalid Account Class ID. Account Type not Found.");
+                throw new ActionFailedException("Invalid Account Class ID. Account Type not Found.");
             }
             return (int)accountTypeID;
         }
@@ -71,7 +71,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             Account? accountDetails = await _accountClassRepository.GetAccountDetailsAndAccountClassNameAsync(_mapper.Map<Account>(accountDto));
             if (accountDetails == null)
             {
-                throw new FalseException("Account Details of Create Account not Found.");
+                throw new ActionFailedException("Account Details of Create Account not Found.");
             }
             return _mapper.Map<AccountDto>(accountDetails);
         }
@@ -80,7 +80,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<Account> accounts = await _accountRepository.GetAllAccountsAsync();
             if (!accounts.Any())
             {
-                throw new FalseException("Accounts not Found.");
+                throw new ActionFailedException("Accounts not Found.");
             }
             return _mapper.Map<IEnumerable<AccountDto>>(accounts);
         }
@@ -90,7 +90,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             Account? account = await _accountRepository.GetAccountDetailsAsync(accountID);
             if (account == null)
             {
-                throw new FalseException("Account Details not Found.");
+                throw new ActionFailedException("Account Details not Found.");
             }
             return _mapper.Map<AccountDto>(account);
         }
@@ -101,7 +101,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isAccountDeleted = await _accountRepository.DeleteAccountAsync(accountID);
             if (!isAccountDeleted)
             {
-                throw new FalseException("Could not Delete Account.");
+                throw new ActionFailedException("Could not Delete Account.");
             }
         }
         private int GenerateAccountNumberByType(int accountTypeID)

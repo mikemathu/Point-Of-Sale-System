@@ -21,7 +21,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isFiscalPeriodRangeOverlap = await _fiscalPeriodRepository.IsFiscalPeriodRangeOverlapAsync(_mapper.Map<FiscalPeriod>(fiscalPeriodDto));
             if (isFiscalPeriodRangeOverlap)
             {
-                throw new FalseException("This period is overlapping with another fiscal period.");
+                throw new ActionFailedException("This period is overlapping with another fiscal period.");
             }
         }
         private async Task IsFiscalPeriodOpenAsync(FiscalPeriodDto fiscalPeriodDto)
@@ -29,7 +29,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isFiscalPeriodOpen = await _fiscalPeriodRepository.IsFiscalPeriodOpenAsync(fiscalPeriodDto.FiscalPeriodID);
             if (!isFiscalPeriodOpen)
             {
-                throw new FalseException("Fiscal Period is Closed");
+                throw new ActionFailedException("Fiscal Period is Closed");
             }
         }
         private async Task ValidateFiscalPeriodId(int fiscalPeriodID)
@@ -41,7 +41,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool doesFiscalPeriodExist = await _fiscalPeriodRepository.DoesFiscalPeriodExist(fiscalPeriodID);
             if (!doesFiscalPeriodExist)
             {
-                throw new ValidationRowNotFoudException($"Fiscal Period with Id {fiscalPeriodID} not found.");
+                throw new ItemNotFoundException($"Fiscal Period with Id {fiscalPeriodID} not found.");
             }
         }
         public async Task<FiscalPeriodDto> CreateUpdateFiscalPeriodAsync(FiscalPeriodDto fiscalPeriodDto)
@@ -60,7 +60,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             }
             if (fiscalPeriod == null)
             {
-                throw new FalseException("Could Not Create Fiscal Period");
+                throw new ActionFailedException("Could Not Create Fiscal Period");
             }
             return _mapper.Map<FiscalPeriodDto>(fiscalPeriod);
         }
@@ -69,7 +69,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<FiscalPeriod> fiscalPeriods = await _fiscalPeriodRepository.GetAllFiscalPeriodsAsync();
             if (!fiscalPeriods.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<FiscalPeriodDto>>(fiscalPeriods);
         }
@@ -78,7 +78,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<FiscalPeriod> fiscalPeriods = await _fiscalPeriodRepository.GetAllActiveFiscalPeriodsAsync();
             if (!fiscalPeriods.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<FiscalPeriodDto>>(fiscalPeriods);
         }
@@ -87,7 +87,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             IEnumerable<FiscalPeriod> inActivefiscalPeriods = await _fiscalPeriodRepository.GetAllInActiveFiscalPeriodsAsync();
             if (!inActivefiscalPeriods.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<FiscalPeriodDto>>(inActivefiscalPeriods);
         }
@@ -97,7 +97,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             FiscalPeriod? fiscalPeriodDetails = await _fiscalPeriodRepository.GetFiscalPeriodDetailsAsync(fiscalPeriodID);
             if (fiscalPeriodDetails == null)
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<FiscalPeriodDto>(fiscalPeriodDetails);
         }
@@ -106,7 +106,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isFiscalPeriodActive = await _fiscalPeriodRepository.IsFiscalPeriodActiveAsync(fiscalPeriodID);
             if (isFiscalPeriodActive)
             {
-                throw new FalseException("This period is still active");
+                throw new ActionFailedException("This period is still active");
             }
         }
         public async Task<FiscalPeriodDto> CloseFiscalPeriodAsync(int fiscalPeriodID)
@@ -115,7 +115,7 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             FiscalPeriod? fiscalPeriod = await _fiscalPeriodRepository.CloseFiscalPeriodAsync(fiscalPeriodID);
             if (fiscalPeriod == null)
             {
-                throw new FalseException("First close the previous fiscal period.");
+                throw new ActionFailedException("First close the previous fiscal period.");
             }
             return _mapper.Map<FiscalPeriodDto>(fiscalPeriod);
         }
@@ -126,14 +126,14 @@ namespace PointOfSaleSystem.Service.Services.Accounts
             bool isFiscalPeriodDeleted = await _fiscalPeriodRepository.DeleteFiscalPeriodAsync(fiscalPeriodID);
             if (!isFiscalPeriodDeleted)
             {
-                throw new FalseException("Could not delete Fiscal Period");
+                throw new ActionFailedException("Could not delete Fiscal Period");
             }
         }
         private void IsOpenDateGreaterThanCloseDate(FiscalPeriodDto fiscalPeriodDto)
         {
             if (fiscalPeriodDto.OpenDate > fiscalPeriodDto.CloseDate)
             {
-                throw new FalseException("Cannot create the selected period. Pleace verify the open and/or close dates.");
+                throw new ActionFailedException("Cannot create the selected period. Pleace verify the open and/or close dates.");
             }
         }
     }

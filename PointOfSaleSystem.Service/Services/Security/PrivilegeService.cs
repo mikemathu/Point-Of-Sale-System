@@ -27,7 +27,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool doesPrivilegeExist = await _privilegeRepository.DoesPrivilegeExist(privilegeID);
             if (!doesPrivilegeExist)
             {
-                throw new ValidationRowNotFoudException($"Privilege with Id {privilegeID} not found.");
+                throw new ItemNotFoundException($"Privilege with Id {privilegeID} not found.");
             }
         }
         private async Task IsRoleIdValid(int roleID)
@@ -39,7 +39,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool doesRoleExist = await _userRoleRepository.DoesRoleExist(roleID);
             if (!doesRoleExist)
             {
-                throw new ValidationRowNotFoudException($"Role with Id {roleID} not found.");
+                throw new ItemNotFoundException($"Role with Id {roleID} not found.");
             }
         }
         public async Task<PrivilegeDto> CreateUpdatePrivilegeAsync(PrivilegeDto privilegeDto)
@@ -55,7 +55,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             }
             if (createdUpdatedUserRole == null)
             {
-                throw new FalseException("Could not Create/Update Privilege");
+                throw new ActionFailedException("Could not Create/Update Privilege");
             }
             return _mapper.Map<PrivilegeDto>(createdUpdatedUserRole);
         }
@@ -64,7 +64,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<Privilege> privileges = await _privilegeRepository.GetAllPrivilegesAsync();
             if (!privileges.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<PrivilegeDto>>(privileges);
         }
@@ -74,7 +74,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<Privilege> privileges = await _privilegeRepository.GetRolePrivilegesAsync(roleID);
             if (!privileges.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<PrivilegeDto>>(privileges);
         }
@@ -87,7 +87,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<Privilege> rolePrivilege = await _privilegeRepository.AddPrivilegesToRoleAsync(_mapper.Map<RolePrivilege>(rolePrivilegeDto));
             if (!rolePrivilege.Any())
             {
-                throw new FalseException("Could not Add Privilege to Role. Try again");
+                throw new ActionFailedException("Could not Add Privilege to Role. Try again");
             }
             return _mapper.Map<IEnumerable<PrivilegeDto>>(rolePrivilege);
         }
@@ -96,7 +96,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             IEnumerable<Privilege> rolePrivilege = await _privilegeRepository.DeletePrivilegesFromRoleAsync(_mapper.Map<RolePrivilege>(rolePrivilegeDto));
             if (!rolePrivilege.Any())
             {
-                throw new FalseException("Could not Delete Privilege(s) from Role. Try Again");
+                throw new ActionFailedException("Could not Delete Privilege(s) from Role. Try Again");
             }
             return _mapper.Map<IEnumerable<PrivilegeDto>>(rolePrivilege);
         }
@@ -106,7 +106,7 @@ namespace PointOfSaleSystem.Service.Services.Security
             bool isPriviledgeDeleted = await _privilegeRepository.DeleteRolePrivilegeAsync(privilegeID);
             if (!isPriviledgeDeleted)
             {
-                throw new FalseException("Could not Delete Privilege. Try again.");
+                throw new ActionFailedException("Could not Delete Privilege. Try again.");
             }
         }
     }

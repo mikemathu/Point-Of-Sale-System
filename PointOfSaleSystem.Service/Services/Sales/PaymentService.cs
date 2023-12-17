@@ -37,7 +37,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool doesOrderExist = await _orderRepository.DoesOrderExist(orderID);
             if (!doesOrderExist)
             {
-                throw new ValidationRowNotFoudException($"Order with Id {orderID} not found.");
+                throw new ItemNotFoundException($"Order with Id {orderID} not found.");
             }
         }
         private async Task IsOrderPaid(int customerOrderID)
@@ -45,7 +45,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             bool isOrderPaid = await _orderRepository.IsOrderPaid(customerOrderID);
             if (isOrderPaid)
             {
-                throw new FalseException("This order is already paid for.");
+                throw new ActionFailedException("This order is already paid for.");
             }
         }
         private void IsPaymentValidValid(PaymentDto paymentDto)
@@ -61,7 +61,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             {
                 if (tenderedAmountTotal < paymentDto.PosPaymentItems[i].AmountDue)
                 {
-                    throw new FalseException("Amount tendered is less than the amount due.");
+                    throw new ActionFailedException("Amount tendered is less than the amount due.");
                 }
                 double changeAmount = 0.0;
                 double change = paymentDto.PosPaymentItems[i].AmountTendered - paymentDto.PosPaymentItems[i].AmountDue;
@@ -76,7 +76,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
 
                 if (paymentDto.PosPaymentItems[i].ChangeAmount != changeAmount)
                 {
-                    throw new FalseException("Change Amount is Incorrect");
+                    throw new ActionFailedException("Change Amount is Incorrect");
                 }
             }
         }
@@ -86,14 +86,14 @@ namespace PointOfSaleSystem.Service.Services.Sales
 
             if (totalAmountDue == null)
             {
-                throw new FalseException("Item(s) not found");
+                throw new ActionFailedException("Item(s) not found");
             }
 
             for (int i = 0; i < 1; i++)
             {
                 if (totalAmountDue != paymentDto.PosPaymentItems[0].AmountDue)
                 {
-                    throw new FalseException("Amount Due is incorrect.");
+                    throw new ActionFailedException("Amount Due is incorrect.");
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             int? fiscalPeriodID = await _fiscalPeriodRepository.GetActiveFiscalPeriodID();
             if (fiscalPeriodID == null)
             {
-                throw new FalseException("Something went wrong. Pleace try again");
+                throw new ActionFailedException("Something went wrong. Pleace try again");
             }
             return (int)fiscalPeriodID;
         }
@@ -119,7 +119,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
             IEnumerable<PaymentMethod> paymentMethods = await _paymentMethodRepository.GetAllPaymentModesAsync();
             if (!paymentMethods.Any())
             {
-                throw new NullException();
+                throw new EmptyDataResultException();
             }
             return _mapper.Map<IEnumerable<PaymentMethodDto>>(paymentMethods);
         }
@@ -144,7 +144,7 @@ namespace PointOfSaleSystem.Service.Services.Sales
                 _mapper.Map<Payment>(paymentDto), _mapper.Map<IEnumerable<OrderedItem>>(orderItemsQuantity), userID, fiscalPeriodID);
             if (!isPaymentReceived)
             {
-                throw new FalseException("Payment Failed. Try again.");
+                throw new ActionFailedException("Payment Failed. Try again.");
             }
         }
     }
