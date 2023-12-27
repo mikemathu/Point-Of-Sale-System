@@ -58,7 +58,7 @@ Generates reports based on both recorded financial information along with sales 
 
 - Frontend: ASP.NET Core MVC with HTML, CSS, JS
 - Backend: ASP.NET Core Web API with C#
-- Database: [Postgres](https://www.postgresql.org/download/)
+- Database: [PostgreSQL](https://www.postgresql.org/download/)
 - Data Access: [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 - Platform: [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 
 - API Tests: [Insomnia](https://insomnia.rest/download)
