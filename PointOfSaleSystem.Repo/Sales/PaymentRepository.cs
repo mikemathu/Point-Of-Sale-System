@@ -250,7 +250,7 @@ namespace PointOfSaleSystem.Repo.Sales
                             command.Parameters.AddWithValue("@creditAmount", totalUnitPriceList);
                             command.Parameters.AddWithValue("@debitAmount", totalUnitPriceList);
                             command.Parameters.AddWithValue("@creditSubAccountID", revenueSubAccountIDList[i]); //Revenue
-                            command.Parameters.AddWithValue("@debitSubAccountID", 8);//Cash at hand
+                            command.Parameters.AddWithValue("@debitSubAccountID", 117);//Cash at hand
                             command.Parameters.AddWithValue("@journalVoucherID", journalVoucherID);
 
                             int numberOfRowsAffectedCashRevenue = await command.ExecuteNonQueryAsync();
